@@ -21,19 +21,18 @@
 
         <!-- BRAND. Swap the logo file and the two labels. -->
         <a href="index.html" class="nds-brand nds-link">
-            <img class="nds-brand-logo" src="assets/img/palm_swords.svg"
-                 width="40" height="40" loading="lazy" alt="Entity logo">
-            <span class="nds-brand-name">Entity Name
+            <img class="nds-brand-logo" src="theme/media/logo.webp" width="64" height="48" loading="lazy"
+                alt="Entity logo">
+            <!-- <span class="nds-brand-name">Entity Name
                 <span class="nds-brand-slogan">Tagline goes here</span>
-            </span>
+            </span> -->
         </a>
 
         <!-- MOBILE TOGGLER -->
         <ul class="nds-nav-minimal">
             <li class="nds-mainNav-toggler nds-nav-item">
-                <button class="nds-nav-link nds-btn nds-subtle nds-indicator"
-                        aria-label="Toggle navigation menu"
-                        aria-expanded="false" aria-controls="shellNavCollapse">
+                <button class="nds-nav-link nds-btn nds-subtle nds-indicator" aria-label="Toggle navigation menu"
+                    aria-expanded="false" aria-controls="shellNavCollapse">
                     <i class="nds-icon nds-hgi-menu-01" aria-hidden="true"></i>
                 </button>
             </li>
@@ -50,11 +49,17 @@
                         </a>
                     </li>
 
+                    <li class="nds-nav-item">
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">About the Forum</span>
+                        </a>
+                    </li>
+
                     <!-- Dropdown example. Delete the .nds-dropdown-menu block
                          to turn this back into a plain link. -->
                     <li class="nds-nav-item nds-dropdown">
                         <a href="#" class="nds-nav-link nds-btn nds-subtle nds-menu-btn nds-indicator">
-                            <span class="nds-label">Services</span>
+                            <span class="nds-label">Processes</span>
                         </a>
                         <div class="nds-dropdown-menu">
                             <div class="nds-dropdown-content nds-content-wrapper">
@@ -88,12 +93,31 @@
 
                     <li class="nds-nav-item">
                         <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
-                            <span class="nds-label">Apply</span>
+                            <span class="nds-label">2nd Stakeholder Meeting</span>
                         </a>
                     </li>
+
                     <li class="nds-nav-item">
-                        <a href="pages/content.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
-                            <span class="nds-label">About</span>
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">Organizers</span>
+                        </a>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">Media Center</span>
+                        </a>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">Knowledge Hub</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nds-nav-item">
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">Registration</span>
                         </a>
                     </li>
                 </ul>
@@ -113,17 +137,18 @@
                     <li class="nds-nav-item nds-dropdown nds-icon-only nds-search nds-PAB">
                         <button class="nds-nav-link nds-btn nds-subtle nds-indicator" title="Search">
                             <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
-                            <span class="nds-label">Search</span>
+                            <span class="nds-label d-block">Search</span>
                         </button>
                         <div class="nds-dropdown-menu">
                             <div class="nds-dropdown-content">
                                 <div class="nds-content-wrapper">
-                                    <form class="nds-form-container nds-search-box" role="search" method="get" action="#">
+                                    <form class="nds-form-container nds-search-box" role="search" method="get"
+                                        action="#">
                                         <div class="nds-search-content">
                                             <div class="nds-form-control">
                                                 <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
-                                                <input id="siteSearch" type="text" class="nds-search-input"
-                                                       name="q" placeholder="Search this site" autocomplete="off">
+                                                <input id="siteSearch" type="text" class="nds-search-input" name="q"
+                                                    placeholder="Search this site" autocomplete="off">
                                                 <div class="nds-form-action">
                                                     <button type="button" class="nds-btn nds-subtle nds-clear" hidden>
                                                         <i class="nds-icon nds-hgi-cancel-01" aria-hidden="true"></i>
@@ -142,16 +167,16 @@
                     </li>
 
                     <!-- Account, signed out. Shown while <html> has no data-auth. -->
-                    <li class="nds-nav-item nds-icon-only nds-login nds-guest">
+                    <!-- <li class="nds-nav-item nds-icon-only nds-login nds-guest">
                         <button class="nds-nav-link nds-btn nds-subtle nds-lg nds-indicator" title="Sign in">
                             <i class="nds-icon nds-icon-avatar" aria-hidden="true"></i>
                             <span class="nds-label">Sign in</span>
                         </button>
-                    </li>
+                    </li> -->
 
                     <!-- Account, signed in. Shown when <html data-auth="true">.
                          The inline guard in <head> sets that from the nds_auth cookie. -->
-                    <li class="nds-nav-item nds-dropdown nds-login nds-icon-only nds-auth">
+                    <!-- <li class="nds-nav-item nds-dropdown nds-login nds-icon-only nds-auth">
                         <button class="nds-nav-link nds-btn nds-subtle nds-lg nds-indicator" title="Account">
                             <i class="nds-icon nds-icon-avatar" aria-hidden="true"></i>
                             <span class="nds-label">Account</span>
@@ -180,14 +205,14 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
 
                     <!-- Language. Point href at the opposite-direction page. -->
                     <li class="nds-nav-item nds-icon-only lang">
-                        <a href="index-ar.html" class="nds-nav-link nds-btn nds-subtle nds-indicator"
-                           lang="ar" dir="rtl" title="التبديل إلى العربية">
+                        <a href="index-ar.html" class="nds-nav-link nds-btn nds-subtle nds-indicator" lang="ar"
+                            dir="rtl" title="التبديل إلى العربية">
+                            <span class="nds-label nds-lang-current">عربي</span>
                             <i class="nds-icon nds-hgi-translation" aria-hidden="true"></i>
-                            <span class="nds-label nds-lang-current">العربية</span>
                         </a>
                     </li>
                 </ul>

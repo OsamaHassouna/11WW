@@ -33,6 +33,7 @@
     var dir = isArabic ? 'partials-ar/' : 'partials/';
 
     var PARTIALS = [
+        { id: 'shell-hero-main', file: dir + 'hero-main.html' },
         { id: 'shell-topbar', file: dir + 'topbar.html' },
         { id: 'shell-mainnav', file: dir + 'mainnav.html' },
         { id: 'shell-footer', file: dir + 'footer.html' },

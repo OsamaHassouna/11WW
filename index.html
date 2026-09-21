@@ -16,6 +16,7 @@
     and NDS depends on them running before first paint.
 -->
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,40 +27,58 @@
     <!-- 1. CRITICAL CSS - blocking on purpose. ~6 KB gzipped. Holds the design
             tokens, the type scale and the shell layout so the first paint is
             already correct. Never defer this one. -->
-    <link rel="stylesheet" href="assets/css/nds.critical.min.css">
+    <!-- <link rel="stylesheet" href="assets/css/nds.critical.min.css"> -->
 
     <!-- 2. DEFERRED CSS - loads without blocking render. -->
-    <link rel="preload" href="assets/css/nds-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- <link rel="preload" href="assets/css/nds-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/nds-icons.min.css"></noscript>
 
     <link rel="preload" href="assets/css/nds-main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="assets/css/nds-main.min.css"></noscript>
 
     <link rel="preload" href="assets/css/nds-accessibility.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/nds-accessibility.min.css"></noscript>
+    <noscript><link rel="stylesheet" href="assets/css/nds-accessibility.min.css"></noscript> -->
 
     <!-- 3. ICON WEBFONT - only the accessibility panel needs it (13 of its tile
             icons are not in the 70-icon core set). ~690 KB across font + CSS.
             If you drop the panel, delete these three blocks and the font file.
             See starter/README.md "Trimming the starter". -->
     <style>
-        @keyframes hgi-reveal { to { opacity: 1 } }
-        i.hgi-stroke { opacity: 0; animation: hgi-reveal 0s 2s forwards; }
-        body[data-font-loaded~="hgi-stroke-rounded"] i.hgi-stroke { opacity: 1; animation: none; }
+        @keyframes hgi-reveal {
+            to {
+                opacity: 1
+            }
+        }
+
+        i.hgi-stroke {
+            opacity: 0;
+            animation: hgi-reveal 0s 2s forwards;
+        }
+
+        body[data-font-loaded~="hgi-stroke-rounded"] i.hgi-stroke {
+            opacity: 1;
+            animation: none;
+        }
     </style>
-    <link rel="preload" href="assets/css/hgi-rounded-stroke-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/hgi-rounded-stroke-min.css"></noscript>
+    <!-- <link rel="preload" href="assets/css/hgi-rounded-stroke-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/hgi-rounded-stroke-min.css"></noscript> -->
 
     <!-- 4. YOUR THEME - always last, so your tokens win on source order. -->
-    <link rel="stylesheet" href="theme/theme.css">
+    <!-- <link rel="stylesheet" href="theme/theme.css"> -->
+    <link rel="stylesheet" href="theme/theme-layered.css">
 
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" fetchpriority="low">
 
     <!-- Auth visibility. Elements marked .nds-auth show only when signed in,
          .nds-guest only when signed out. -->
     <style>
-        html:not([data-auth]) .nds-auth { display: none; }
-        html[data-auth] .nds-guest { display: none; }
+        html:not([data-auth]) .nds-auth {
+            display: none;
+        }
+
+        html[data-auth] .nds-guest {
+            display: none;
+        }
     </style>
 
     <!-- GUARD 1: theme. Applies the saved light/dark choice before paint. -->
@@ -74,28 +93,30 @@
          before paint, so a high-contrast or dyslexia user never sees a flash
          of the default theme. Keep verbatim. -->
     <script>
-        (() => { try {
-            const s = JSON.parse(localStorage.getItem('nds-a11y') || '{}');
-            const R = {
-                'epilepsy-safe':        ['reduce-motion','low-saturation'],
-                'visually-impaired':    ['high-contrast'],
-                'cognitive-disability': ['highlight-titles','reduce-motion'],
-                'motor-impaired':       [],
-                'colorblind':           ['cvd-deutan'],
-                'dyslexia-friendly':    ['dyslexia','highlight-links'],
-                'adhd-friendly':        ['reduce-motion','highlight-titles','reading-mask'],
-            };
-            const t = new Set([
-                ...(s.modes || []),
-                ...(s.bundles || []).flatMap(b => b in R ? (R[b].length ? R[b] : [b]) : []),
-            ]);
-            (s.excluded || []).forEach(e => t.delete(e));
-            const c = s.settings || {};
-            const step = parseInt(c['font-step'], 10) || 0;
-            if (step > 0 && step < 4) t.add('font-step-' + step);
-            if (c['text-align'] && c['text-align'] !== 'default') t.add('text-align-' + c['text-align']);
-            if (t.size) document.documentElement.setAttribute('data-a11y', [...t].join(' '));
-        } catch {} })();
+        (() => {
+            try {
+                const s = JSON.parse(localStorage.getItem('nds-a11y') || '{}');
+                const R = {
+                    'epilepsy-safe': ['reduce-motion', 'low-saturation'],
+                    'visually-impaired': ['high-contrast'],
+                    'cognitive-disability': ['highlight-titles', 'reduce-motion'],
+                    'motor-impaired': [],
+                    'colorblind': ['cvd-deutan'],
+                    'dyslexia-friendly': ['dyslexia', 'highlight-links'],
+                    'adhd-friendly': ['reduce-motion', 'highlight-titles', 'reading-mask'],
+                };
+                const t = new Set([
+                    ...(s.modes || []),
+                    ...(s.bundles || []).flatMap(b => b in R ? (R[b].length ? R[b] : [b]) : []),
+                ]);
+                (s.excluded || []).forEach(e => t.delete(e));
+                const c = s.settings || {};
+                const step = parseInt(c['font-step'], 10) || 0;
+                if (step > 0 && step < 4) t.add('font-step-' + step);
+                if (c['text-align'] && c['text-align'] !== 'default') t.add('text-align-' + c['text-align']);
+                if (t.size) document.documentElement.setAttribute('data-a11y', [...t].join(' '));
+            } catch { }
+        })();
     </script>
 
     <!-- GUARD 3: auth. Swap the cookie name for whatever your backend sets. -->
@@ -123,12 +144,14 @@
         <!--
             HERO
             Variants, combine as needed:
-              nds-sub     sub-page hero, the default for interior pages
-              nds-flat    no background image or tint
-              nds-aside   reserves room for a side panel on the right
+            nds-sub     sub-page hero, the default for interior pages
+            nds-flat    no background image or tint
+            nds-aside   reserves room for a side panel on the right
             Home pages usually use the full hero instead. See
             reference/ui-shell/hero.html for all nine variants.
-        -->
+            -->
+        <div id="shell-hero-main"></div>
+
         <section class="nds-hero-section nds-sub" aria-label="Page header">
             <nav class="nds-breadcrumb-nav" aria-label="Breadcrumb" hidden>
                 <ol class="nds-breadcrumb">
@@ -315,4 +338,5 @@
          chrome that arrived late gets initialised. -->
     <script src="js/site.js" defer></script>
 </body>
+
 </html>

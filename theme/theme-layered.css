@@ -89,6 +89,7 @@
 
 @layer layout {
     /* Page-level composition you add on top of DGA. */
+    .nds-main-nav .nds-nav-item.nds-icon-only .nds-nav-link .nds-label{display:block}
 }
 
 
