@@ -1,0 +1,197 @@
+<!--
+    MAIN NAVIGATION
+    Structure is fixed by NDS. Replace the labels and hrefs, add or remove
+    <li class="nds-nav-item">, but keep the wrapper classes as they are.
+
+    Anatomy:
+      .nds-main-nav
+        .nds-nav-container
+          .nds-brand              logo + name + slogan
+          .nds-nav-minimal        the hamburger, shown under 960px
+          .nds-collapse           everything that collapses on mobile
+            .nds-nav-primary      the page links
+            .nds-nav-actions      search / notifications / account / language
+
+    A dropdown item is <li class="nds-nav-item nds-dropdown"> with a
+    .nds-dropdown-menu child. Columns inside use .nds-colView (mega menu) or
+    .nds-rowView (simple list). Full variants: reference/ui-shell/header.html
+-->
+<nav class="nds-main-nav nds-content-wrapper" id="shellMainNav" aria-label="Primary navigation">
+    <div class="nds-nav-container">
+
+        <!-- BRAND. Swap the logo file and the two labels. -->
+        <a href="index.html" class="nds-brand nds-link">
+            <img class="nds-brand-logo" src="assets/img/palm_swords.svg"
+                 width="40" height="40" loading="lazy" alt="Entity logo">
+            <span class="nds-brand-name">Entity Name
+                <span class="nds-brand-slogan">Tagline goes here</span>
+            </span>
+        </a>
+
+        <!-- MOBILE TOGGLER -->
+        <ul class="nds-nav-minimal">
+            <li class="nds-mainNav-toggler nds-nav-item">
+                <button class="nds-nav-link nds-btn nds-subtle nds-indicator"
+                        aria-label="Toggle navigation menu"
+                        aria-expanded="false" aria-controls="shellNavCollapse">
+                    <i class="nds-icon nds-hgi-menu-01" aria-hidden="true"></i>
+                </button>
+            </li>
+        </ul>
+
+        <div class="nds-collapse" id="shellNavCollapse">
+            <div class="nds-collapse-content">
+
+                <!-- PRIMARY LINKS -->
+                <ul class="nds-nav-primary">
+                    <li class="nds-nav-item">
+                        <a href="index.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">Home</span>
+                        </a>
+                    </li>
+
+                    <!-- Dropdown example. Delete the .nds-dropdown-menu block
+                         to turn this back into a plain link. -->
+                    <li class="nds-nav-item nds-dropdown">
+                        <a href="#" class="nds-nav-link nds-btn nds-subtle nds-menu-btn nds-indicator">
+                            <span class="nds-label">Services</span>
+                        </a>
+                        <div class="nds-dropdown-menu">
+                            <div class="nds-dropdown-content nds-content-wrapper">
+                                <div class="nds-dropdown-columns nds-colView">
+                                    <div class="nds-column">
+                                        <div class="nds-dropdown-title">For individuals</div>
+                                        <div class="nds-list">
+                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="pages/service.html">
+                                                <span class="nds-label">Service one</span>
+                                            </a>
+                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="#">
+                                                <span class="nds-label">Service two</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="nds-column">
+                                        <div class="nds-dropdown-title">For business</div>
+                                        <div class="nds-list">
+                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="#">
+                                                <span class="nds-label">Service three</span>
+                                            </a>
+                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="#">
+                                                <span class="nds-label">Service four</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">Apply</span>
+                        </a>
+                    </li>
+                    <li class="nds-nav-item">
+                        <a href="pages/content.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">About</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Overflow control. NDS moves items under this when the bar
+                     runs out of room. Keep it. -->
+                <div class="nds-nav-item nds-show-more">
+                    <a href="#" class="nds-nav-link nds-btn nds-subtle nds-indicator nds-full" title="Show more">
+                        <i class="nds-icon nds-hgi-arrow-down-01" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <!-- ACTIONS -->
+                <ul class="nds-nav-actions">
+
+                    <!-- Search -->
+                    <li class="nds-nav-item nds-dropdown nds-icon-only nds-search nds-PAB">
+                        <button class="nds-nav-link nds-btn nds-subtle nds-indicator" title="Search">
+                            <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
+                            <span class="nds-label">Search</span>
+                        </button>
+                        <div class="nds-dropdown-menu">
+                            <div class="nds-dropdown-content">
+                                <div class="nds-content-wrapper">
+                                    <form class="nds-form-container nds-search-box" role="search" method="get" action="#">
+                                        <div class="nds-search-content">
+                                            <div class="nds-form-control">
+                                                <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
+                                                <input id="siteSearch" type="text" class="nds-search-input"
+                                                       name="q" placeholder="Search this site" autocomplete="off">
+                                                <div class="nds-form-action">
+                                                    <button type="button" class="nds-btn nds-subtle nds-clear" hidden>
+                                                        <i class="nds-icon nds-hgi-cancel-01" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="nds-btn nds-primary nds-search-btn">
+                                                <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
+                                                <span class="nds-label">Search</span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Account, signed out. Shown while <html> has no data-auth. -->
+                    <li class="nds-nav-item nds-icon-only nds-login nds-guest">
+                        <button class="nds-nav-link nds-btn nds-subtle nds-lg nds-indicator" title="Sign in">
+                            <i class="nds-icon nds-icon-avatar" aria-hidden="true"></i>
+                            <span class="nds-label">Sign in</span>
+                        </button>
+                    </li>
+
+                    <!-- Account, signed in. Shown when <html data-auth="true">.
+                         The inline guard in <head> sets that from the nds_auth cookie. -->
+                    <li class="nds-nav-item nds-dropdown nds-login nds-icon-only nds-auth">
+                        <button class="nds-nav-link nds-btn nds-subtle nds-lg nds-indicator" title="Account">
+                            <i class="nds-icon nds-icon-avatar" aria-hidden="true"></i>
+                            <span class="nds-label">Account</span>
+                        </button>
+                        <div class="nds-dropdown-menu nds-fit">
+                            <div class="nds-dropdown-content">
+                                <div class="nds-column">
+                                    <div class="nds-persona nds-sm">
+                                        <div class="nds-persona-info">
+                                            <span class="nds-persona-name">User name</span>
+                                            <span class="nds-persona-role nds-truncate">Role</span>
+                                            <span class="nds-persona-desc">user@example.com</span>
+                                        </div>
+                                        <hr class="nds-divider">
+                                        <div class="nds-persona-action">
+                                            <a href="#" class="nds-btn nds-subtle nds-dropdown-item">
+                                                <i class="nds-icon nds-hgi-identity-card" aria-hidden="true"></i>
+                                                <span class="nds-label">Profile</span>
+                                            </a>
+                                            <a href="#" class="nds-btn nds-subtle nds-destructive nds-dropdown-item">
+                                                <i class="nds-icon nds-hgi-door-01" aria-hidden="true"></i>
+                                                <span class="nds-label">Sign out</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Language. Point href at the opposite-direction page. -->
+                    <li class="nds-nav-item nds-icon-only lang">
+                        <a href="index-ar.html" class="nds-nav-link nds-btn nds-subtle nds-indicator"
+                           lang="ar" dir="rtl" title="التبديل إلى العربية">
+                            <i class="nds-icon nds-hgi-translation" aria-hidden="true"></i>
+                            <span class="nds-label nds-lang-current">العربية</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--
+    STARTER PAGE - Arabic / RTL
+    ============================================================================
+    Copy this whole folder to start a new project. Then:
+      1. index.html + index-ar.html  -> your home page
+      2. partials/*.html             -> your chrome (nav, footer, stamp)
+      3. theme/tokens.css            -> your design tokens. Start here.
+      4. pages/*.html                -> the three page layouts, copy as needed
+
+    Everything in assets/ is vendor NDS, byte-identical to what DGA ships.
+    Do not edit it. It is meant to be replaced wholesale on a version bump.
+
+    The <head> below is not boilerplate you can trim. The load order and the
+    three inline guard scripts prevent a flash of unstyled/unthemed content,
+    and NDS depends on them running before first paint.
+-->
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ضع وصف الصفحة هنا.">
+    <title>الرئيسية | اسم الجهة</title>
+    <base href="./">
+
+    <!-- 1. CRITICAL CSS - blocking on purpose. ~6 KB gzipped. Holds the design
+            tokens, the type scale and the shell layout so the first paint is
+            already correct. Never defer this one. -->
+    <link rel="stylesheet" href="assets/css/nds.critical.min.css">
+
+    <!-- 2. DEFERRED CSS - loads without blocking render. -->
+    <link rel="preload" href="assets/css/nds-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-icons.min.css"></noscript>
+
+    <link rel="preload" href="assets/css/nds-main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-main.min.css"></noscript>
+
+    <link rel="preload" href="assets/css/nds-accessibility.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-accessibility.min.css"></noscript>
+
+    <!-- 3. ICON WEBFONT - only the accessibility panel needs it (13 of its tile
+            icons are not in the 70-icon core set). ~690 KB across font + CSS.
+            If you drop the panel, delete these three blocks and the font file.
+            See starter/README.md "Trimming the starter". -->
+    <style>
+        @keyframes hgi-reveal { to { opacity: 1 } }
+        i.hgi-stroke { opacity: 0; animation: hgi-reveal 0s 2s forwards; }
+        body[data-font-loaded~="hgi-stroke-rounded"] i.hgi-stroke { opacity: 1; animation: none; }
+    </style>
+    <link rel="preload" href="assets/css/hgi-rounded-stroke-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/hgi-rounded-stroke-min.css"></noscript>
+
+    <!-- 4. YOUR THEME - always last, so your tokens win on source order. -->
+    <link rel="stylesheet" href="theme/theme.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" fetchpriority="low">
+
+    <!-- Auth visibility. Elements marked .nds-auth show only when signed in,
+         .nds-guest only when signed out. -->
+    <style>
+        html:not([data-auth]) .nds-auth { display: none; }
+        html[data-auth] .nds-guest { display: none; }
+    </style>
+
+    <!-- GUARD 1: theme. Applies the saved light/dark choice before paint. -->
+    <script>
+        (function () {
+            var t = localStorage.getItem('nds-theme');
+            if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+
+    <!-- GUARD 2: accessibility. Replays the visitor's saved panel settings
+         before paint, so a high-contrast or dyslexia user never sees a flash
+         of the default theme. Keep verbatim. -->
+    <script>
+        (() => { try {
+            const s = JSON.parse(localStorage.getItem('nds-a11y') || '{}');
+            const R = {
+                'epilepsy-safe':        ['reduce-motion','low-saturation'],
+                'visually-impaired':    ['high-contrast'],
+                'cognitive-disability': ['highlight-titles','reduce-motion'],
+                'motor-impaired':       [],
+                'colorblind':           ['cvd-deutan'],
+                'dyslexia-friendly':    ['dyslexia','highlight-links'],
+                'adhd-friendly':        ['reduce-motion','highlight-titles','reading-mask'],
+            };
+            const t = new Set([
+                ...(s.modes || []),
+                ...(s.bundles || []).flatMap(b => b in R ? (R[b].length ? R[b] : [b]) : []),
+            ]);
+            (s.excluded || []).forEach(e => t.delete(e));
+            const c = s.settings || {};
+            const step = parseInt(c['font-step'], 10) || 0;
+            if (step > 0 && step < 4) t.add('font-step-' + step);
+            if (c['text-align'] && c['text-align'] !== 'default') t.add('text-align-' + c['text-align']);
+            if (t.size) document.documentElement.setAttribute('data-a11y', [...t].join(' '));
+        } catch {} })();
+    </script>
+
+    <!-- GUARD 3: auth. Swap the cookie name for whatever your backend sets. -->
+    <script>
+        (function () {
+            if (document.cookie.indexOf('nds_auth=true') !== -1) {
+                document.documentElement.setAttribute('data-auth', 'true');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Skip link. First focusable element on the page. WCAG 2.4.1.
+         NDS does not ship one; this starter adds it. -->
+    <a class="skip-link" href="#main-content">تخطي إلى المحتوى الرئيسي</a>
+
+    <header>
+        <div id="shell-topbar"></div>
+        <div id="shell-mainnav"></div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+
+        <!--
+            HERO
+            Variants, combine as needed:
+              nds-sub     sub-page hero, the default for interior pages
+              nds-flat    no background image or tint
+              nds-aside   reserves room for a side panel on the right
+            Home pages usually use the full hero instead. See
+            reference/ui-shell/hero.html for all nine variants.
+        -->
+        <section class="nds-hero-section nds-sub" aria-label="ترويسة الصفحة">
+            <nav class="nds-breadcrumb-nav" aria-label="مسار التنقل" hidden>
+                <ol class="nds-breadcrumb">
+                    <li><a href="index-ar.html">الرئيسية</a></li>
+                    <li class="nds-truncate" aria-current="page">عنوان الصفحة</li>
+                </ol>
+            </nav>
+            <div class="nds-section-wrapper">
+                <div class="nds-section-head">
+                    <h1 class="nds-section-title">عنوان الصفحة</h1>
+                    <p class="nds-section-description">
+                        سطر أو سطران يوضحان الغرض من هذه الصفحة.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            CONTENT LAYOUT
+            Pick one and delete the rest:
+              <div class="nds-content-layout">                 plain, single column
+              <div class="nds-content-layout nds-wSideMenu">   left side menu
+              <div class="nds-content-layout nds-wSideInfo">   right info panel
+              <div class="nds-content-layout nds-content-wrapper nds-middle">  centred card, for auth pages
+        -->
+        <div class="nds-content-layout">
+            <div class="nds-main-content">
+
+                <!--
+                    SECTION - the primary building block. Every distinct area of
+                    a page is its own .nds-content-section. Never nest one inside
+                    another; use .nds-block to subdivide.
+
+                    Anatomy:
+                      section.nds-content-section
+                        .nds-section-wrapper
+                          .nds-section-head     title, subtitle, description, action
+                          .nds-section-body     the content
+
+                    Six documented tiers and every modifier:
+                    reference/layout/section.html
+                -->
+                <section id="intro" class="nds-content-section">
+                    <div class="nds-section-wrapper">
+                        <div class="nds-section-head">
+                            <h2 class="nds-section-title">عنوان القسم</h2>
+                            <p class="nds-section-description">
+                                نص مساند للقسم. عرضه محدود بـ 720 بكسل افتراضياً،
+                                أضف nds-full ليمتد بعرض القسم كاملاً.
+                            </p>
+                        </div>
+                        <div class="nds-section-body">
+                            <p>نص المحتوى هنا.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section with an action in the head -->
+                <section id="cards" class="nds-content-section">
+                    <div class="nds-section-wrapper">
+                        <div class="nds-section-head">
+                            <h2 class="nds-section-title">بطاقات ضمن شبكة</h2>
+                            <p class="nds-section-description">
+                                أعمدة الشبكة تُضبط لكل حالة عبر المتغيرات وليس
+                                عبر فئات جاهزة.
+                            </p>
+                            <div class="nds-section-action">
+                                <a href="#" class="nds-btn nds-secondary-outline">
+                                    <span class="nds-label">عرض الكل</span>
+                                    <i class="nds-icon nds-hgi-arrow-right-01" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="nds-section-body">
+                            <div class="nds-grid" style="--max-col: 3; --mid-col: 2; --min-col: 1;">
+
+                                <div class="nds-card nds-stroke">
+                                    <div class="nds-card-header">
+                                        <div class="nds-card-featured-icon">
+                                            <span class="nds-featured-icon nds-circle nds-xl">
+                                                <i class="nds-icon nds-hgi-identity-card" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="nds-card-content">
+                                        <div class="nds-card-text">
+                                            <h3 class="nds-card-title">عنوان البطاقة</h3>
+                                            <p class="nds-card-description">
+                                                وصف مختصر للبطاقة.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="nds-card-actions">
+                                        <a href="#" class="nds-btn nds-primary">
+                                            <span class="nds-label">فتح</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="nds-card nds-stroke">
+                                    <div class="nds-card-header">
+                                        <div class="nds-card-featured-icon">
+                                            <span class="nds-featured-icon nds-circle nds-xl">
+                                                <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="nds-card-content">
+                                        <div class="nds-card-text">
+                                            <h3 class="nds-card-title">عنوان البطاقة</h3>
+                                            <p class="nds-card-description">
+                                                وصف مختصر للبطاقة.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="nds-card-actions">
+                                        <a href="#" class="nds-btn nds-primary">
+                                            <span class="nds-label">فتح</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="nds-card nds-stroke">
+                                    <div class="nds-card-header">
+                                        <div class="nds-card-featured-icon">
+                                            <span class="nds-featured-icon nds-circle nds-xl">
+                                                <i class="nds-icon nds-hgi-headphones" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="nds-card-content">
+                                        <div class="nds-card-text">
+                                            <h3 class="nds-card-title">عنوان البطاقة</h3>
+                                            <p class="nds-card-description">
+                                                وصف مختصر للبطاقة.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="nds-card-actions">
+                                        <a href="#" class="nds-btn nds-primary">
+                                            <span class="nds-label">فتح</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Coloured section. Use sparingly, for hero-level emphasis.
+                     Options: nds-primary, nds-gradient-green, nds-neutral,
+                     nds-brand, nds-ghost -->
+                <section id="cta" class="nds-content-section nds-brand">
+                    <div class="nds-section-wrapper">
+                        <div class="nds-section-head">
+                            <h2 class="nds-section-title">ابدأ الآن</h2>
+                            <p class="nds-section-description">
+                                خطوة تالية واحدة واضحة.
+                            </p>
+                            <div class="nds-section-action">
+                                <a href="pages/form.html" class="nds-btn nds-primary nds-lg">
+                                    <span class="nds-label">ابدأ الخدمة</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <div id="shell-footer"></div>
+    <div id="shell-cookie"></div>
+    <div id="shell-a11y"></div>
+
+    <!-- NDS bundle. Sweeps the DOM once on DOMContentLoaded and initialises
+         only the components actually present on the page. -->
+    <script src="assets/js/nds-main.min.js" defer></script>
+    <script src="assets/js/nds-accessibility.min.js" defer></script>
+
+    <!-- Shell loader. Injects the partials, then re-runs the NDS sweep so the
+         chrome that arrived late gets initialised. -->
+    <script src="js/site.js" defer></script>
+</body>
+</html>

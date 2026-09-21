@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+    SERVICE PAGE LAYOUT
+    ============================================================================
+    Layout: nds-content-layout nds-wSideInfo (service facts)
+    Faithful to the DGA service template. Full original:
+    ../../reference/templates/service-template.html
+-->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Replace with the page description.">
+    <title>Service name | Entity Name</title>
+    <base href="../">
+
+    <!-- 1. CRITICAL CSS - blocking on purpose. ~6 KB gzipped. Holds the design
+            tokens, the type scale and the shell layout so the first paint is
+            already correct. Never defer this one. -->
+    <link rel="stylesheet" href="assets/css/nds.critical.min.css">
+
+    <!-- 2. DEFERRED CSS - loads without blocking render. -->
+    <link rel="preload" href="assets/css/nds-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-icons.min.css"></noscript>
+
+    <link rel="preload" href="assets/css/nds-main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-main.min.css"></noscript>
+
+    <link rel="preload" href="assets/css/nds-accessibility.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-accessibility.min.css"></noscript>
+
+    <!-- 3. ICON WEBFONT - only the accessibility panel needs it (13 of its tile
+            icons are not in the 70-icon core set). ~690 KB across font + CSS.
+            If you drop the panel, delete these three blocks and the font file.
+            See starter/README.md "Trimming the starter". -->
+    <style>
+        @keyframes hgi-reveal { to { opacity: 1 } }
+        i.hgi-stroke { opacity: 0; animation: hgi-reveal 0s 2s forwards; }
+        body[data-font-loaded~="hgi-stroke-rounded"] i.hgi-stroke { opacity: 1; animation: none; }
+    </style>
+    <link rel="preload" href="assets/css/hgi-rounded-stroke-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/hgi-rounded-stroke-min.css"></noscript>
+
+    <!-- 4. YOUR THEME - always last, so your tokens win on source order. -->
+    <link rel="stylesheet" href="theme/theme.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" fetchpriority="low">
+
+    <!-- Auth visibility. Elements marked .nds-auth show only when signed in,
+         .nds-guest only when signed out. -->
+    <style>
+        html:not([data-auth]) .nds-auth { display: none; }
+        html[data-auth] .nds-guest { display: none; }
+    </style>
+
+    <!-- GUARD 1: theme. Applies the saved light/dark choice before paint. -->
+    <script>
+        (function () {
+            var t = localStorage.getItem('nds-theme');
+            if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+
+    <!-- GUARD 2: accessibility. Replays the visitor's saved panel settings
+         before paint, so a high-contrast or dyslexia user never sees a flash
+         of the default theme. Keep verbatim. -->
+    <script>
+        (() => { try {
+            const s = JSON.parse(localStorage.getItem('nds-a11y') || '{}');
+            const R = {
+                'epilepsy-safe':        ['reduce-motion','low-saturation'],
+                'visually-impaired':    ['high-contrast'],
+                'cognitive-disability': ['highlight-titles','reduce-motion'],
+                'motor-impaired':       [],
+                'colorblind':           ['cvd-deutan'],
+                'dyslexia-friendly':    ['dyslexia','highlight-links'],
+                'adhd-friendly':        ['reduce-motion','highlight-titles','reading-mask'],
+            };
+            const t = new Set([
+                ...(s.modes || []),
+                ...(s.bundles || []).flatMap(b => b in R ? (R[b].length ? R[b] : [b]) : []),
+            ]);
+            (s.excluded || []).forEach(e => t.delete(e));
+            const c = s.settings || {};
+            const step = parseInt(c['font-step'], 10) || 0;
+            if (step > 0 && step < 4) t.add('font-step-' + step);
+            if (c['text-align'] && c['text-align'] !== 'default') t.add('text-align-' + c['text-align']);
+            if (t.size) document.documentElement.setAttribute('data-a11y', [...t].join(' '));
+        } catch {} })();
+    </script>
+
+    <!-- GUARD 3: auth. Swap the cookie name for whatever your backend sets. -->
+    <script>
+        (function () {
+            if (document.cookie.indexOf('nds_auth=true') !== -1) {
+                document.documentElement.setAttribute('data-auth', 'true');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header>
+        <div id="shell-topbar"></div>
+        <div id="shell-mainnav"></div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+        <section class="nds-hero-section nds-sub nds-aside" aria-label="Page header">
+            <nav class="nds-breadcrumb-nav" aria-label="Breadcrumb" hidden>
+                <ol class="nds-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="nds-truncate" aria-current="page">Service name</li>
+                </ol>
+            </nav>
+            <div class="nds-section-wrapper">
+                <div class="nds-section-head">
+                    <h1 class="nds-section-title">Service name</h1>
+                    <p class="nds-section-description">What the service does, in one or two lines.</p>
+                </div>
+            </div>
+        </section>
+        <!--
+            SERVICE PAGE
+            The canonical DGA service screen: tabbed service content in the main
+            column, a definition list of service facts in the side panel.
+        -->
+        <div class="nds-content-layout nds-wSideInfo">
+            <div class="nds-main-content">
+                <section id="service" class="nds-content-section nds-sideinfo-section">
+                    <div class="nds-section-body">
+                        <div class="nds-info-content">
+
+                            <div class="nds-tabs">
+                                <div class="nds-tab-list-container nds-scroll-more">
+                                    <nav class="nds-tab-list nds-scroll-more-content" role="tablist" aria-label="Service information">
+                                        <button class="nds-btn nds-subtle nds-tab" role="tab" aria-selected="true"
+                                                aria-controls="svc-panel-1" id="svc-tab-1">
+                                            <span class="nds-label">Steps</span>
+                                        </button>
+                                        <button class="nds-btn nds-subtle nds-tab" role="tab" aria-selected="false"
+                                                aria-controls="svc-panel-2" id="svc-tab-2" tabindex="-1">
+                                            <span class="nds-label">Requirements</span>
+                                        </button>
+                                        <button class="nds-btn nds-subtle nds-tab" role="tab" aria-selected="false"
+                                                aria-controls="svc-panel-3" id="svc-tab-3" tabindex="-1">
+                                            <span class="nds-label">Documents</span>
+                                        </button>
+                                    </nav>
+                                    <button class="nds-btn nds-subtle nds-tab nds-show-more" aria-label="Show more tabs">
+                                        <i class="nds-icon nds-hgi-arrow-down-01" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div class="nds-tab-content">
+                                    <div class="nds-tab-panel" role="tabpanel" id="svc-panel-1" aria-labelledby="svc-tab-1">
+                                        <div class="nds-block">
+                                            <div class="nds-block-item">
+                                                <ol>
+                                                    <li>First step the applicant takes.</li>
+                                                    <li>Second step.</li>
+                                                    <li>Third step.</li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nds-tab-panel" role="tabpanel" id="svc-panel-2"
+                                         aria-labelledby="svc-tab-2" aria-hidden="true" tabindex="-1" hidden>
+                                        <p>Eligibility requirements.</p>
+                                    </div>
+                                    <div class="nds-tab-panel" role="tabpanel" id="svc-panel-3"
+                                         aria-labelledby="svc-tab-3" aria-hidden="true" tabindex="-1" hidden>
+                                        <p>Documents the applicant must attach.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service facts. This pattern is close to mandatory on
+                             a DGA service page: beneficiaries, duration, channel,
+                             fee, languages. -->
+                        <aside class="nds-sideinfo nds-card nds-stroke nds-shadow" aria-label="Service information" hidden>
+                            <dl class="nds-definition-list">
+                                <div class="nds-definition-item">
+                                    <dt>
+                                        <i class="nds-icon nds-hgi-identity-card" aria-hidden="true"></i>
+                                        <span class="nds-label">Beneficiaries</span>
+                                    </dt>
+                                    <dd>Citizens, residents</dd>
+                                </div>
+                                <div class="nds-definition-item">
+                                    <dt>
+                                        <i class="nds-icon nds-hgi-clock-01" aria-hidden="true"></i>
+                                        <span class="nds-label">Completion time</span>
+                                    </dt>
+                                    <dd>Immediate</dd>
+                                </div>
+                                <div class="nds-definition-item">
+                                    <dt>
+                                        <i class="nds-icon nds-hgi-smart-phone-01" aria-hidden="true"></i>
+                                        <span class="nds-label">Delivery channel</span>
+                                    </dt>
+                                    <dd>Web portal, mobile app</dd>
+                                </div>
+                                <div class="nds-definition-item">
+                                    <dt>
+                                        <i class="nds-icon nds-hgi-riyal-circular" aria-hidden="true"></i>
+                                        <span class="nds-label">Service fee</span>
+                                    </dt>
+                                    <dd>Free</dd>
+                                </div>
+                                <div class="nds-definition-item">
+                                    <dt>
+                                        <i class="nds-icon nds-hgi-translation" aria-hidden="true"></i>
+                                        <span class="nds-label">Languages</span>
+                                    </dt>
+                                    <dd>Arabic, English</dd>
+                                </div>
+                                <div class="nds-definition-item">
+                                    <hr class="nds-divider">
+                                </div>
+                            </dl>
+                            <a href="pages/form.html" class="nds-btn nds-primary nds-lg nds-full">
+                                <span class="nds-label">Start service</span>
+                            </a>
+                        </aside>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <div id="shell-footer"></div>
+    <div id="shell-cookie"></div>
+    <div id="shell-a11y"></div>
+
+    <script src="assets/js/nds-main.min.js" defer></script>
+    <script src="assets/js/nds-accessibility.min.js" defer></script>
+    <script src="js/site.js" defer></script>
+</body>
+</html>

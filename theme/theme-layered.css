@@ -1,0 +1,103 @@
+/* ==========================================================================
+   OPTIONAL: the strict cascade-layer build
+   ==========================================================================
+
+   The starter does NOT use this file by default. theme.css does.
+   Use this one only if you want DGA's own CSS inside a named layer.
+
+   HOW TO SWITCH
+   In every page, replace the whole CSS block in <head> with one line:
+
+       <link rel="stylesheet" href="theme/theme-layered.css">
+
+   and delete the five vendor <link> / <noscript> pairs above it. Nothing else
+   changes: tokens.css, the partials and the pages all work the same.
+
+   WHAT YOU GAIN
+   Every DGA rule sits in the `vendors` layer, which is the lowest. Any CSS you
+   write beats it automatically, whatever the selector, with no specificity
+   fight and no !important. If your team writes a lot of custom CSS over DGA,
+   that is worth having.
+
+   WHAT IT COSTS, AND WHY IT IS NOT THE DEFAULT
+   @layer can only be attached to a stylesheet through @import, and @import
+   hides those files from the browser's preload scanner: it cannot request
+   nds.critical.min.css until it has downloaded and parsed THIS file. That is
+   one extra round trip before any styling arrives, on every cold visit.
+   Measured locally, where there is no network latency at all, it still cost
+   about 6 ms; on a real mobile connection it is a full round trip.
+
+   DGA ships a 6 KB critical stylesheet precisely so the shell paints
+   immediately, and this arrangement throws that away. That is the trade.
+
+   There is no way to have both today: <link rel="stylesheet" layer="..."> is
+   not supported by browsers (tested, the attribute is ignored).
+
+   TESTED
+   This file has been run, not just written: switched index.html and
+   pages/form.html to it per the instructions above, both render identically to
+   the default build, the skip link still styles, all chrome mounts, a
+   @layer theme token still beats DGA, and the console is clean. The @import
+   paths are relative to THIS file, so they resolve from any page depth.
+
+   ONE RULE IF YOU USE THIS FILE
+   Do not mix. If any DGA stylesheet is still loaded with a plain <link>, it
+   stays unlayered, and unlayered rules beat layered ones - so your theme would
+   silently stop winning. It is all through here, or none of it.
+   ========================================================================== */
+
+@layer vendors, reset, base, layout, components, theme, utilities;
+
+/* DGA, lowest priority. Order among them is the same as the <link> order. */
+@import url("../assets/css/nds.critical.min.css")     layer(vendors);
+@import url("../assets/css/nds-icons.min.css")        layer(vendors);
+@import url("../assets/css/nds-main.min.css")         layer(vendors);
+@import url("../assets/css/nds-accessibility.min.css") layer(vendors);
+@import url("../assets/css/hgi-rounded-stroke-min.css") layer(vendors);
+
+/* Your design tokens, above DGA. */
+@import url("tokens.css") layer(theme);
+
+
+@layer base {
+
+    /* Skip link. Not part of DGA; the starter adds it because DGA ships none
+       and its absence is a WCAG 2.4.1 failure. Keep it first in the tab order. */
+    .skip-link {
+        position: absolute;
+        inset-inline-start: var(--spacing-xl, 16px);
+        inset-block-start: calc(var(--spacing-xl, 16px) * -4);
+        z-index: 1000;
+        padding: var(--spacing-md, 8px) var(--spacing-xl, 16px);
+        border-radius: var(--radius-sm, 4px);
+        background: var(--background-default, #fff);
+        color: var(--text-primary, #1b8354);
+        font-weight: 600;
+        text-decoration: none;
+        transition: inset-block-start var(--nds-transition, .2s ease);
+    }
+
+    .skip-link:focus-visible {
+        inset-block-start: var(--spacing-xl, 16px);
+        outline: 2px solid var(--border-focus, currentColor);
+        outline-offset: 2px;
+    }
+
+    #main-content:focus { outline: none; }
+}
+
+
+@layer layout {
+    /* Page-level composition you add on top of DGA. */
+}
+
+
+@layer components {
+    /* Project components DGA does not cover. Check reference/ first: DGA has
+       75 components and the thing you are about to build probably exists. */
+}
+
+
+@layer utilities {
+    /* Atomic helpers. Highest priority of your own layers. */
+}

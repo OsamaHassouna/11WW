@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--
+    CONTENT PAGE LAYOUT
+    ============================================================================
+    Layout: nds-content-layout nds-wSideInfo (table of contents)
+    Faithful to the DGA content template. Full original:
+    ../../reference/templates/content-template.html
+-->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Replace with the page description.">
+    <title>Content page | Entity Name</title>
+    <base href="../">
+
+    <!-- 1. CRITICAL CSS - blocking on purpose. ~6 KB gzipped. Holds the design
+            tokens, the type scale and the shell layout so the first paint is
+            already correct. Never defer this one. -->
+    <link rel="stylesheet" href="assets/css/nds.critical.min.css">
+
+    <!-- 2. DEFERRED CSS - loads without blocking render. -->
+    <link rel="preload" href="assets/css/nds-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-icons.min.css"></noscript>
+
+    <link rel="preload" href="assets/css/nds-main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-main.min.css"></noscript>
+
+    <link rel="preload" href="assets/css/nds-accessibility.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/nds-accessibility.min.css"></noscript>
+
+    <!-- 3. ICON WEBFONT - only the accessibility panel needs it (13 of its tile
+            icons are not in the 70-icon core set). ~690 KB across font + CSS.
+            If you drop the panel, delete these three blocks and the font file.
+            See starter/README.md "Trimming the starter". -->
+    <style>
+        @keyframes hgi-reveal { to { opacity: 1 } }
+        i.hgi-stroke { opacity: 0; animation: hgi-reveal 0s 2s forwards; }
+        body[data-font-loaded~="hgi-stroke-rounded"] i.hgi-stroke { opacity: 1; animation: none; }
+    </style>
+    <link rel="preload" href="assets/css/hgi-rounded-stroke-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/hgi-rounded-stroke-min.css"></noscript>
+
+    <!-- 4. YOUR THEME - always last, so your tokens win on source order. -->
+    <link rel="stylesheet" href="theme/theme.css">
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" fetchpriority="low">
+
+    <!-- Auth visibility. Elements marked .nds-auth show only when signed in,
+         .nds-guest only when signed out. -->
+    <style>
+        html:not([data-auth]) .nds-auth { display: none; }
+        html[data-auth] .nds-guest { display: none; }
+    </style>
+
+    <!-- GUARD 1: theme. Applies the saved light/dark choice before paint. -->
+    <script>
+        (function () {
+            var t = localStorage.getItem('nds-theme');
+            if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+
+    <!-- GUARD 2: accessibility. Replays the visitor's saved panel settings
+         before paint, so a high-contrast or dyslexia user never sees a flash
+         of the default theme. Keep verbatim. -->
+    <script>
+        (() => { try {
+            const s = JSON.parse(localStorage.getItem('nds-a11y') || '{}');
+            const R = {
+                'epilepsy-safe':        ['reduce-motion','low-saturation'],
+                'visually-impaired':    ['high-contrast'],
+                'cognitive-disability': ['highlight-titles','reduce-motion'],
+                'motor-impaired':       [],
+                'colorblind':           ['cvd-deutan'],
+                'dyslexia-friendly':    ['dyslexia','highlight-links'],
+                'adhd-friendly':        ['reduce-motion','highlight-titles','reading-mask'],
+            };
+            const t = new Set([
+                ...(s.modes || []),
+                ...(s.bundles || []).flatMap(b => b in R ? (R[b].length ? R[b] : [b]) : []),
+            ]);
+            (s.excluded || []).forEach(e => t.delete(e));
+            const c = s.settings || {};
+            const step = parseInt(c['font-step'], 10) || 0;
+            if (step > 0 && step < 4) t.add('font-step-' + step);
+            if (c['text-align'] && c['text-align'] !== 'default') t.add('text-align-' + c['text-align']);
+            if (t.size) document.documentElement.setAttribute('data-a11y', [...t].join(' '));
+        } catch {} })();
+    </script>
+
+    <!-- GUARD 3: auth. Swap the cookie name for whatever your backend sets. -->
+    <script>
+        (function () {
+            if (document.cookie.indexOf('nds_auth=true') !== -1) {
+                document.documentElement.setAttribute('data-auth', 'true');
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header>
+        <div id="shell-topbar"></div>
+        <div id="shell-mainnav"></div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+        <section class="nds-hero-section nds-sub nds-flat" aria-label="Page header">
+            <nav class="nds-breadcrumb-nav" aria-label="Breadcrumb" hidden>
+                <ol class="nds-breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="nds-truncate" aria-current="page">Content page</li>
+                </ol>
+            </nav>
+            <div class="nds-section-wrapper">
+                <div class="nds-section-head">
+                    <h1 class="nds-section-title">Content page</h1>
+                    <p class="nds-section-description">A long-form page with a table of contents.</p>
+                </div>
+            </div>
+        </section>
+        <!--
+            CONTENT PAGE
+            nds-wSideInfo puts a 400px panel beside the main column. Here it
+            holds a table of contents that tracks scroll position by itself.
+            The panel collapses below the content on narrow viewports.
+        -->
+        <div class="nds-content-layout nds-wSideInfo">
+            <div class="nds-main-content">
+                <section id="content" class="nds-content-section nds-sideinfo-section">
+                    <div class="nds-section-body">
+                        <div class="nds-info-content">
+
+                            <!-- .nds-block subdivides a section. Use this rather
+                                 than nesting another nds-content-section. -->
+                            <div class="nds-block">
+                                <div class="nds-block-item">
+                                    <h2 id="overview" class="nds-block-title">Overview</h2>
+                                    <p>Opening paragraph. Body copy inherits the type scale, so
+                                       plain HTML elements are already styled correctly.</p>
+                                    <p>A second paragraph.</p>
+                                </div>
+
+                                <div class="nds-block-item">
+                                    <h2 id="details" class="nds-block-title">Details</h2>
+                                    <ul>
+                                        <li>List items are styled by the base layer.</li>
+                                        <li>No extra classes needed.</li>
+                                        <li>Nested lists work too.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="nds-block-item">
+                                    <h2 id="faq" class="nds-block-title">Common questions</h2>
+
+                                    <!-- Accordion. JS auto-initialises off .nds-accordion. -->
+                                    <div class="nds-accordion">
+                                        <div class="nds-accordion-item">
+                                            <button class="nds-accordion-trigger" aria-expanded="false" aria-controls="acc-1">
+                                                <span class="nds-label">First question</span>
+                                                <i class="nds-icon nds-hgi-arrow-down-01" aria-hidden="true"></i>
+                                            </button>
+                                            <div class="nds-accordion-content" id="acc-1" hidden>
+                                                <p>Answer to the first question.</p>
+                                            </div>
+                                        </div>
+                                        <div class="nds-accordion-item">
+                                            <button class="nds-accordion-trigger" aria-expanded="false" aria-controls="acc-2">
+                                                <span class="nds-label">Second question</span>
+                                                <i class="nds-icon nds-hgi-arrow-down-01" aria-hidden="true"></i>
+                                            </button>
+                                            <div class="nds-accordion-content" id="acc-2" hidden>
+                                                <p>Answer to the second question.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TOC builds its own list from the headings you point
+                             it at. Keep the heading ids in sync. -->
+                        <aside class="nds-sideinfo nds-sticky nds-top" aria-label="On this page" hidden>
+                            <nav class="nds-toc" aria-label="Table of contents">
+                                <span class="nds-toc-title">On this page</span>
+                                <ul class="nds-toc-list">
+                                    <li><a href="#overview">Overview</a></li>
+                                    <li><a href="#details">Details</a></li>
+                                    <li><a href="#faq">Common questions</a></li>
+                                </ul>
+                            </nav>
+                        </aside>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <div id="shell-footer"></div>
+    <div id="shell-cookie"></div>
+    <div id="shell-a11y"></div>
+
+    <script src="assets/js/nds-main.min.js" defer></script>
+    <script src="assets/js/nds-accessibility.min.js" defer></script>
+    <script src="js/site.js" defer></script>
+</body>
+</html>
