@@ -1,23 +1,52 @@
-<section class="nds-hero-section" aria-label="قسم العرض الرئيسي">
-    <div class="nds-swiper nds-hero nds-oncolor nds-full-width" style="--total: 1">
-        <div class="nds-swiper-wrapper">
-            <div class="nds-swiper-slide nds-content-wrapper">
-                <div class="nds-hero-image-wrapper"
-                    style="--overlay:0.7; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                    <picture>
-                        <source media="(max-width: 768px)" srcset="assets/img/riyadhcenter3s.webp">
-                        <img src="assets/img/riyadhcenter_ai.webp" class="nds-hero-image" alt=""
-                            style="width: 100%; height: 100%; object-fit: cover; object-position: center 80%; display: block;"
-                            fetchpriority="high">
-                    </picture>
+<section class="nds-hero-section wwf-hero-section" aria-label="Main event hero">
+    <div class="nds-swiper nds-hero nds-oncolor nds-full-width wwf-hero" style="--total: 1">
+        <div class="nds-swiper-wrapper wwf-hero__wrapper">
+            <div class="nds-swiper-slide wwf-hero__slide">
+                <div class="nds-hero-image-wrapper wwf-hero__media" aria-hidden="true">
+                    <video class="wwf-hero__video" autoplay muted loop playsinline preload="metadata">
+                        <source src="theme/media/hero-video.mp4" type="video/mp4">
+                    </video>
                 </div>
-                <div class="nds-section-body">
-                    <h1 class="nds-section-title">Vanilla Design System</h1>
-                    <p class="nds-section-description">An open-source, vanilla implementation of Saudi Arabia's National Design System. Production-ready HTML, CSS, and JavaScript built from scratch with zero dependencies.</p>
-                    <div style="display:flex;gap:var(--spacing-md);flex-wrap:wrap;">
-                      <a href="https://github.com/mazin-musleh/NDS-vanilla" target="_blank" rel="noopener" class="nds-btn nds-primary nds-oncolor nds-lg nds-external"><i class="hgi hgi-stroke hgi-github"></i><span class="nds-label">View on GitHub</span></a>
-                      <a href="https://github.com/mazin-musleh/NDS-vanilla/releases/latest" target="_blank" rel="noopener" class="nds-btn nds-secondary-outline nds-oncolor nds-lg nds-external"><span class="nds-label">Download</span></a>
+
+                <div class="nds-section-body nds-content-wrapper wwf-hero__content">
+                    <h1 class="nds-section-title wwf-hero__title">11th World Water Forum</h1>
+                    <p class="nds-section-description wwf-hero__tagline">Action for a Better Tomorrow</p>
+
+                    <p class="wwf-hero__meta" aria-label="21 to 25 March 2027 in Riyadh, Saudi Arabia">
+                        <span class="wwf-hero__meta-item">
+                            <i class="nds-icon nds-hgi-calendar-03" aria-hidden="true"></i>
+                            <time datetime="2027-03-21">21-25 March 2027</time>
+                        </span>
+                        <span class="wwf-hero__meta-separator" aria-hidden="true"></span>
+                        <span class="wwf-hero__meta-item">
+                            <i class="nds-icon nds-hgi-location-01" aria-hidden="true"></i>
+                            <span>Riyadh, Saudi Arabia</span>
+                        </span>
+                    </p>
+
+                    <div class="wwf-countdown" aria-label="Countdown to the forum">
+                        <div class="wwf-countdown__item">
+                            <span class="wwf-countdown__value">185</span>
+                            <span class="wwf-countdown__label">Days</span>
+                        </div>
+                        <div class="wwf-countdown__item">
+                            <span class="wwf-countdown__value">10</span>
+                            <span class="wwf-countdown__label">Hours</span>
+                        </div>
+                        <div class="wwf-countdown__item">
+                            <span class="wwf-countdown__value">58</span>
+                            <span class="wwf-countdown__label">Min</span>
+                        </div>
+                        <div class="wwf-countdown__item">
+                            <span class="wwf-countdown__value">17</span>
+                            <span class="wwf-countdown__label">Sec</span>
+                        </div>
                     </div>
+
+                    <a href="#intro" class="nds-btn nds-primary nds-oncolor nds-lg wwf-hero__cta">
+                        <span class="nds-label">Learn More</span>
+                        <i class="nds-icon nds-hgi-arrow-left-01" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
         </div>

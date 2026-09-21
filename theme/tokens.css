@@ -98,7 +98,7 @@
        @font-face rules live in assets/css/nds.critical.min.css and point at
        assets/fonts/. To use a different family:
          1. drop the woff2 files into assets/fonts/
-         2. declare @font-face in ./theme.css (NOT in assets/css/)
+         2. declare @font-face in ./theme-layered.css (NOT in assets/css/)
          3. set the property below                                            */
 
     /* --nds-font-family: "Your Family", "IBM Plex Sans Arabic", sans-serif;   */
@@ -279,3 +279,16 @@
     --card-radius: var(--radius-lg);
 }
 */
+
+:root {
+    --wwf-hero-overlay: #000000b2;
+    --wwf-hero-title: #62b6d4;
+    --wwf-hero-tagline-start: #3565c0;
+    --wwf-hero-tagline-end: #7ae0de;
+    --wwf-hero-panel-bg: #ffffff14;
+    --wwf-hero-panel-border: #ffffff33;
+    --wwf-hero-panel-shadow: 0 4px 16px #0000000a;
+    --wwf-hero-action-bg: #ff781f;
+    --wwf-hero-action-bg-hover: #e8640f;
+    --wwf-hero-action-bg-active: #c6530b;
+}

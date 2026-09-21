@@ -1,17 +1,13 @@
 /* ==========================================================================
-   OPTIONAL: the strict cascade-layer build
-   ==========================================================================
+   PROJECT THEME ENTRY - strict cascade-layer build
+   ===========================================================================
 
-   The starter does NOT use this file by default. theme.css does.
-   Use this one only if you want DGA's own CSS inside a named layer.
-
-   HOW TO SWITCH
-   In every page, replace the whole CSS block in <head> with one line:
+   This is the only stylesheet entry used by project pages:
 
        <link rel="stylesheet" href="theme/theme-layered.css">
 
-   and delete the five vendor <link> / <noscript> pairs above it. Nothing else
-   changes: tokens.css, the partials and the pages all work the same.
+   It owns the DGA vendor imports, project tokens, and project component
+   visuals. Do not add separate vendor stylesheet links to individual pages.
 
    WHAT YOU GAIN
    Every DGA rule sits in the `vendors` layer, which is the lowest. Any CSS you
@@ -19,7 +15,7 @@
    fight and no !important. If your team writes a lot of custom CSS over DGA,
    that is worth having.
 
-   WHAT IT COSTS, AND WHY IT IS NOT THE DEFAULT
+   TRADEOFF
    @layer can only be attached to a stylesheet through @import, and @import
    hides those files from the browser's preload scanner: it cannot request
    nds.critical.min.css until it has downloaded and parsed THIS file. That is
@@ -33,14 +29,7 @@
    There is no way to have both today: <link rel="stylesheet" layer="..."> is
    not supported by browsers (tested, the attribute is ignored).
 
-   TESTED
-   This file has been run, not just written: switched index.html and
-   pages/form.html to it per the instructions above, both render identically to
-   the default build, the skip link still styles, all chrome mounts, a
-   @layer theme token still beats DGA, and the console is clean. The @import
-   paths are relative to THIS file, so they resolve from any page depth.
-
-   ONE RULE IF YOU USE THIS FILE
+   ONE RULE
    Do not mix. If any DGA stylesheet is still loaded with a plain <link>, it
    stays unlayered, and unlayered rules beat layered ones - so your theme would
    silently stop winning. It is all through here, or none of it.
@@ -49,14 +38,17 @@
 @layer vendors, reset, base, layout, components, theme, utilities;
 
 /* DGA, lowest priority. Order among them is the same as the <link> order. */
-@import url("../assets/css/nds.critical.min.css")     layer(vendors);
-@import url("../assets/css/nds-icons.min.css")        layer(vendors);
-@import url("../assets/css/nds-main.min.css")         layer(vendors);
+@import url("../assets/css/nds.critical.min.css") layer(vendors);
+@import url("../assets/css/nds-icons.min.css") layer(vendors);
+@import url("../assets/css/nds-main.min.css") layer(vendors);
 @import url("../assets/css/nds-accessibility.min.css") layer(vendors);
 @import url("../assets/css/hgi-rounded-stroke-min.css") layer(vendors);
 
 /* Your design tokens, above DGA. */
 @import url("tokens.css") layer(theme);
+
+/* Project component visuals. */
+/* @import url("hero-main.css") layer(components); */
 
 
 @layer base {
@@ -83,19 +75,318 @@
         outline-offset: 2px;
     }
 
-    #main-content:focus { outline: none; }
+    #main-content:focus {
+        outline: none;
+    }
 }
 
 
 @layer layout {
+
     /* Page-level composition you add on top of DGA. */
-    .nds-main-nav .nds-nav-item.nds-icon-only .nds-nav-link .nds-label{display:block}
+    .nds-main-nav .nds-nav-item.nds-icon-only .nds-nav-link .nds-label {
+        display: block;
+    }
 }
 
 
 @layer components {
     /* Project components DGA does not cover. Check reference/ first: DGA has
        75 components and the thing you are about to build probably exists. */
+
+    /* ======= HOME ======= */
+    /* ---- HERO ---- */
+    /* Main event hero. Markup keeps DGA/NDS structure; this file only skins it. */
+
+    .wwf-hero-section {
+        --section-padding-block: 0;
+        justify-self: stretch;
+        inline-size: min(100%, 100vw);
+        max-inline-size: 100vw;
+        min-block-size: max(542px, calc(100svh - var(--nds-nav-height, 72px) - 40px));
+        padding-inline: 0;
+        overflow: hidden;
+        background-color: var(--colors-base-black, #161616);
+    }
+
+    .wwf-hero {
+        inline-size: 100%;
+        max-inline-size: 100%;
+        margin-inline: 0;
+        min-block-size: max(542px, calc(100svh - var(--nds-nav-height, 72px) - 40px));
+    }
+
+    .wwf-hero__wrapper {
+        block-size: 100%;
+    }
+
+    .wwf-hero__slide {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-block: var(--spacing-6xl, 48px) var(--spacing-7xl, 64px);
+        isolation: isolate;
+    }
+
+    .wwf-hero__media {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+    }
+
+    .wwf-hero__media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: var(--wwf-hero-overlay);
+    }
+
+    .wwf-hero__video {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .wwf-hero__content {
+        display: block;
+        position: relative;
+        z-index: 1;
+        inline-size: 100%;
+        block-size: auto;
+        margin: 0;
+    }
+
+    .wwf-hero__title {
+        display: block;
+        margin-block-end: var(--spacing-md, 8px);
+        font-size: calc(56px * var(--user-font-scale, 1));
+        line-height: calc(68px * var(--user-font-scale, 1));
+        letter-spacing: 0;
+        white-space: nowrap;
+        color: var(--wwf-hero-title);
+    }
+
+    .wwf-hero__tagline {
+        margin-block-end: var(--spacing-3xl, 24px);
+        font-size: calc(28px * var(--user-font-scale, 1));
+        line-height: calc(34px * var(--user-font-scale, 1));
+        font-weight: 700;
+        letter-spacing: 0;
+        background: linear-gradient(90deg, var(--wwf-hero-tagline-start), var(--wwf-hero-tagline-end));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 400px 100%;
+    }
+
+    .wwf-hero__meta {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm, 6px) var(--spacing-md, 8px);
+        max-inline-size: 100%;
+        margin-block: 0 var(--spacing-4xl, 32px);
+        padding: var(--spacing-xs, 4px) var(--spacing-lg, 12px);
+        border: 1px solid var(--wwf-hero-panel-border);
+        border-radius: var(--radius-full, 9999px);
+        background: var(--wwf-hero-panel-bg);
+        color: var(--colors-base-white, #ffffff);
+        font-size: calc(14px * var(--user-font-scale, 1));
+        line-height: calc(20px * var(--user-font-scale, 1));
+        font-weight: 600;
+        backdrop-filter: blur(12px);
+        box-shadow: var(--wwf-hero-panel-shadow);
+    }
+
+    .wwf-hero__meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-sm, 6px);
+    }
+
+    .wwf-hero__meta-item .nds-icon {
+        font-size: calc(14px * var(--user-font-scale, 1));
+    }
+
+    .wwf-hero__meta-separator {
+        inline-size: 6px;
+        block-size: 6px;
+        border-radius: var(--radius-full, 9999px);
+        background-color: var(--colors-base-white, #ffffff);
+    }
+
+    .wwf-countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 92px);
+        gap: var(--spacing-lg, 12px);
+        margin-block-end: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-countdown__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 82px;
+        padding: var(--spacing-md, 8px);
+        border: 1px solid var(--wwf-hero-panel-border);
+        border-radius: var(--radius-md, 8px);
+        background: var(--wwf-hero-panel-bg);
+        color: var(--colors-base-white, #ffffff);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--wwf-hero-panel-shadow);
+    }
+
+    .wwf-countdown__value {
+        display: block;
+        font-size: calc(32px * var(--user-font-scale, 1));
+        line-height: calc(40px * var(--user-font-scale, 1));
+        font-weight: 700;
+    }
+
+    .wwf-countdown__label {
+        display: block;
+        font-size: calc(13px * var(--user-font-scale, 1));
+        line-height: calc(20px * var(--user-font-scale, 1));
+    }
+
+    .wwf-hero__cta {
+        --btn-size: 40px;
+        --btn-height: 40px;
+        --btn-height-min: 40px;
+        --btn-padding: var(--spacing-lg, 12px);
+        --btn-FS: 16px;
+        --btn-LH: 24px;
+        --btn-icon-size: 20px;
+        --btn-gap: var(--spacing-sm, 6px);
+        --btn-bg: var(--wwf-hero-action-bg);
+        --btn-bg-hover: var(--wwf-hero-action-bg-hover);
+        --btn-bg-active: var(--wwf-hero-action-bg-active);
+        --btn-bg-selected: var(--wwf-hero-action-bg-active);
+        --btn-border: transparent;
+        --btn-border-hover: transparent;
+        --btn-border-active: transparent;
+        --btn-border-selected: transparent;
+        --btn-color: var(--colors-base-white, #ffffff);
+        --btn-loading-color: var(--colors-base-white, #ffffff);
+        --btn-radius: var(--radius-sm, 4px);
+    }
+
+    @media (max-width: 960px) {
+        .wwf-hero {
+            min-block-size: 620px;
+        }
+
+        .wwf-hero__content {
+            inline-size: min(100%, 720px);
+        }
+
+        .wwf-hero__title {
+            font-size: calc(48px * var(--user-font-scale, 1));
+            line-height: calc(56px * var(--user-font-scale, 1));
+            white-space: normal;
+        }
+
+        .wwf-hero__tagline {
+            font-size: calc(26px * var(--user-font-scale, 1));
+            line-height: calc(36px * var(--user-font-scale, 1));
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        .wwf-hero-section,
+        .wwf-hero {
+            block-size: auto;
+            min-block-size: 680px;
+        }
+
+        .wwf-hero__wrapper,
+        .wwf-hero__slide {
+            block-size: 100%;
+            min-block-size: 680px;
+        }
+
+        .wwf-hero__content {
+            block-size: max-content;
+            min-block-size: 0;
+        }
+
+        .wwf-hero__slide {
+            display: block;
+            padding-block: var(--spacing-5xl, 40px);
+        }
+
+        .wwf-hero__title {
+            font-size: calc(38px * var(--user-font-scale, 1));
+            line-height: calc(44px * var(--user-font-scale, 1));
+        }
+
+        .wwf-hero__tagline {
+            margin-block-end: var(--spacing-3xl, 24px);
+            font-size: calc(23px * var(--user-font-scale, 1));
+            line-height: calc(32px * var(--user-font-scale, 1));
+        }
+
+        .wwf-hero__meta {
+            margin-block-end: var(--spacing-4xl, 32px);
+            border-radius: var(--radius-lg, 16px);
+            font-size: calc(17px * var(--user-font-scale, 1));
+            line-height: calc(26px * var(--user-font-scale, 1));
+        }
+
+        .wwf-hero__meta-separator {
+            display: none;
+        }
+
+        .wwf-countdown {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: var(--spacing-xl, 16px);
+            max-inline-size: 360px;
+            margin-block-end: var(--spacing-4xl, 32px);
+        }
+
+        .wwf-countdown__item {
+            min-block-size: 96px;
+        }
+
+        .wwf-countdown__value {
+            font-size: calc(36px * var(--user-font-scale, 1));
+            line-height: calc(44px * var(--user-font-scale, 1));
+        }
+
+        .wwf-hero__cta {
+            --btn-size: 56px;
+            --btn-height: 56px;
+            --btn-height-min: 56px;
+            --btn-FS: 22px;
+            --btn-LH: 30px;
+        }
+    }
+
+    :root[data-a11y~="high-contrast"] .wwf-hero__title,
+    :root[data-a11y~="high-contrast"] .wwf-hero__tagline {
+        background: none;
+        color: var(--text-oncolor-primary);
+    }
+
+    @media (forced-colors: active) {
+
+        .wwf-hero__title,
+        .wwf-hero__tagline {
+            background: none;
+            color: CanvasText;
+        }
+
+        .wwf-hero__media::after {
+            background: Canvas;
+        }
+    }
+
 }
 
 

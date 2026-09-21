@@ -29,7 +29,8 @@ partials-ar/        AR chrome. The a11y panel is NOT duplicated - it
                     translates itself from <html lang>.
 theme/
   tokens.css        >>> START HERE. Every design decision goes in this file.
-  theme.css         entry: imports tokens, holds the skip link and our layers
+  theme-layered.css sole entry: DGA imports, tokens, and project layers
+  hero-main.css     project-only visual skin for the main hero
 js/site.js          loads the partials, then re-runs the NDS init sweep
 _GUIDE.html         the step-by-step guide. Delete before shipping
 js/guide.js         powers _GUIDE.html only. Delete with it
@@ -104,9 +105,8 @@ that alone is why the icon webfont ships. Nothing else in the starter uses
 1. Delete `partials/accessibility-panel.html`
 2. Delete `<div id="shell-a11y"></div>` from **every** page
 3. Delete `<script src="assets/js/nds-accessibility.min.js" defer></script>` from every page
-4. Delete the `nds-accessibility.min.css` preload/noscript pair from every page
-5. Delete the icon-webfont block from every `<head>`: the `@keyframes hgi-reveal`
-   style block and the `hgi-rounded-stroke-min.css` preload/noscript pair
+4. Delete the `nds-accessibility.min.css` import from `theme/theme-layered.css`
+5. Delete the `hgi-rounded-stroke-min.css` import from `theme/theme-layered.css`
 6. Delete the files:
    ```
    assets/css/nds-accessibility.min.css

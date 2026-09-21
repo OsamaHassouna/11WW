@@ -14,35 +14,8 @@
     <title>Content page | Entity Name</title>
     <base href="../">
 
-    <!-- 1. CRITICAL CSS - blocking on purpose. ~6 KB gzipped. Holds the design
-            tokens, the type scale and the shell layout so the first paint is
-            already correct. Never defer this one. -->
-    <link rel="stylesheet" href="assets/css/nds.critical.min.css">
-
-    <!-- 2. DEFERRED CSS - loads without blocking render. -->
-    <link rel="preload" href="assets/css/nds-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/nds-icons.min.css"></noscript>
-
-    <link rel="preload" href="assets/css/nds-main.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/nds-main.min.css"></noscript>
-
-    <link rel="preload" href="assets/css/nds-accessibility.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/nds-accessibility.min.css"></noscript>
-
-    <!-- 3. ICON WEBFONT - only the accessibility panel needs it (13 of its tile
-            icons are not in the 70-icon core set). ~690 KB across font + CSS.
-            If you drop the panel, delete these three blocks and the font file.
-            See starter/README.md "Trimming the starter". -->
-    <style>
-        @keyframes hgi-reveal { to { opacity: 1 } }
-        i.hgi-stroke { opacity: 0; animation: hgi-reveal 0s 2s forwards; }
-        body[data-font-loaded~="hgi-stroke-rounded"] i.hgi-stroke { opacity: 1; animation: none; }
-    </style>
-    <link rel="preload" href="assets/css/hgi-rounded-stroke-min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="assets/css/hgi-rounded-stroke-min.css"></noscript>
-
-    <!-- 4. YOUR THEME - always last, so your tokens win on source order. -->
-    <link rel="stylesheet" href="theme/theme.css">
+    <!-- DGA vendor styles, project tokens, and project components. -->
+    <link rel="stylesheet" href="theme/theme-layered.css">
 
     <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" fetchpriority="low">
 
