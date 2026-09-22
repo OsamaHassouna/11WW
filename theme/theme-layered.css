@@ -1098,6 +1098,95 @@
         }
     }
 
+    /* ======= LEGAL CONTENT PAGES ======= */
+
+    .wwf-legal-page :is(h1, h2, h3, h4) {
+        letter-spacing: 0;
+    }
+
+    .wwf-legal-hero__lead {
+        margin-block: 0 var(--spacing-3xl, 24px);
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-legal-hero .nds-section-description {
+        max-inline-size: none;
+    }
+
+    .wwf-legal-content article > .nds-section-title:not(:first-child) {
+        margin-block-start: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-legal-content article > h3 {
+        margin-block: var(--spacing-lg, 12px) var(--spacing-md, 8px);
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-legal-contact-card {
+        --card-width-max: none;
+        --card-padding: 0;
+        --card-gap: 0;
+        --card-radius: var(--radius-md, 8px);
+        --card-border: var(--border-neutral-primary);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        max-inline-size: none;
+        margin-block-start: var(--spacing-xl, 16px);
+    }
+
+    .wwf-legal-contact-card__item {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md, 8px);
+        min-inline-size: 0;
+        padding: var(--spacing-xl, 16px);
+    }
+
+    .wwf-legal-contact-card__item + .wwf-legal-contact-card__item {
+        border-inline-start: 1px solid var(--border-neutral-primary);
+    }
+
+    .wwf-legal-contact-card__label {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-sm, 6px);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-xs-LH);
+    }
+
+    .wwf-legal-contact-card__label .nds-icon {
+        flex: 0 0 auto;
+        color: var(--text-primary);
+        font-size: var(--typo-text-lg-FS);
+    }
+
+    .wwf-legal-contact-card__item > a {
+        overflow-wrap: anywhere;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-legal-contact-card {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-legal-contact-card__item + .wwf-legal-contact-card__item {
+            border-inline-start: 0;
+            border-block-start: 1px solid var(--border-neutral-primary);
+        }
+    }
+
     /* ---- FOOTER ---- */
 
     .wwf-footer {
