@@ -1285,6 +1285,80 @@
         }
     }
 
+    /* ======= COMMUNICATION TOOLKIT PAGE ======= */
+
+    .wwf-toolkit-hero {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
+    .wwf-toolkit-hero .nds-section-description {
+        max-inline-size: 720px;
+    }
+
+    .wwf-toolkit-list {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-toolkit-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-toolkit-tag--success {
+        --tag-bg: var(--background-success-50);
+        --tag-border: var(--border-success-light);
+        --tag-text: var(--colors-green-800);
+    }
+
+    .wwf-toolkit-tag--info {
+        --tag-bg: var(--background-info-50);
+        --tag-border: var(--border-info-light);
+        --tag-text: var(--colors-blue-800);
+    }
+
+    .wwf-toolkit-tag--neutral {
+        --tag-bg: var(--background-neutral-50);
+        --tag-border: var(--border-neutral-secondary);
+        --tag-text: var(--colors-neutral-800);
+    }
+
+    .wwf-toolkit-alert {
+        --card-bg: var(--background-neutral-25);
+        --card-border: var(--border-neutral-primary);
+        --alert-stripe: var(--border-neutral-secondary);
+        --alert-icon-bg: var(--background-neutral-50);
+        --icon-color: var(--text-default);
+        --card-radius: var(--radius-md, 8px);
+    }
+
+    .wwf-toolkit-alert::after {
+        opacity: 1;
+    }
+
+    .wwf-toolkit-alert .nds-feedback-icon {
+        box-sizing: border-box;
+        inline-size: var(--spacing-10, 40px);
+        block-size: var(--spacing-10, 40px);
+        flex: 0 0 var(--spacing-10, 40px);
+        padding: var(--spacing-3, 12px);
+        background-color: var(--background-neutral-50);
+    }
+
+    .wwf-toolkit-alert .nds-feedback-icon .hgi {
+        color: var(--icon-color);
+        inline-size: 18px;
+        block-size: 18px;
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-toolkit-list {
+            --section-padding-block: var(--spacing-5xl, 40px);
+        }
+    }
+
     /* ======= LEGAL CONTENT PAGES ======= */
 
     .wwf-legal-page :is(h1, h2, h3, h4) {
