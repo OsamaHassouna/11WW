@@ -1208,6 +1208,83 @@
         }
     }
 
+    /* ======= RESOURCES PAGE ======= */
+
+    .wwf-resources-hero {
+        --background-sub-hero: var(--background-primary-25);
+    }
+
+    .wwf-resources-hero .nds-section-description {
+        max-inline-size: 720px;
+    }
+
+    .wwf-resources-list {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-resources-grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: stretch;
+    }
+
+    .wwf-resource-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-3xl, 24px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        block-size: 100%;
+    }
+
+    .wwf-resource-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-resource-card__icon {
+        --icon-bg-color: var(--background-primary-50);
+        --icon-color: var(--featuredicons-icon-success);
+    }
+
+    .wwf-resource-card__tag {
+        --tag-bg: var(--background-neutral-50);
+        --tag-border: var(--border-neutral-secondary);
+        --tag-text: var(--text-primary-paragraph);
+    }
+
+    .wwf-resource-card .nds-card-actions {
+        margin-block-start: auto;
+    }
+
+    .wwf-resource-card__download {
+        --btn-radius: var(--radius-sm, 4px);
+    }
+
+    .wwf-resources-contact {
+        min-block-size: var(--spacing-56, 224px);
+    }
+
+    .wwf-resources-contact__action {
+        display: flex;
+        justify-content: flex-end;
+        inline-size: 100%;
+    }
+
+    .wwf-resources-contact__button {
+        --btn-radius: var(--radius-md, 8px);
+    }
+
+    @media (max-width: 960px) {
+        .wwf-resources-contact__action {
+            justify-content: flex-start;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-resources-list {
+            --section-padding-block: var(--spacing-5xl, 40px);
+        }
+    }
+
     /* ======= LEGAL CONTENT PAGES ======= */
 
     .wwf-legal-page :is(h1, h2, h3, h4) {
