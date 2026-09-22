@@ -1415,6 +1415,223 @@
         }
     }
 
+    /* ======= DISCOVER RIYADH PAGE ======= */
+
+    .wwf-riyadh-hero {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
+    .wwf-riyadh-hero .nds-section-description {
+        max-inline-size: 720px;
+    }
+
+    .wwf-riyadh-overview {
+        --section-padding-block: var(--spacing-5xl, 40px);
+    }
+
+    .wwf-riyadh-overview__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-3xl, 24px);
+        align-items: stretch;
+    }
+
+    .wwf-riyadh-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-xl, 16px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-md, 8px);
+        min-block-size: 400px;
+        max-inline-size: none;
+        text-align: start;
+    }
+
+    .wwf-riyadh-card--modern,
+    .wwf-riyadh-card--vision {
+        grid-column: span 2;
+    }
+
+    .wwf-riyadh-card__media {
+        position: relative;
+        flex: 0 0 auto;
+        inline-size: 100%;
+        block-size: 238px;
+        overflow: hidden;
+        border-radius: var(--radius-sm, 4px);
+    }
+
+    .wwf-riyadh-card__media img,
+    .wwf-riyadh-collage img {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+    }
+
+    .wwf-riyadh-card--culture .wwf-riyadh-card__media img {
+        object-position: center top;
+    }
+
+    .wwf-riyadh-card--modern .wwf-riyadh-card__media img {
+        object-position: center 35%;
+    }
+
+    .wwf-riyadh-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-riyadh-card .nds-card-description,
+    .wwf-riyadh-value-card .nds-card-description {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-riyadh-collage {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-xl, 16px);
+        flex: 0 0 auto;
+        inline-size: 100%;
+        block-size: 238px;
+    }
+
+    .wwf-riyadh-collage__lead,
+    .wwf-riyadh-collage__tiles img {
+        border-radius: var(--radius-sm, 4px);
+    }
+
+    .wwf-riyadh-collage__tiles {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-xl, 16px);
+        min-inline-size: 0;
+        min-block-size: 0;
+    }
+
+    .wwf-riyadh-vision {
+        --section-bg: var(--background-neutral-25);
+        --section-padding-block: var(--spacing-5xl, 40px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .wwf-riyadh-vision__mark {
+        position: absolute;
+        z-index: 0;
+        inset-block-start: 10px;
+        inset-inline-end: 0;
+        inline-size: 440px;
+        max-inline-size: none;
+        pointer-events: none;
+    }
+
+    .wwf-riyadh-vision__wrapper {
+        position: relative;
+        z-index: 1;
+    }
+
+    .wwf-riyadh-vision__head {
+        align-items: flex-start;
+    }
+
+    .wwf-riyadh-vision__head .nds-section-description {
+        max-inline-size: 760px;
+    }
+
+    .wwf-riyadh-vision__tag {
+        --tag-bg: var(--background-neutral-100);
+        --tag-border: transparent;
+        --tag-text: var(--text-default);
+        margin-block-end: var(--spacing-xl, 16px);
+    }
+
+    .wwf-riyadh-values {
+        position: relative;
+        align-items: stretch;
+    }
+
+    .wwf-riyadh-value-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-gap: var(--spacing-xl, 16px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--featuredicons-icon-default);
+        block-size: 100%;
+        max-inline-size: none;
+        text-align: start;
+    }
+
+    .wwf-riyadh-value-card .nds-card-content {
+        flex: 1;
+    }
+
+    @media (max-width: 960px) {
+        .wwf-riyadh-overview__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .wwf-riyadh-card--modern {
+            grid-column: span 1;
+        }
+
+        .wwf-riyadh-card--vision {
+            grid-column: span 2;
+        }
+
+        .wwf-riyadh-vision__mark {
+            inset-inline-end: -180px;
+            opacity: 0.42;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-riyadh-overview__grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-riyadh-card--vision {
+            grid-column: span 1;
+        }
+
+        .wwf-riyadh-card {
+            min-block-size: 0;
+        }
+
+        .wwf-riyadh-card__media,
+        .wwf-riyadh-collage {
+            block-size: auto;
+        }
+
+        .wwf-riyadh-card__media,
+        .wwf-riyadh-collage__lead {
+            aspect-ratio: 3 / 2;
+        }
+
+        .wwf-riyadh-collage {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-riyadh-collage__lead,
+        .wwf-riyadh-collage__tiles img {
+            block-size: auto;
+        }
+
+        .wwf-riyadh-collage__tiles img {
+            aspect-ratio: 4 / 3;
+        }
+
+        .wwf-riyadh-vision__mark {
+            inset-block-start: var(--spacing-7xl, 64px);
+            inset-inline-end: -220px;
+            inline-size: 440px;
+            opacity: 0.28;
+        }
+    }
+
     /* ======= COMMUNICATION TOOLKIT PAGE ======= */
 
     .wwf-toolkit-hero {
