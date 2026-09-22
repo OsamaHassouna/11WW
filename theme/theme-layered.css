@@ -88,6 +88,11 @@
         display: block;
     } */
 
+    .nds-main-nav {
+        border-block-end: 1px solid var(--border-neutral-primary);
+        box-shadow: none;
+    }
+
     @media (min-width: 961px) {
         .nds-content-layout:not(.nds-wSideMenu, .nds-wSideInfo) {
             --section-padding-block: var(--spacing-5xl);
@@ -99,6 +104,11 @@
 @layer components {
     /* Project components DGA does not cover. Check reference/ first: DGA has
        75 components and the thing you are about to build probably exists. */
+
+    .nds-hero-section {
+        --section-shadow: none;
+        --shadow-inset: none;
+    }
 
     /* ======= HOME ======= */
     /* ---- HERO ---- */
