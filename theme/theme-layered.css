@@ -956,6 +956,116 @@
         block-size: var(--spacing-7xl, 64px);
     }
 
+    .wwf-organizers-hero {
+        --background-sub-hero: var(--background-primary-25);
+    }
+
+    .wwf-organizers-hero .nds-section-description {
+        max-inline-size: 720px;
+    }
+
+    .wwf-organizers-page__institutions {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-organizers-page__institutions .nds-section-title {
+        max-inline-size: 720px;
+    }
+
+    .wwf-organizer-card--detail {
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-width-max: none;
+        block-size: 100%;
+    }
+
+    .wwf-organizer-card--detail .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-organizer-card--detail .nds-card-text {
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-organizer-card--detail .nds-card-description {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-organizer-card--detail .wwf-organizer-card__logo--mewa {
+        block-size: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-organizer-card__tag {
+        --tag-border: transparent;
+        align-self: flex-start;
+    }
+
+    .wwf-organizer-card__tag--wwc {
+        --tag-bg: var(--background-tertiary-50);
+        --tag-text: var(--text-tertiary);
+    }
+
+    .wwf-organizer-card--detail .nds-card-actions {
+        margin-block-start: auto;
+    }
+
+    .wwf-organizer-card__action {
+        --btn-size: var(--spacing-3xl, 24px);
+        --btn-padding: var(--spacing-none, 0);
+        --btn-gap: var(--spacing-md, 8px);
+        --btn-FS: var(--typo-text-sm-FS);
+        --btn-color: var(--text-primary);
+    }
+
+    .wwf-organizers-partnership {
+        --section-bg: var(--background-neutral-50);
+        --section-padding-block: var(--spacing-7xl, 64px);
+        --section-border-radius: var(--radius-lg, 16px);
+    }
+
+    .wwf-organizers-partnership .nds-section-description {
+        max-inline-size: 720px;
+    }
+
+    .wwf-organizers-partnership__logos {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: center;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-organizers-partnership__logo-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        display: flex;
+        justify-content: flex-start;
+        min-block-size: 112px;
+    }
+
+    .wwf-organizers-partnership__plus {
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-display-md-FS);
+        line-height: var(--typo-display-md-LH);
+        font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-organizers-page__institutions,
+        .wwf-organizers-partnership {
+            --section-padding-block: var(--spacing-5xl, 40px);
+        }
+
+        .wwf-organizers-partnership__logos {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-organizers-partnership__plus {
+            justify-self: center;
+        }
+    }
+
     /* ---- STAY CONNECTED ---- */
 
     .wwf-stay-connected {
