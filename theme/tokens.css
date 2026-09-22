@@ -45,7 +45,7 @@
 
 :root {
 
-    /* 1.1 BRAND RAMP -------------------------------------------------------
+   /* 1.1 BRAND RAMP -------------------------------------------------------
        The system ships a 12-step ramp seeded from the SA flag green.
        Replace the whole ramp with the client ramp from Figma. Keep all 12
        steps: components pick different steps for hover, active, and borders,
@@ -53,20 +53,20 @@
 
        Stock values are listed so you can always get back to them.            */
 
-    /* --colors-primary-sa-flag-25:  #f7fdf9; */
-    /* --colors-primary-sa-flag-50:  #f3fcf6; */
-    /* --colors-primary-sa-flag-100: #dff6e7; */
-    /* --colors-primary-sa-flag-200: #b8eacb; */
-    /* --colors-primary-sa-flag-300: #88d8ad; */
-    /* --colors-primary-sa-flag-400: #54c08a; */
-    /* --colors-primary-sa-flag-500: #25935f; */
-    /* --colors-primary-sa-flag-600: #1b8354;  <- THE primary green           */
-    /* --colors-primary-sa-flag-700: #166a45; */
-    /* --colors-primary-sa-flag-800: #14573a; */
-    /* --colors-primary-sa-flag-900: #104631; */
-    /* --colors-primary-sa-flag-950: #092a1e; */
+   /* --colors-primary-sa-flag-25:  #f7fdf9; */
+   /* --colors-primary-sa-flag-50:  #f3fcf6; */
+   /* --colors-primary-sa-flag-100: #dff6e7; */
+   /* --colors-primary-sa-flag-200: #b8eacb; */
+   /* --colors-primary-sa-flag-300: #88d8ad; */
+   /* --colors-primary-sa-flag-400: #54c08a; */
+   /* --colors-primary-sa-flag-500: #25935f; */
+   /* --colors-primary-sa-flag-600: #1b8354;  <- THE primary green           */
+   /* --colors-primary-sa-flag-700: #166a45; */
+   /* --colors-primary-sa-flag-800: #14573a; */
+   /* --colors-primary-sa-flag-900: #104631; */
+   /* --colors-primary-sa-flag-950: #092a1e; */
 
-    /* MOST MISSED LINE IN THIS FILE.
+   /* MOST MISSED LINE IN THIS FILE.
        DGA writes the green out twice as two separate literals. The second one
        is the one it leans on: measured against this exact CSS, DGA reads
        -600-primary 25 times and plain -600 only 9 times. Set both or most of
@@ -79,21 +79,21 @@
        --background-footer, so it stays green until you add:
          --background-footer: var(--colors-primary-sa-flag-900); */
 
-    /* Secondary ramp (gold), same 12 steps, primary at 600 = #dba102
+   /* Secondary ramp (gold), same 12 steps, primary at 600 = #dba102
          25 #fffef7 · 50 #fffef2 · 100 #fffce6 · 200 #fcf3bd · 300 #fae996
          400 #f7d54d · 500 #f5bd02 · 600 #dba102 · 700 #b87b02 · 800 #945c01
          900 #6e3c00 · 950 #472400
        plus the aliases --colors-secondary-gold-600-primary and
        --colors-secondary-gold-primary                                        */
 
-    /* Tertiary ramp (lavendar), primary sits at 500 = #80519f
+   /* Tertiary ramp (lavendar), primary sits at 500 = #80519f
          25 #fefcff · 50 #f9f5fa · 100 #f2e9f5 · 200 #e1cce8 · 300 #ccadd9
          400 #a57bba · 500 #80519f · 600 #6d428f · 700 #532d75 · 800 #3d1d5e
          900 #281047 · 950 #16072e
        plus --colors-tertiary-lavendar-500-primary and -primary               */
 
 
-    /* 1.2 TYPEFACE ---------------------------------------------------------
+   /* 1.2 TYPEFACE ---------------------------------------------------------
        Stock is IBM Plex Sans Arabic, which covers Arabic and Latin. The
        @font-face rules live in assets/css/nds.critical.min.css and point at
        assets/fonts/. To use a different family:
@@ -101,10 +101,10 @@
          2. declare @font-face in ./theme-layered.css (NOT in assets/css/)
          3. set the property below                                            */
 
-    /* --nds-font-family: "Your Family", "IBM Plex Sans Arabic", sans-serif;   */
+   /* --nds-font-family: "Your Family", "IBM Plex Sans Arabic", sans-serif;   */
 
 
-    /* 1.3 LOGO FILES -------------------------------------------------------
+   /* 1.3 LOGO FILES -------------------------------------------------------
        Not tokens, file swaps. Replace these and update the <img> in
        partials/mainnav.html and partials/footer.html:
 
@@ -129,46 +129,46 @@
 
 :root {
 
-    /* 2.1 SURFACES ---------------------------------------------------------- */
-    /* --background-default:          #fff;      page surface, cards           */
-    /* --background-body:             #f9fafb;   the canvas behind sections    */
-    /* --background-nav:              #fff;      main nav bar                  */
-    /* --background-topbar:           ...        utility bar above the nav     */
-    /* --background-footer:           ...                                      */
-    /* --background-card:             ...                                      */
-    /* --background-card-hovered:     ...                                      */
-    /* --background-surface-sunken:   ...        wells, insets                 */
-    /* --background-surface-elevated: ...        popovers, menus               */
-    /* --background-overlay:          ...        modal scrim                   */
-    /* --background-sub-hero:         ...        the nds-sub hero band         */
+   /* 2.1 SURFACES ---------------------------------------------------------- */
+   /* --background-default:          #fff;      page surface, cards           */
+   /* --background-body:             #f9fafb;   the canvas behind sections    */
+   /* --background-nav:              #fff;      main nav bar                  */
+   /* --background-topbar:           ...        utility bar above the nav     */
+   /* --background-footer:           ...                                      */
+   /* --background-card:             ...                                      */
+   /* --background-card-hovered:     ...                                      */
+   /* --background-surface-sunken:   ...        wells, insets                 */
+   /* --background-surface-elevated: ...        popovers, menus               */
+   /* --background-overlay:          ...        modal scrim                   */
+   /* --background-sub-hero:         ...        the nds-sub hero band         */
 
-    /* 2.2 TEXT -------------------------------------------------------------- */
-    /* --text-default:            #161616;   body copy                         */
-    /* --text-display:            #1f2a37;   headings                          */
-    /* --text-muted:              ...        secondary copy                    */
-    /* --text-subdued:            ...        tertiary, captions                */
-    /* --text-primary:            ...        links and primary emphasis        */
-    /* --text-oncolor-primary:    #fff;      text on a colored surface         */
-    /* --text-disabled:           ...                                          */
+   /* 2.2 TEXT -------------------------------------------------------------- */
+   /* --text-default:            #161616;   body copy                         */
+   /* --text-display:            #1f2a37;   headings                          */
+   /* --text-muted:              ...        secondary copy                    */
+   /* --text-subdued:            ...        tertiary, captions                */
+   /* --text-primary:            ...        links and primary emphasis        */
+   /* --text-oncolor-primary:    #fff;      text on a colored surface         */
+   /* --text-disabled:           ...                                          */
 
-    /* 2.3 BORDERS ----------------------------------------------------------- */
-    /* --border-default:          ...                                          */
-    /* --border-primary:          ...                                          */
-    /* --border-focus:            ...        focus ring color, keep visible    */
-    /* --border-neutral-light:    ...                                          */
+   /* 2.3 BORDERS ----------------------------------------------------------- */
+   /* --border-default:          ...                                          */
+   /* --border-primary:          ...                                          */
+   /* --border-focus:            ...        focus ring color, keep visible    */
+   /* --border-neutral-light:    ...                                          */
 
-    /* 2.4 STATUS ------------------------------------------------------------
+   /* 2.4 STATUS ------------------------------------------------------------
        Used by alerts, tags, form validation, and toasts. Each has a solid, a
        light, a 50 and a 25 step.                                              */
-    /* --background-success / --background-success-light / -50 / -25           */
-    /* --background-error   / --background-warning / --background-info         */
-    /* --text-success / --text-error / --text-warning / --text-info            */
+   /* --background-success / --background-success-light / -50 / -25           */
+   /* --background-error   / --background-warning / --background-info         */
+   /* --text-success / --text-error / --text-warning / --text-info            */
 
-    /* 2.5 RADIUS ------------------------------------------------------------ */
-    /* --radius-xs / --radius-sm / --radius-md / --radius-lg / --radius-xl     */
-    /* --radius-full                                                           */
+   /* 2.5 RADIUS ------------------------------------------------------------ */
+   /* --radius-xs / --radius-sm / --radius-md / --radius-lg / --radius-xl     */
+   /* --radius-full                                                           */
 
-    /* 2.6 SPACING -----------------------------------------------------------
+   /* 2.6 SPACING -----------------------------------------------------------
        The scale is fixed and shared by every component. Change the scale only
        if the design genuinely uses a different rhythm, and change it as a
        whole, never one step.
@@ -183,7 +183,7 @@
          --spacing-2xl  20px    --spacing-10xl 128px
                                 --spacing-11xl 160px                          */
 
-    /* 2.7 TYPOGRAPHY --------------------------------------------------------
+   /* 2.7 TYPOGRAPHY --------------------------------------------------------
        Two families of tokens:
          --typo-display-{2xl..xs}-FS / -LH        fixed sizes
          --typo-display-clamp-{2xl..xs}-FS/-LH/-MB  fluid, used by sections
@@ -196,13 +196,13 @@
 
          --typo-text-md-FS: calc(17px * var(--user-font-scale, 1));           */
 
-    /* 2.8 LAYOUT SHELL ------------------------------------------------------ */
-    /* --nds-content-MaxWidth:      1280px;  max content column                */
-    /* --nds-viewport-base-padding: 32px;    gutter, halves under 600px        */
-    /* --nds-nav-height:            72px;                                      */
-    /* --nds-sidemenu-width:        260px;                                     */
-    /* --nds-sideinfo-width:        400px;                                     */
-    /* --nds-transition-speed:      .2;      seconds, unitless                 */
+   /* 2.8 LAYOUT SHELL ------------------------------------------------------ */
+   /* --nds-content-MaxWidth:      1280px;  max content column                */
+   /* --nds-viewport-base-padding: 32px;    gutter, halves under 600px        */
+   /* --nds-nav-height:            72px;                                      */
+   /* --nds-sidemenu-width:        260px;                                     */
+   /* --nds-sideinfo-width:        400px;                                     */
+   /* --nds-transition-speed:      .2;      seconds, unitless                 */
 }
 
 
@@ -215,10 +215,10 @@
    ========================================================================== */
 
 :root[data-theme="dark"] {
-    /* --background-default: #1f2a37; */
-    /* --background-body:    #18212f; */
-    /* --text-default:       #f9fafb; */
-    /* --text-display:       #f3f4f6; */
+   /* --background-default: #1f2a37; */
+   /* --background-body:    #18212f; */
+   /* --text-default:       #f9fafb; */
+   /* --text-display:       #f3f4f6; */
 }
 
 
@@ -232,35 +232,35 @@
 
 :root {
 
-    /* BUTTON ---------------------------------------------------------------
+   /* BUTTON ---------------------------------------------------------------
        --btn-size controls everything else. Font size, icon size, padding and
        the loading spinner are all derived from it.                           */
-    /* --btn-size:   40px;  (nds-sm 24px / nds-md 32px / nds-lg 40px)          */
-    /* --btn-radius: var(--radius-sm);                                         */
-    /* --btn-gap / --btn-padding / --btn-FS / --btn-LH / --btn-icon-size       */
-    /* --btn-bg / --btn-bg-hover / --btn-color / --btn-border                  */
+   /* --btn-size:   40px;  (nds-sm 24px / nds-md 32px / nds-lg 40px)          */
+   /* --btn-radius: var(--radius-sm);                                         */
+   /* --btn-gap / --btn-padding / --btn-FS / --btn-LH / --btn-icon-size       */
+   /* --btn-bg / --btn-bg-hover / --btn-color / --btn-border                  */
 
-    /* SECTION --------------------------------------------------------------- */
-    /* --section-padding-block:  var(--spacing-5xl);                           */
-    /* --section-bg / --section-border / --section-border-radius               */
-    /* --section-title-color / --section-title-FS / --section-title-LH         */
-    /* --section-row-gap / --section-col-gap                                   */
+   /* SECTION --------------------------------------------------------------- */
+   /* --section-padding-block:  var(--spacing-5xl);                           */
+   /* --section-bg / --section-border / --section-border-radius               */
+   /* --section-title-color / --section-title-FS / --section-title-LH         */
+   /* --section-row-gap / --section-col-gap                                   */
 
-    /* FORM ------------------------------------------------------------------ */
-    /* --form-width:   100%;                                                   */
-    /* --input-size:   40px;   (32px under nds-md)                             */
-    /* --input-radius: var(--radius-sm);                                       */
+   /* FORM ------------------------------------------------------------------ */
+   /* --form-width:   100%;                                                   */
+   /* --input-size:   40px;   (32px under nds-md)                             */
+   /* --input-radius: var(--radius-sm);                                       */
 
-    /* GRID - set these per instance, not globally, e.g.
+   /* GRID - set these per instance, not globally, e.g.
        <div class="nds-grid" style="--max-col:3; --mid-col:2; --min-col:1">    */
-    /* --max-col / --mid-col / --min-col      column counts per breakpoint     */
-    /* --max-track / --mid-track / --min-track  explicit grid-template-columns */
-    /* --min-width                            minmax floor for auto-fit        */
-    /* --gap                                  defaults to --spacing-2xl        */
+   /* --max-col / --mid-col / --min-col      column counts per breakpoint     */
+   /* --max-track / --mid-track / --min-track  explicit grid-template-columns */
+   /* --min-width                            minmax floor for auto-fit        */
+   /* --gap                                  defaults to --spacing-2xl        */
 
-    /* ACCESSIBILITY PANEL --------------------------------------------------- */
-    /* --a11y-fab-offset:  var(--spacing-2xl);                                 */
-    /* --a11y-panel-width: min(420px, 100vw);                                  */
+   /* ACCESSIBILITY PANEL --------------------------------------------------- */
+   /* --a11y-fab-offset:  var(--spacing-2xl);                                 */
+   /* --a11y-panel-width: min(420px, 100vw);                                  */
 }
 
 
@@ -281,14 +281,37 @@
 */
 
 :root {
-    --wwf-hero-overlay: #000000b2;
-    --wwf-hero-title: #62b6d4;
-    --wwf-hero-tagline-start: #3565c0;
-    --wwf-hero-tagline-end: #7ae0de;
-    --wwf-hero-panel-bg: #ffffff14;
-    --wwf-hero-panel-border: #ffffff33;
-    --wwf-hero-panel-shadow: 0 4px 16px #0000000a;
-    --wwf-hero-action-bg: #ff781f;
-    --wwf-hero-action-bg-hover: #e8640f;
-    --wwf-hero-action-bg-active: #c6530b;
+
+   /* === HOME === */
+
+   /* Section */
+   --section-title-FS: var(--typo-display-clamp-sm-FS);
+   --section-title-LH: var(--typo-display-clamp-sm-LH);
+   --section-title-color: var(--text-default);
+   --section-description-FS: var(--typo-text-clamp-md-FS);
+   --section-description-LH: var(--typo-text-clamp-md-LH);
+   --section-description-color: var(--text-primary-paragraph);
+
+   /* Shared action */
+   --wwf-action-bg: #ff781f;
+   --wwf-action-bg-hover: #e8640f;
+   --wwf-action-bg-active: #c6530b;
+   
+   /* HERO */
+   --wwf-hero-overlay: #000000b2;
+   --wwf-hero-title: #62b6d4;
+   --wwf-hero-tagline-start: #3565c0;
+   --wwf-hero-tagline-end: #7ae0de;
+   --wwf-hero-panel-bg: #ffffff14;
+   --wwf-hero-panel-border: #ffffff33;
+   --wwf-hero-panel-shadow: 0 4px 16px #0000000a;
+
+   /* Milestones */
+   --wwf-milestone-card-height-mobile: 440px;
+   --wwf-milestone-card-overlay: linear-gradient(
+      0deg,
+      rgba(3, 2, 19, 0.9) 0%,
+      rgba(3, 2, 19, 0.3) 50%,
+      rgba(0, 0, 0, 0) 100%
+   );
 }

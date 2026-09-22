@@ -84,8 +84,14 @@
 @layer layout {
 
     /* Page-level composition you add on top of DGA. */
-    .nds-main-nav .nds-nav-item.nds-icon-only .nds-nav-link .nds-label {
+    /* .nds-main-nav .nds-nav-item.nds-icon-only .nds-nav-link .nds-label {
         display: block;
+    } */
+
+    @media (min-width: 961px) {
+        .nds-content-layout:not(.nds-wSideMenu, .nds-wSideInfo) {
+            --section-padding-block: var(--spacing-5xl);
+        }
     }
 }
 
@@ -263,10 +269,10 @@
         --btn-LH: 24px;
         --btn-icon-size: 20px;
         --btn-gap: var(--spacing-sm, 6px);
-        --btn-bg: var(--wwf-hero-action-bg);
-        --btn-bg-hover: var(--wwf-hero-action-bg-hover);
-        --btn-bg-active: var(--wwf-hero-action-bg-active);
-        --btn-bg-selected: var(--wwf-hero-action-bg-active);
+        --btn-bg: var(--wwf-action-bg);
+        --btn-bg-hover: var(--wwf-action-bg-hover);
+        --btn-bg-active: var(--wwf-action-bg-active);
+        --btn-bg-selected: var(--wwf-action-bg-active);
         --btn-border: transparent;
         --btn-border-hover: transparent;
         --btn-border-active: transparent;
@@ -384,6 +390,182 @@
 
         .wwf-hero__media::after {
             background: Canvas;
+        }
+    }
+
+    /* ---- MILESTONES ---- */
+
+    .wwf-milestones__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.62fr) minmax(0, 1fr);
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-section-tag {
+        --tag-bg: var(--background-neutral-100);
+        --tag-border: transparent;
+        --tag-text: var(--text-default);
+        --tag-height: var(--spacing-4xl, 32px);
+        --tag-fs: var(--typo-text-md-FS);
+        --tag-padding-inline: var(--spacing-xl, 16px);
+        border: 0;
+    }
+
+    .wwf-section-tag .nds-label,
+    .wwf-oncolor-tag .nds-label {
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-oncolor-tag {
+        --tag-bg: var(--wwf-hero-panel-bg);
+        --tag-border: var(--wwf-hero-panel-border);
+        --tag-text: var(--text-oncolor-primary);
+        --tag-height: var(--spacing-4xl, 32px);
+        --tag-fs: var(--typo-text-md-FS);
+        --tag-padding-inline: var(--spacing-lg, 12px);
+        backdrop-filter: blur(12px);
+        box-shadow: var(--wwf-hero-panel-shadow);
+    }
+
+    .wwf-milestones__tag {
+        margin-block-end: var(--spacing-xl, 16px);
+    }
+
+    .wwf-milestone-card {
+        --card-bg: var(--background-black);
+        --card-gap: var(--spacing-none, 0);
+        --card-padding: var(--spacing-none, 0);
+        --card-radius: var(--radius-lg, 16px);
+        --card-title: var(--text-oncolor-primary);
+        --card-width-max: none;
+        position: relative;
+        box-sizing: border-box;
+        block-size: var(--spacing-120, 480px);
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .wwf-milestone-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: var(--wwf-milestone-card-overlay);
+        pointer-events: none;
+    }
+
+    .wwf-milestone-card__media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        aspect-ratio: auto;
+        border-radius: inherit;
+    }
+
+    .wwf-milestone-card__media img {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .wwf-milestone-card__media--consultation img {
+        object-position: 58% center;
+    }
+
+    .wwf-milestone-card__media--forum img {
+        object-position: 36% center;
+    }
+
+    .wwf-milestone-card__content {
+        position: relative;
+        z-index: 2;
+        justify-content: flex-end;
+        gap: var(--spacing-xl, 16px);
+        min-block-size: 100%;
+        padding: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-milestone-card__text {
+        flex: 0 0 auto;
+        gap: var(--spacing-xl, 16px);
+    }
+
+    .wwf-milestone-card__date {
+        align-self: flex-start;
+    }
+
+    .wwf-milestone-card__title {
+        font-size: var(--typo-display-clamp-sm-FS);
+        line-height: var(--typo-display-clamp-sm-LH);
+        color: var(--text-oncolor-primary);
+    }
+
+    .wwf-milestone-card__status {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-md, 8px);
+        color: var(--text-oncolor-secondary);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-milestone-card__status .nds-icon {
+        flex: 0 0 auto;
+        font-size: var(--typo-text-lg-FS);
+    }
+
+    .wwf-milestone-card__status--upcoming {
+        color: var(--colors-secondary-gold-500);
+    }
+
+    .wwf-milestone-card__actions {
+        flex: 0 0 auto;
+        margin-block-start: 0;
+    }
+
+    .wwf-milestone-card__actions .nds-btn {
+        --btn-padding: var(--spacing-lg, 12px);
+        --btn-gap: var(--spacing-sm, 6px);
+        --btn-icon-size: var(--spacing-2xl, 20px);
+        --btn-bg: var(--wwf-action-bg);
+        --btn-bg-hover: var(--wwf-action-bg-hover);
+        --btn-bg-active: var(--wwf-action-bg-active);
+        --btn-bg-selected: var(--wwf-action-bg-active);
+        --btn-border: transparent;
+        --btn-border-hover: transparent;
+        --btn-border-active: transparent;
+        --btn-border-selected: transparent;
+        --btn-color: var(--text-oncolor-primary);
+    }
+
+    @media (max-width: 960px) {
+        .wwf-milestones__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .wwf-milestone-card:last-child {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-milestones__grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-milestone-card {
+            block-size: var(--wwf-milestone-card-height-mobile);
+        }
+
+        .wwf-milestone-card:last-child {
+            grid-column: auto;
+        }
+
+        .wwf-milestone-card__content {
+            padding: var(--spacing-xl, 16px);
         }
     }
 
