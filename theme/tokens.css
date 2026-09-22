@@ -314,4 +314,10 @@
       rgba(3, 2, 19, 0.3) 50%,
       rgba(0, 0, 0, 0) 100%
    );
+
+   /* Global Water Dialogue */
+   --wwf-dialogue-bg: #0A1D37;
+   --wwf-dialogue-card-bg: #1A2E7FE6;
+   --wwf-dialogue-card-height: 555px;
+   --wwf-dialogue-texture-opacity: 0.12;
 }
