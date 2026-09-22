@@ -114,11 +114,11 @@ Under active development ahead of the March 2027 Forum. The English home page
 and the legal pages are the furthest along; further sections and the Arabic
 translation are in progress.
 
-## Credits
+<!-- ## Credits
 
 Built on [NDS-vanilla](https://github.com/mazin-musleh/NDS-vanilla) by Mazin
 Musleh (MIT), an independent plain-HTML implementation of the Saudi Digital
 Government Authority's National Design System. It is not affiliated with, nor
 endorsed by, the DGA.
 
-Forum branding, imagery and content belong to their respective owners.
+Forum branding, imagery and content belong to their respective owners. -->
