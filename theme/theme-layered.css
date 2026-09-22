@@ -569,6 +569,38 @@
         }
     }
 
+    /* ---- CORE PROCESSES ---- */
+
+    .wwf-processes__tag {
+        margin-block-end: var(--spacing-xl, 16px);
+    }
+
+    .wwf-processes__grid {
+        align-items: stretch;
+    }
+
+    .wwf-process-card {
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-gap: var(--spacing-xl, 16px);
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--featuredicons-icon-default);
+        text-align: start;
+    }
+
+    .wwf-process-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-process-card .nds-card-actions {
+        margin-block-start: auto;
+    }
+
+    .wwf-process-card__action {
+        --btn-size: var(--spacing-4xl, 32px);
+        --btn-padding: var(--spacing-none, 0);
+        --btn-gap: var(--spacing-sm, 6px);
+    }
+
 }
 
 
