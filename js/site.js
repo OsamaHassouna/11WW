@@ -80,6 +80,7 @@
     Promise.all([Promise.all(loads), domReady]).then(function () {
         markActiveNav();
         applyPageMeta();
+        initHeroVideo();
         document.dispatchEvent(new CustomEvent('shell:ready'));
 
         if (typeof NDS !== 'undefined') {
@@ -120,6 +121,40 @@
         var p = hero.querySelector('.nds-section-description');
         if (title && h1) h1.textContent = title;
         if (desc && p) p.textContent = desc;
+    }
+
+    /* --- deferred hero video --------------------------------------------- */
+    function initHeroVideo() {
+        var video = document.getElementById('hero-video');
+        if (!video) return;
+
+        var source = video.getAttribute('data-src');
+        if (!source) return;
+
+        function loadAndPlay() {
+            if (!video.getAttribute('src')) {
+                video.setAttribute('src', source);
+                video.load();
+            }
+
+            var playback = video.play();
+            if (playback && typeof playback.catch === 'function') {
+                playback.catch(function () { /* poster remains if autoplay is blocked */ });
+            }
+        }
+
+        if (!('IntersectionObserver' in window)) {
+            loadAndPlay();
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+            if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+            observer.disconnect();
+            loadAndPlay();
+        }, { rootMargin: '200px 0px' });
+
+        observer.observe(video);
     }
 
     /* --- NDS ships chrome hidden, reveal once it is wired ------------------ */
