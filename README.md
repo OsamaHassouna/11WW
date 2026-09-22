@@ -1,144 +1,124 @@
 # 11th World Water Forum
 
-Event site for the **11th World Water Forum**, Riyadh, **21-25 March 2027**.
-Jointly organised by the Saudi Ministry of Environment, Water & Agriculture
-(MEWA) and the World Water Council.
+> Action for a Better Tomorrow
 
-Bilingual EN/AR. Static HTML, CSS and vanilla JS. No build step, no framework,
-no dependencies to install.
+Front-end for the **11th World Water Forum**, held in **Riyadh, Saudi Arabia,
+21-25 March 2027**, and hosted by the Kingdom's Ministry of Environment, Water
+& Agriculture (MEWA) together with the World Water Council.
 
-Built on the Saudi **DGA National Design System** (NDS-vanilla v1.0.4) via the
-in-house `dga-kit` starter.
+The Forum is the world's largest water-related event, expected to bring
+together more than 20,000 participants from over 150 countries to shape global
+water governance and action.
 
-## Status
+This repository is a redesign of [11thworldwaterforum.org](https://11thworldwaterforum.org/),
+rebuilt on the Saudi **National Design System**.
 
-Work in progress. Be specific about what exists before trusting a page:
+## Highlights
 
-| Page | State |
-|---|---|
-| `index.html` | EN home. The real page. Still being built. |
-| `pages/privacy-policy.html` | done |
-| `pages/terms-of-use.html` | done |
-| `index-ar.html` | **untouched starter placeholder.** The nav links to it. |
-| `pages/content.html`, `form.html`, `service.html` | untouched starter examples |
-| `pages/templates/` | DGA reference layouts, not part of the site (git-ignored) |
+- **Bilingual** English and Arabic, with full right-to-left support driven by a
+  single `dir` attribute
+- **No build step.** Static HTML, CSS and vanilla JavaScript. Clone it, serve
+  the folder, done. No bundler, no package install, no toolchain to keep alive
+- **Design-system native.** Every visual decision is a design token, so the
+  whole site re-themes from one file
+- **Accessible by default.** Skip links, a full accessibility panel with seven
+  profiles, high contrast, dyslexia-friendly typography, reduced motion,
+  user-controlled font scaling and a reading mask
+- **Light and dark themes**, applied before first paint so there is no flash
 
-Home page sections, in order: hero, milestones, core processes, global water
-dialogue, news, organizers, stay connected.
+## Quick start
 
-Roughly 20 further pages are planned.
-
-## Run it
+No dependencies. Serve the folder over HTTP with anything you like:
 
 ```bash
 python -m http.server 8000
-# then open http://localhost:8000
+# or
+npx serve .
 ```
 
-**Do not open `index.html` with `file://`.** The shared chrome is injected with
-`fetch()`, which needs http, so over `file://` the header, footer, hero and
-cookie bar all render empty.
+Then open <http://localhost:8000>.
 
-Prefer the clean URL `http://localhost:8000/` over
-`http://localhost:8000/index.html`. With `<base href>` set, the two are not
-equivalent for same-page anchors. See Known issues.
+> **Serve it over HTTP, not `file://`.** The shared chrome is injected with
+> `fetch()`, which the file protocol blocks, so the header, footer and hero
+> would render empty.
 
-## Structure
+## Project structure
 
 ```
-index.html            EN home
-index-ar.html         AR home (placeholder)
-pages/                sub-pages
-partials/             EN chrome: topbar, mainnav, footer, cookie bar,
-                      hero-main, accessibility panel
-partials-ar/          AR chrome. The a11y panel is NOT duplicated; it
-                      translates itself from <html lang>.
+index.html          English home page
+index-ar.html       Arabic home page
+pages/              sub-pages
+partials/           shared English chrome: topbar, navigation, footer,
+                    cookie notice, hero, accessibility panel
+partials-ar/        shared Arabic chrome
 theme/
-  tokens.css          design tokens. Most design changes belong here.
-  theme-layered.css   the only stylesheet a page links. Owns the DGA
-                      imports and every `wwf-` component style.
-  theme.css           unused, superseded by theme-layered.css
-  media/              project images, video, favicons
-js/site.js            shell loader: injects partials, re-runs NDS init,
-                      wires nav + digital stamp, lazy-loads the hero video
-js/guide.js           orphaned, its page was deleted
-assets/               vendor DGA/NDS. DO NOT EDIT.
+  tokens.css        design tokens. Colour, type, spacing, radius.
+  theme-layered.css the single stylesheet each page links. Owns the
+                    design-system imports and all project components.
+  media/            images, video, favicons
+js/site.js          shell loader and page behaviour
+assets/             the National Design System. Vendored, unmodified.
 ```
 
-## How a page is assembled
+## How a page works
 
-Every page is a shell plus content:
+Each page is a thin shell plus its own content:
 
-1. `<base href>` is set per depth: `./` at the root, `../` under `pages/`.
-   All asset paths are written relative to it.
-2. Empty divs mark the chrome: `#shell-topbar`, `#shell-mainnav`,
-   `#shell-hero-main`, `#shell-footer`, `#shell-cookie`, `#shell-a11y`.
-3. `js/site.js` fetches the matching partial into each one, picking
+1. `<base href>` is set for the page's depth, `./` at the root and `../` under
+   `pages/`, and every asset path is written relative to it.
+2. Empty placeholders mark the shared chrome: `#shell-topbar`,
+   `#shell-mainnav`, `#shell-footer`, `#shell-cookie`, `#shell-a11y`.
+3. `js/site.js` fetches the matching partial into each placeholder, choosing
    `partials/` or `partials-ar/` from `<html lang>`.
-4. It then re-runs the NDS init sweep, because the vendor bundle only scans
-   the DOM once on `DOMContentLoaded` and everything above arrives later.
+4. It re-runs the design system's initialisation, because the vendor bundle
+   scans the DOM once on `DOMContentLoaded` and the chrome arrives after that.
 
-Three inline guard scripts in `<head>` apply the saved theme, accessibility
-and auth state before first paint. They are not boilerplate, do not trim them.
+Three small inline scripts in `<head>` restore the saved theme, accessibility
+and session state before the first paint, which is what prevents a flash of
+unstyled or unthemed content. They need to stay where they are.
 
-To add a page: copy the closest existing one, keep the `<base href>` correct
-for its depth, keep the shell divs, and write the content into `<main>`.
+**To add a page**, copy the closest existing one, set `<base href>` correctly
+for its depth, keep the shell placeholders, and write your content into
+`<main>`.
 
-## Styling rules
+## Styling
 
-`assets/` is vendor code, byte-identical to what DGA ships, meant to be
-replaced wholesale on a version bump.
+`assets/` is the vendored National Design System and is never edited. It is
+meant to be replaced wholesale when the system is upgraded.
 
-- never edit `assets/css/*` or `assets/js/*`
+Everything the project adds goes in `theme/`:
+
+- `theme/tokens.css` first. It is ordered identity, then semantic tokens, then
+  component tokens, and most design changes only ever touch it.
+- `theme/theme-layered.css` for components the design system does not cover.
+  Project styles are prefixed `wwf-` and sit in a cascade layer above the
+  vendor styles.
+
+House rules, carried over from the design system:
+
 - never set a `--_prefixed` variable, those are component internals
-- never write a rule targeting a `.nds-*` class
-- project styles are prefixed `wwf-` and live in `theme/theme-layered.css`
-  under `@layer components`
-- if you override a `--typo-*` value, wrap it in
-  `calc(x * var(--user-font-scale, 1))` or the accessibility panel's font
-  sizing stops working on it
+- never write a selector targeting a `.nds-*` class, set the public token the
+  component already reads
+- when overriding a `--typo-*` value, wrap it in
+  `calc(x * var(--user-font-scale, 1))` so the accessibility panel's font
+  sizing keeps working
 
-Theming is done by declaring the public token a component already reads, not
-by out-specifying it. `theme/tokens.css` is organised identity -> semantic ->
-component, and is the first place to look.
+## Browser support
 
-## Media
+Current versions of Chrome, Edge, Firefox and Safari. The stylesheet uses
+cascade layers and logical properties; the scripts use `IntersectionObserver`.
 
-- `theme/media/hero-video.mp4` is 12 MB, lazy-loaded by `js/site.js` once the
-  hero scrolls into view, with `hero-poster.webp` shown until then.
-- `theme/media/hero-video-original.mp4` is the 162 MB source. Git-ignored,
-  kept locally for re-encoding. Do not deploy it.
-- `theme/media/png/` holds full-size PNG sources for the WebP files actually
-  used. Git-ignored, not deployed.
+## Status
 
-## Known issues
+Under active development ahead of the March 2027 Forum. The English home page
+and the legal pages are the furthest along; further sections and the Arabic
+translation are in progress.
 
-Tracked deliberately, not forgotten. Fix before launch:
+## Credits
 
-- **Placeholder metadata.** `<title>` and `meta description` on both home
-  pages are still the starter's. No Open Graph or `hreflang` tags.
-- **Primary CTA contrast is 2.64:1** (white on `#ff781f`). WCAG AA needs 4.5:1
-  and it misses even the 3:1 large-text floor.
-- **Hero video has no pause control** and ignores reduced motion, including
-  the accessibility panel's own setting. WCAG 2.2.2 Level A.
-- **`<base href>` breaks same-page anchors** when the URL is `/index.html`
-  rather than `/`: fragment links resolve against the base, not the document,
-  so the skip link and in-page links trigger a full page reload. Serve at `/`,
-  or drop `<base>` and write `index.html#section`.
-- **Countdown is hardcoded**, nothing ticks it.
-- **Footer accessibility links are inert** (`#ndsAccessibilityPanel` is hidden
-  and the vendor script has no hash handling), footer last-modified date is a
-  placeholder, and the hero CTA points at a section that does not exist.
-- **Brand identity is not applied.** `tokens.css` section 1 is still
-  commented out, so stock DGA green shows through in places.
+Built on [NDS-vanilla](https://github.com/mazin-musleh/NDS-vanilla) by Mazin
+Musleh (MIT), an independent plain-HTML implementation of the Saudi Digital
+Government Authority's National Design System. It is not affiliated with, nor
+endorsed by, the DGA.
 
-## Open question: is this a government entity site?
-
-The topbar currently ships the DGA digital stamp, the Saudi flag and the claim
-"A government website registered with the Digital Government Authority", with a
-placeholder registration number.
-
-The default NDS visual identity is licensed to Saudi government entities only.
-**This has to be confirmed before launch.** If 11WW is not a registered
-`.gov.sa` entity, the stamp block must be removed from `partials/topbar.html`
-and the identity tokens rebranded.
+Forum branding, imagery and content belong to their respective owners.
