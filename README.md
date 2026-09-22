@@ -1,153 +1,144 @@
-# Starter
+# 11th World Water Forum
 
-**Open `_GUIDE.html` in a browser.** It walks through everything step by
-step, and it travels with this folder so it is always there.
+Event site for the **11th World Water Forum**, Riyadh, **21-25 March 2027**.
+Jointly organised by the Saudi Ministry of Environment, Water & Agriculture
+(MEWA) and the World Water Council.
 
-Copy this folder. That is the install.
+Bilingual EN/AR. Static HTML, CSS and vanilla JS. No build step, no framework,
+no dependencies to install.
 
-```
-cp -r starter/ ../my-new-project/
-cd ../my-new-project
+Built on the Saudi **DGA National Design System** (NDS-vanilla v1.0.4) via the
+in-house `dga-kit` starter.
+
+## Status
+
+Work in progress. Be specific about what exists before trusting a page:
+
+| Page | State |
+|---|---|
+| `index.html` | EN home. The real page. Still being built. |
+| `pages/privacy-policy.html` | done |
+| `pages/terms-of-use.html` | done |
+| `index-ar.html` | **untouched starter placeholder.** The nav links to it. |
+| `pages/content.html`, `form.html`, `service.html` | untouched starter examples |
+| `pages/templates/` | DGA reference layouts, not part of the site (git-ignored) |
+
+Home page sections, in order: hero, milestones, core processes, global water
+dialogue, news, organizers, stay connected.
+
+Roughly 20 further pages are planned.
+
+## Run it
+
+```bash
 python -m http.server 8000
+# then open http://localhost:8000
 ```
 
-Open <http://localhost:8000>. **Not `file://`** - the shell loader uses `fetch`,
-which needs http, and the chrome will render empty over the file protocol.
+**Do not open `index.html` with `file://`.** The shared chrome is injected with
+`fetch()`, which needs http, so over `file://` the header, footer, hero and
+cookie bar all render empty.
 
-## What is here
+Prefer the clean URL `http://localhost:8000/` over
+`http://localhost:8000/index.html`. With `<base href>` set, the two are not
+equivalent for same-page anchors. See Known issues.
+
+## Structure
 
 ```
-index.html          English / LTR home page. The canonical skeleton.
-index-ar.html       Arabic / RTL. Same structure, translated.
-pages/
-  content.html      long-form page with a table of contents
-  service.html      DGA service page: tabs + service-facts panel
-  form.html         multi-step application with a stepper
-partials/           EN chrome: topbar (digital stamp), mainnav, footer,
-                    cookie popup, accessibility panel
-partials-ar/        AR chrome. The a11y panel is NOT duplicated - it
-                    translates itself from <html lang>.
+index.html            EN home
+index-ar.html         AR home (placeholder)
+pages/                sub-pages
+partials/             EN chrome: topbar, mainnav, footer, cookie bar,
+                      hero-main, accessibility panel
+partials-ar/          AR chrome. The a11y panel is NOT duplicated; it
+                      translates itself from <html lang>.
 theme/
-  tokens.css        >>> START HERE. Every design decision goes in this file.
-  theme-layered.css sole entry: DGA imports, tokens, and project layers
-  hero-main.css     project-only visual skin for the main hero
-js/site.js          loads the partials, then re-runs the NDS init sweep
-_GUIDE.html         the step-by-step guide. Delete before shipping
-js/guide.js         powers _GUIDE.html only. Delete with it
-assets/             vendor NDS. DO NOT EDIT.
+  tokens.css          design tokens. Most design changes belong here.
+  theme-layered.css   the only stylesheet a page links. Owns the DGA
+                      imports and every `wwf-` component style.
+  theme.css           unused, superseded by theme-layered.css
+  media/              project images, video, favicons
+js/site.js            shell loader: injects partials, re-runs NDS init,
+                      wires nav + digital stamp, lazy-loads the hero video
+js/guide.js           orphaned, its page was deleted
+assets/               vendor DGA/NDS. DO NOT EDIT.
 ```
 
-## The one rule
+## How a page is assembled
 
-`assets/` is vendor code, byte-identical to what DGA/NDS ships, verified by MD5.
-It is meant to be replaced wholesale on a version bump. Every change you make
-goes in `theme/`, the partials, or the pages.
+Every page is a shell plus content:
 
-Concretely:
+1. `<base href>` is set per depth: `./` at the root, `../` under `pages/`.
+   All asset paths are written relative to it.
+2. Empty divs mark the chrome: `#shell-topbar`, `#shell-mainnav`,
+   `#shell-hero-main`, `#shell-footer`, `#shell-cookie`, `#shell-a11y`.
+3. `js/site.js` fetches the matching partial into each one, picking
+   `partials/` or `partials-ar/` from `<html lang>`.
+4. It then re-runs the NDS init sweep, because the vendor bundle only scans
+   the DOM once on `DOMContentLoaded` and everything above arrives later.
+
+Three inline guard scripts in `<head>` apply the saved theme, accessibility
+and auth state before first paint. They are not boilerplate, do not trim them.
+
+To add a page: copy the closest existing one, keep the `<base href>` correct
+for its depth, keep the shell divs, and write the content into `<main>`.
+
+## Styling rules
+
+`assets/` is vendor code, byte-identical to what DGA ships, meant to be
+replaced wholesale on a version bump.
 
 - never edit `assets/css/*` or `assets/js/*`
-- never set a `--_prefixed` variable, they are component internals
+- never set a `--_prefixed` variable, those are component internals
 - never write a rule targeting a `.nds-*` class
+- project styles are prefixed `wwf-` and live in `theme/theme-layered.css`
+  under `@layer components`
+- if you override a `--typo-*` value, wrap it in
+  `calc(x * var(--user-font-scale, 1))` or the accessibility panel's font
+  sizing stops working on it
 
-If a design needs something the public tokens do not expose, check the
-component's token table in `../reference/` first. If the knob genuinely does not
-exist, that is a design conversation, not a CSS override.
+Theming is done by declaring the public token a component already reads, not
+by out-specifying it. `theme/tokens.css` is organised identity -> semantic ->
+component, and is the first place to look.
 
-## A note on the accessibility panel's language switch
+## Media
 
-It does not work, and that is deliberate. DGA ships it with `href="./"`, which
-goes to the current directory's index rather than the other language, and its
-label has no `lang` attribute so a screen reader says it in the wrong voice.
+- `theme/media/hero-video.mp4` is 12 MB, lazy-loaded by `js/site.js` once the
+  hero scrolls into view, with `hero-poster.webp` shown until then.
+- `theme/media/hero-video-original.mp4` is the 162 MB source. Git-ignored,
+  kept locally for re-encoding. Do not deploy it.
+- `theme/media/png/` holds full-size PNG sources for the WebP files actually
+  used. Git-ignored, not deployed.
 
-We leave DGA alone. Use the language switch in the main nav instead (that one is
-our markup and it works), or wire the panel's switch up in your own project
-script. Do not patch it here.
+## Known issues
 
-## Order of work
+Tracked deliberately, not forgotten. Fix before launch:
 
-1. `theme/tokens.css` section 1 - identity. Brand ramp, fonts, logos.
-2. `theme/tokens.css` section 2 - semantic tokens. Most of the design lands here.
-3. Partials - nav links, footer links, entity name, registration number.
-4. Pages - copy the closest layout from `pages/`.
+- **Placeholder metadata.** `<title>` and `meta description` on both home
+  pages are still the starter's. No Open Graph or `hreflang` tags.
+- **Primary CTA contrast is 2.64:1** (white on `#ff781f`). WCAG AA needs 4.5:1
+  and it misses even the 3:1 large-text floor.
+- **Hero video has no pause control** and ignores reduced motion, including
+  the accessibility panel's own setting. WCAG 2.2.2 Level A.
+- **`<base href>` breaks same-page anchors** when the URL is `/index.html`
+  rather than `/`: fragment links resolve against the base, not the document,
+  so the skip link and in-page links trigger a full page reload. Serve at `/`,
+  or drop `<base>` and write `index.html#section`.
+- **Countdown is hardcoded**, nothing ticks it.
+- **Footer accessibility links are inert** (`#ndsAccessibilityPanel` is hidden
+  and the vendor script has no hash handling), footer last-modified date is a
+  placeholder, and the hero CTA points at a section that does not exist.
+- **Brand identity is not applied.** `tokens.css` section 1 is still
+  commented out, so stock DGA green shows through in places.
 
-Full walkthrough: `../docs/06-starting-a-project.md`.
+## Open question: is this a government entity site?
 
-## What this starter changes vs stock NDS
+The topbar currently ships the DGA digital stamp, the Saudi flag and the claim
+"A government website registered with the Digital Government Authority", with a
+placeholder registration number.
 
-Vendor CSS and JS are untouched. These are in our own markup:
-
-- **skip link** on every page, first in the tab order. NDS ships none, which is
-  a WCAG 2.4.1 failure.
-- **correct language on aria-labels.** Stock NDS leaves Arabic `aria-label`s on
-  English pages.
-- **arrow icon direction corrected.** The four directional arrows are authored
-  RTL-first and mirrored in LTR, so in English `arrow-left-01` is the one that
-  points forward.
-- **dead assets not copied**: bootstrap (227 KB, referenced by nothing), the
-  docs-only showcase CSS/JS, a 4.4 MB screenshot, `.DS_Store`.
-
-Details and reasoning: `../docs/05-audit.md`.
-
-## Trimming the starter
-
-`assets/` is 2.3 MB. The icon webfont is most of it.
-
-Each list below is complete. Half-doing one leaves dead `<link>` tags or a dead
-link in the nav, which is why `verify.py` checks for exactly that. Run it after
-trimming: if you missed a step it names the file.
-
-### Drop the accessibility panel (~690 KB)
-
-Only 13 of the panel's tile icons are missing from the 70-icon core set, and
-that alone is why the icon webfont ships. Nothing else in the starter uses
-`hgi hgi-stroke hgi-*`, so the panel and the webfont go together.
-
-1. Delete `partials/accessibility-panel.html`
-2. Delete `<div id="shell-a11y"></div>` from **every** page
-3. Delete `<script src="assets/js/nds-accessibility.min.js" defer></script>` from every page
-4. Delete the `nds-accessibility.min.css` import from `theme/theme-layered.css`
-5. Delete the `hgi-rounded-stroke-min.css` import from `theme/theme-layered.css`
-6. Delete the files:
-   ```
-   assets/css/nds-accessibility.min.css
-   assets/js/nds-accessibility.min.js
-   assets/css/hgi-rounded-stroke-min.css      209 KB
-   assets/fonts/hgi-stroke-rounded.woff2      659 KB
-   ```
-
-**Think twice on a government project.** The panel is a real accessibility asset
-and the strongest compliance story in the whole system.
-
-### Drop a language
-
-Say you are dropping Arabic:
-
-1. Delete `partials-ar/`
-2. Delete `index-ar.html`
-3. **Delete the language switch from `partials/mainnav.html`** - the
-   `<li class="nds-nav-item nds-icon-only lang">` block. Miss this and every
-   page has a link to a file that no longer exists.
-4. Delete the `IBMPlexSansArabic-*` fonts from `assets/fonts/`
-
-Dropping English instead is the mirror of that, minus the `-Latin1` fonts.
-
-`js/site.js` needs no edit either way: it picks the folder from `<html lang>`,
-and the folder you kept is the one it will ask for.
-
-### Drop OpenDyslexic
-
-The dyslexia mode in the accessibility panel falls back to the system font.
-Small file, probably keep it.
-
-## Gotchas
-
-1. Content added after page load does not initialise itself. Call
-   `NDS.Init.reinitialize()`. Only 9 selectors auto-mount.
-2. `hidden` on tabs, drawers, footer, side info and breadcrumbs is deliberate.
-   NDS removes it in one batch after init to avoid layout shift.
-3. `data-required` goes on `.nds-form-container`, not the input.
-4. A form field with no `[data-feedback-target]` silently cannot show errors.
-5. Custom `--typo-*` values need `calc(x * var(--user-font-scale, 1))` or the
-   accessibility font sizing skips them.
-
-More: `../docs/04-components.md`.
+The default NDS visual identity is licensed to Saudi government entities only.
+**This has to be confirmed before launch.** If 11WW is not a registered
+`.gov.sa` entity, the stamp block must be removed from `partials/topbar.html`
+and the identity tokens rebranded.
