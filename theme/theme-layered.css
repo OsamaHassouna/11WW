@@ -1140,6 +1140,10 @@
         margin-block-start: var(--spacing-xl, 16px);
     }
 
+    .wwf-legal-contact-card--single {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .wwf-legal-contact-card__item {
         display: flex;
         flex-direction: column;
