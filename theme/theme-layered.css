@@ -607,10 +607,11 @@
 
     /* ---- GLOBAL WATER DIALOGUE ---- */
 
-    .wwf-dialogue .nds-section-body{
+    .wwf-dialogue .nds-section-body {
         background: var(--wwf-dialogue-bg);
-        border-radius:  var(--radius-lg, 16px);
+        border-radius: var(--radius-lg, 16px);
     }
+
     .wwf-dialogue-card {
         --card-bg: var(--wwf-dialogue-card-bg);
         --card-border: var(--border-neutral-primary);
@@ -955,6 +956,148 @@
         block-size: var(--spacing-7xl, 64px);
     }
 
+    /* ---- STAY CONNECTED ---- */
+
+    .wwf-stay-connected {
+        --section-bg: var(--wwf-dialogue-bg);
+        --section-padding-block: var(--spacing-7xl, 64px);
+        position: relative;
+        isolation: isolate;
+        min-block-size: 260px;
+        overflow: hidden;
+    }
+
+    .wwf-stay-connected::before,
+    .wwf-stay-connected::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .wwf-stay-connected::before {
+        z-index: 0;
+        background: var(--wwf-dialogue-card-bg);
+    }
+
+    .wwf-stay-connected::after {
+        z-index: 1;
+        background: url("media/global-dialogue-waves.webp") center / cover no-repeat;
+        filter: grayscale(1);
+        opacity: var(--wwf-dialogue-texture-opacity);
+    }
+
+    .wwf-stay-connected__linework {
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-end: 0;
+        z-index: 2;
+        display: block;
+        inline-size: 100%;
+        max-inline-size: none;
+        pointer-events: none;
+        user-select: none;
+        scale: 1 -1;
+    }
+
+    .wwf-stay-connected__wrapper {
+        position: relative;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: minmax(0, 620px) minmax(0, 438px);
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-stay-connected__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xl, 16px);
+    }
+
+    .wwf-stay-connected :is(.nds-section-title, .nds-section-description) {
+        margin: 0;
+        color: var(--text-oncolor-primary);
+    }
+
+    .wwf-stay-connected .nds-section-title {
+        letter-spacing: 0;
+    }
+
+    .wwf-stay-connected .nds-section-description {
+        max-inline-size: 620px;
+        color: var(--text-oncolor-secondary);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-stay-connected__form {
+        display: grid;
+        grid-template-columns: minmax(260px, 320px) auto;
+        align-items: start;
+        justify-content: end;
+        gap: var(--spacing-lg, 12px);
+        inline-size: 100%;
+    }
+
+    .wwf-stay-connected__form .nds-form-container {
+        inline-size: 100%;
+    }
+
+    .wwf-stay-connected__form .nds-form-control {
+        --input-size: var(--spacing-5xl, 40px);
+        --input-radius: var(--radius-md, 8px);
+        border-color: var(--wwf-hero-panel-border);
+        background-color: var(--wwf-hero-panel-bg);
+    }
+
+    .wwf-stay-connected__form .nds-input {
+        color: var(--text-oncolor-primary);
+    }
+
+    .wwf-stay-connected__form .nds-input::placeholder {
+        color: var(--text-oncolor-secondary);
+        opacity: 1;
+    }
+
+    .wwf-stay-connected__submit {
+        --btn-radius: var(--radius-md, 8px);
+    }
+
+    @media (max-width: 960px) {
+        .wwf-stay-connected__wrapper {
+            grid-template-columns: minmax(0, 620px);
+            justify-content: start;
+            gap: var(--spacing-4xl, 32px);
+        }
+
+        .wwf-stay-connected__form {
+            max-inline-size: 438px;
+            justify-content: start;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-stay-connected {
+            --section-padding-block-start: var(--spacing-6xl, 48px);
+            --section-padding-block-end: var(--spacing-20, 80px);
+        }
+
+        .wwf-stay-connected__form {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-stay-connected__submit {
+            inline-size: 100%;
+        }
+
+        .wwf-stay-connected__linework {
+            inline-size: 180%;
+        }
+    }
+
     /* ---- FOOTER ---- */
 
     .wwf-footer {
@@ -1028,7 +1171,7 @@
         margin-block-end: var(--spacing-7xl, 64px);
     }
 
-    .wwf-footer__navigation > .nds-footer-column {
+    .wwf-footer__navigation>.nds-footer-column {
         inline-size: 100%;
     }
 
