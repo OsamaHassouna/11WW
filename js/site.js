@@ -92,9 +92,11 @@
         }
 
         revealChrome();
+        syncMinimalNav();
         bindNavDropdowns();
         bindMobileNav();
         bindDigitalStamp();
+        bindMinimalNavResize();
     });
 
     /* --- active nav state ------------------------------------------------- */
@@ -161,7 +163,6 @@
     function revealChrome() {
         var sel = [
             '.nds-digitalStamp-tab[hidden]',
-            '.nds-nav-minimal[hidden]',
             '.nds-collapse[hidden]',
             '.nds-nav-primary[hidden]',
             '.nds-nav-actions[hidden]'
@@ -169,6 +170,113 @@
         document.querySelectorAll(sel).forEach(function (el) {
             el.removeAttribute('hidden');
         });
+    }
+
+    /* --- minimal (mobile) nav breakpoint -----------------------------------
+       NDS.Mainnav owns this in the vendor bundle, and it CANNOT run here. Its
+       refs object does `nav: document.querySelector(".nds-main-nav")` as a
+       plain property at PARSE time, and this loader injects the nav later, so
+       t.nav is null forever. Every ref derived from it (collapse, minimal,
+       toggler) is undefined, and NDS.Mainnav.init() returns at its first
+       guard, `if (M || !t.collapse) return`. Calling init() again does not
+       help; the null is cached, not looked up.
+
+       Without this, the hamburger never appears. The vendor CSS gates it on
+       a class the dead module was supposed to set:
+
+           body:not(.nds-minimal) .nds-mainNav-toggler { display: none }
+           body.nds-minimal       .nds-mainNav-toggler { display: flex }
+
+       so under the breakpoint the collapse stays expanded, overflows, and is
+       silently clipped by main's overflow-x, leaving most of the nav
+       unreachable on a phone.
+
+       Ported from the vendor's own C() and A(): same token, same hidden
+       semantics, same PAB move. Keep it that way.                            */
+    function minimalBreakpoint() {
+        var bp = parseInt(getComputedStyle(document.documentElement)
+            .getPropertyValue('--nds-minimal-nav-bp'), 10);
+        return bp || 768;                    // the vendor's own fallback
+    }
+
+    function isMinimalWidth() {
+        return window.innerWidth <= minimalBreakpoint();
+    }
+
+    function syncMinimalNav() {
+        var minimal = isMinimalWidth();
+        var wrap = document.querySelector('.nds-nav-minimal');
+
+        // Same no-op test as the vendor's C(): bail unless something changed.
+        if (document.body.classList.contains('nds-minimal') === minimal &&
+            (!wrap || wrap.hasAttribute('hidden') === !minimal)) {
+            return;
+        }
+
+        document.body.classList.toggle('nds-minimal', minimal);
+        if (wrap) wrap.toggleAttribute('hidden', !minimal);
+        repositionPAB(minimal);
+
+        // Resizing past the breakpoint with the drawer open would strand it.
+        if (!minimal) {
+            var collapse = document.getElementById('shellNavCollapse');
+            if (collapse && hasState(collapse, 'open')) closeMobileNav(collapse);
+        }
+    }
+
+    function bindMinimalNavResize() {
+        var timer = null;
+        window.addEventListener('resize', function () {
+            clearTimeout(timer);
+            timer = setTimeout(syncMinimalNav, 150);
+        });
+    }
+
+    /* Port of the vendor's A(). On mobile the primary action buttons
+       (.nds-PAB - search, and any CTA) move out of the collapsing drawer and
+       sit beside the hamburger, so they stay reachable while the menu is
+       shut. A display:none placeholder span marks where each one came from.
+
+       The vendor also deletes .nds-nav-minimal here when it ends up empty.
+       That branch is deliberately NOT ported: ours always holds the toggler,
+       so it can never be empty, and porting it risks deleting the hamburger. */
+    function repositionPAB(minimal) {
+        var pabs = document.querySelectorAll('.nds-nav-item.nds-PAB');
+        if (!pabs.length) return;
+
+        if (minimal) {
+            pabs.forEach(function (el, i) {
+                if (!el.dataset.origPos) {
+                    var ph = document.createElement('span');
+                    ph.style.display = 'none';
+                    ph.dataset.pabPh = i;
+                    el.parentNode.insertBefore(ph, el);
+                    el.dataset.origPos = i;
+                }
+            });
+
+            var wrap = document.querySelector('.nds-nav-minimal');
+            if (!wrap) return;
+
+            var list = Array.prototype.slice.call(pabs);
+            // Prepended in reverse so the final order is CTAs, then the rest,
+            // then the hamburger. Matches the vendor.
+            list.filter(function (el) { return !el.classList.contains('nds-CTA'); })
+                .reverse().forEach(function (el) { wrap.prepend(el); });
+            list.filter(function (el) { return el.classList.contains('nds-CTA'); })
+                .reverse().forEach(function (el) { wrap.prepend(el); });
+        } else {
+            pabs.forEach(function (el) {
+                var pos = el.dataset.origPos;
+                if (pos === undefined) return;
+                var ph = document.querySelector('[data-pab-ph="' + pos + '"]');
+                if (ph) {
+                    ph.parentNode.insertBefore(el, ph);
+                    ph.remove();
+                }
+                delete el.dataset.origPos;
+            });
+        }
     }
 
     /* =========================================================================
