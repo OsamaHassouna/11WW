@@ -601,6 +601,39 @@
         --btn-gap: var(--spacing-sm, 6px);
     }
 
+    /* ---- ORGANIZERS ---- */
+
+    .wwf-organizers {
+        --section-bg: var(--background-neutral-25);
+    }
+
+    .wwf-organizers__grid {
+        align-items: stretch;
+    }
+
+    .wwf-organizer-card {
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        --card-gap: var(--spacing-xl, 16px);
+        text-align: start;
+    }
+
+    .wwf-organizer-card__logo {
+        display: block;
+        inline-size: auto;
+        max-inline-size: 100%;
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    .wwf-organizer-card__logo--mewa {
+        block-size: 56px;
+    }
+
+    .wwf-organizer-card__logo--wwc {
+        block-size: var(--spacing-7xl, 64px);
+    }
+
 }
 
 
