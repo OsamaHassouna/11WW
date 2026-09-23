@@ -81,6 +81,7 @@
         markActiveNav();
         applyPageMeta();
         initHeroVideo();
+        initCountdowns();
         document.dispatchEvent(new CustomEvent('shell:ready'));
 
         if (typeof NDS !== 'undefined') {
@@ -171,6 +172,66 @@
         }, { rootMargin: '200px 0px' });
 
         observer.observe(video);
+    }
+
+    /* --- data-driven countdowns ------------------------------------------ */
+    function initCountdowns() {
+        document.querySelectorAll('[data-countdown-target]').forEach(function (countdown) {
+            if (countdown.hasAttribute('data-countdown-initialized')) return;
+
+            var targetValue = countdown.getAttribute('data-countdown-target');
+            var targetTime = Date.parse(targetValue);
+            if (!targetValue || Number.isNaN(targetTime)) {
+                countdown.setAttribute('data-countdown-state', 'invalid');
+                return;
+            }
+
+            var values = {
+                days: countdown.querySelector('[data-countdown-unit="days"]'),
+                hours: countdown.querySelector('[data-countdown-unit="hours"]'),
+                minutes: countdown.querySelector('[data-countdown-unit="minutes"]'),
+                seconds: countdown.querySelector('[data-countdown-unit="seconds"]')
+            };
+
+            if (Object.keys(values).some(function (unit) { return !values[unit]; })) {
+                countdown.setAttribute('data-countdown-state', 'invalid');
+                return;
+            }
+
+            var intervalId = null;
+            countdown.setAttribute('data-countdown-initialized', '');
+
+            function pad(value) {
+                return String(value).padStart(2, '0');
+            }
+
+            function update() {
+                var remaining = Math.max(0, targetTime - Date.now());
+                var totalSeconds = Math.floor(remaining / 1000);
+                var days = Math.floor(totalSeconds / 86400);
+                var hours = Math.floor((totalSeconds % 86400) / 3600);
+                var minutes = Math.floor((totalSeconds % 3600) / 60);
+                var seconds = totalSeconds % 60;
+
+                values.days.textContent = String(days);
+                values.hours.textContent = pad(hours);
+                values.minutes.textContent = pad(minutes);
+                values.seconds.textContent = pad(seconds);
+                countdown.setAttribute('aria-label',
+                    days + ' days, ' + hours + ' hours, ' + minutes + ' minutes, and ' + seconds +
+                    ' seconds until the forum');
+
+                if (remaining <= 0) {
+                    countdown.setAttribute('data-countdown-state', 'complete');
+                    if (intervalId !== null) window.clearInterval(intervalId);
+                } else {
+                    countdown.setAttribute('data-countdown-state', 'active');
+                }
+            }
+
+            update();
+            if (targetTime > Date.now()) intervalId = window.setInterval(update, 1000);
+        });
     }
 
     /* --- NDS ships chrome hidden, reveal once it is wired ------------------ */
