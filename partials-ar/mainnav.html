@@ -1,25 +1,25 @@
 <!--
-    القائمة الرئيسية - النسخة العربية
-    البنية مطابقة تماماً للنسخة الإنجليزية في partials/mainnav.html.
-    لا تغيّر أسماء الفئات (classes)، غيّر النصوص والروابط فقط.
-    الاتجاه يُضبط من dir="rtl" على وسم <html>، والتخطيط ينعكس تلقائياً.
+    القائمة الرئيسية - النسخة العربية. يحقنها js/site.js داخل index-ar.html.
+    أسماء الفئات (classes) مطابقة تماماً للنسخة الإنجليزية في partials/mainnav.html
+    ولا يجوز تغييرها، فهي جزء من مكوّن NDS. النصوص والروابط فقط هي الخاصة بنا.
+    الاتجاه من اليمين لليسار يُضبط من dir="rtl" على وسم <html>، والتخطيط ينعكس تلقائياً.
+
+    الروابط التي بلا href تشير إلى صفحات غير مضمّنة في هذه الدفعة.
+    أضف الرابط عند ربط الصفحة.
 -->
 <nav class="nds-main-nav nds-content-wrapper" id="shellMainNav" aria-label="التنقل الرئيسي">
     <div class="nds-nav-container">
 
         <a href="index-ar.html" class="nds-brand nds-link">
-            <img class="nds-brand-logo" src="assets/img/palm_swords.svg"
-                 width="40" height="40" loading="lazy" alt="شعار الجهة">
-            <span class="nds-brand-name">اسم الجهة
-                <span class="nds-brand-slogan">الشعار التعريفي</span>
-            </span>
+            <img class="nds-brand-logo" src="theme/media/logo.webp" width="64" height="48" loading="lazy"
+                alt="المنتدى العالمي الحادي عشر للمياه">
         </a>
 
+        <!-- زر القائمة على الشاشات الصغيرة -->
         <ul class="nds-nav-minimal">
             <li class="nds-mainNav-toggler nds-nav-item">
-                <button class="nds-nav-link nds-btn nds-subtle nds-indicator"
-                        aria-label="فتح قائمة التنقل"
-                        aria-expanded="false" aria-controls="shellNavCollapse">
+                <button class="nds-nav-link nds-btn nds-subtle nds-indicator" aria-label="إظهار أو إخفاء القائمة"
+                    aria-expanded="false" aria-controls="shellNavCollapse">
                     <i class="nds-icon nds-hgi-menu-01" aria-hidden="true"></i>
                 </button>
             </li>
@@ -28,6 +28,7 @@
         <div class="nds-collapse" id="shellNavCollapse">
             <div class="nds-collapse-content">
 
+                <!-- الروابط الرئيسية -->
                 <ul class="nds-nav-primary">
                     <li class="nds-nav-item">
                         <a href="index-ar.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
@@ -35,74 +36,76 @@
                         </a>
                     </li>
 
-                    <li class="nds-nav-item nds-dropdown">
-                        <a href="#" class="nds-nav-link nds-btn nds-subtle nds-menu-btn nds-indicator">
-                            <span class="nds-label">الخدمات</span>
+                    <li class="nds-nav-item">
+                        <a href="pages/about-riyadh.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">عن المنتدى</span>
                         </a>
-                        <div class="nds-dropdown-menu">
-                            <div class="nds-dropdown-content nds-content-wrapper">
-                                <div class="nds-dropdown-columns nds-colView">
-                                    <div class="nds-column">
-                                        <div class="nds-dropdown-title">للأفراد</div>
-                                        <div class="nds-list">
-                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="pages/service.html">
-                                                <span class="nds-label">الخدمة الأولى</span>
-                                            </a>
-                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="#">
-                                                <span class="nds-label">الخدمة الثانية</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="nds-column">
-                                        <div class="nds-dropdown-title">للأعمال</div>
-                                        <div class="nds-list">
-                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="#">
-                                                <span class="nds-label">الخدمة الثالثة</span>
-                                            </a>
-                                            <a class="nds-btn nds-subtle nds-dropdown-item" href="#">
-                                                <span class="nds-label">الخدمة الرابعة</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </li>
 
                     <li class="nds-nav-item">
                         <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
-                            <span class="nds-label">تقديم طلب</span>
+                            <span class="nds-label">المسارات</span>
                         </a>
                     </li>
+
                     <li class="nds-nav-item">
-                        <a href="pages/content.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
-                            <span class="nds-label">عن الجهة</span>
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">الاجتماع التشاوري الثاني</span>
+                        </a>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/organizers.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">الجهات المنظمة</span>
+                        </a>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/media-center.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">المركز الإعلامي</span>
+                        </a>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/form.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">مركز المعرفة</span>
+                        </a>
+                    </li>
+
+                    <li class="nds-nav-item">
+                        <a href="pages/registration.html" class="nds-nav-link nds-btn nds-subtle nds-indicator">
+                            <span class="nds-label">التسجيل</span>
                         </a>
                     </li>
                 </ul>
 
+                <!-- عنصر التحكم بالفائض. ينقل NDS العناصر الزائدة أسفله عند ضيق الشريط. لا تحذفه. -->
                 <div class="nds-nav-item nds-show-more">
                     <a href="#" class="nds-nav-link nds-btn nds-subtle nds-indicator nds-full" title="عرض المزيد">
                         <i class="nds-icon nds-hgi-arrow-down-01" aria-hidden="true"></i>
                     </a>
                 </div>
 
+                <!-- الإجراءات -->
                 <ul class="nds-nav-actions">
 
+                    <!-- البحث -->
                     <li class="nds-nav-item nds-dropdown nds-icon-only nds-search nds-PAB">
-                        <button class="nds-nav-link nds-btn nds-subtle nds-indicator" title="بحث">
+                        <button class="nds-nav-link nds-btn nds-subtle nds-indicator" title="البحث">
                             <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
-                            <span class="nds-label">بحث</span>
+                            <span class="nds-label d-block">البحث</span>
                         </button>
                         <div class="nds-dropdown-menu">
                             <div class="nds-dropdown-content">
                                 <div class="nds-content-wrapper">
-                                    <form class="nds-form-container nds-search-box" role="search" method="get" action="#">
+                                    <form class="nds-form-container nds-search-box" role="search" method="get"
+                                        action="#">
                                         <div class="nds-search-content">
                                             <div class="nds-form-control">
                                                 <i class="nds-icon nds-hgi-search-01" aria-hidden="true"></i>
-                                                <input id="siteSearchAr" type="text" class="nds-search-input"
-                                                       name="q" placeholder="ابحث في الموقع" autocomplete="off">
+                                                <input id="siteSearch" type="text" class="nds-search-input" name="q"
+                                                    placeholder="ابحث في هذا الموقع" aria-label="ابحث في هذا الموقع"
+                                                    autocomplete="off">
                                                 <div class="nds-form-action">
                                                     <button type="button" class="nds-btn nds-subtle nds-clear" hidden>
                                                         <i class="nds-icon nds-hgi-cancel-01" aria-hidden="true"></i>
@@ -120,49 +123,12 @@
                         </div>
                     </li>
 
-                    <li class="nds-nav-item nds-icon-only nds-login nds-guest">
-                        <button class="nds-nav-link nds-btn nds-subtle nds-lg nds-indicator" title="تسجيل الدخول">
-                            <i class="nds-icon nds-icon-avatar" aria-hidden="true"></i>
-                            <span class="nds-label">تسجيل الدخول</span>
-                        </button>
-                    </li>
-
-                    <li class="nds-nav-item nds-dropdown nds-login nds-icon-only nds-auth">
-                        <button class="nds-nav-link nds-btn nds-subtle nds-lg nds-indicator" title="الحساب">
-                            <i class="nds-icon nds-icon-avatar" aria-hidden="true"></i>
-                            <span class="nds-label">الحساب</span>
-                        </button>
-                        <div class="nds-dropdown-menu nds-fit">
-                            <div class="nds-dropdown-content">
-                                <div class="nds-column">
-                                    <div class="nds-persona nds-sm">
-                                        <div class="nds-persona-info">
-                                            <span class="nds-persona-name">اسم المستخدم</span>
-                                            <span class="nds-persona-role nds-truncate">الصفة</span>
-                                            <span class="nds-persona-desc" dir="ltr">user@example.com</span>
-                                        </div>
-                                        <hr class="nds-divider">
-                                        <div class="nds-persona-action">
-                                            <a href="#" class="nds-btn nds-subtle nds-dropdown-item">
-                                                <i class="nds-icon nds-hgi-identity-card" aria-hidden="true"></i>
-                                                <span class="nds-label">الملف الشخصي</span>
-                                            </a>
-                                            <a href="#" class="nds-btn nds-subtle nds-destructive nds-dropdown-item">
-                                                <i class="nds-icon nds-hgi-door-01" aria-hidden="true"></i>
-                                                <span class="nds-label">تسجيل الخروج</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
+                    <!-- مبدّل اللغة. يقرأ site.js قيمة lang من وسم <html> ويحمّل partials/ للصفحة الإنجليزية. -->
                     <li class="nds-nav-item nds-icon-only lang">
-                        <a href="index.html" class="nds-nav-link nds-btn nds-subtle nds-indicator"
-                           lang="en" dir="ltr" title="Switch to English">
-                            <i class="nds-icon nds-hgi-translation" aria-hidden="true"></i>
+                        <a href="index.html" class="nds-nav-link nds-btn nds-subtle nds-indicator" lang="en"
+                            dir="ltr" title="Switch to English">
                             <span class="nds-label nds-lang-current">English</span>
+                            <i class="nds-icon nds-hgi-translation" aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>

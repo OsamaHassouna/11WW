@@ -84,6 +84,7 @@
     Promise.all([Promise.all(loads), domReady]).then(function () {
         markActiveNav();
         applyPageMeta();
+        syncLanguageSwitches();
         initHeroVideo();
         initCountdowns();
         document.dispatchEvent(new CustomEvent('shell:ready'));
@@ -104,6 +105,17 @@
         bindMinimalNavResize();
         bindFormSuccessNavigation();
     });
+
+    /* --- language links -------------------------------------------------- */
+    function syncLanguageSwitches() {
+        var targetLanguage = isArabic ? 'en' : 'ar';
+        var targetPage = isArabic ? 'index.html' : 'index-ar.html';
+
+        document.querySelectorAll('[data-language-switch]').forEach(function (link) {
+            link.setAttribute('href', targetPage);
+            link.setAttribute('hreflang', targetLanguage);
+        });
+    }
 
     /* --- valid form destinations ----------------------------------------- */
     function bindFormSuccessNavigation() {
@@ -205,6 +217,12 @@
             var intervalId = null;
             countdown.setAttribute('data-countdown-initialized', '');
 
+            // The spoken label is authored per language on the element, so the
+            // Arabic page is not announced in English. {d}/{h}/{m}/{s} are
+            // substituted each tick. Falls back to English if absent.
+            var labelTemplate = countdown.getAttribute('data-countdown-label') ||
+                '{d} days, {h} hours, {m} minutes, and {s} seconds until the forum';
+
             function pad(value) {
                 return String(value).padStart(2, '0');
             }
@@ -222,8 +240,9 @@
                 values.minutes.textContent = pad(minutes);
                 values.seconds.textContent = pad(seconds);
                 countdown.setAttribute('aria-label',
-                    days + ' days, ' + hours + ' hours, ' + minutes + ' minutes, and ' + seconds +
-                    ' seconds until the forum');
+                    labelTemplate
+                        .replace('{d}', days).replace('{h}', hours)
+                        .replace('{m}', minutes).replace('{s}', seconds));
 
                 if (remaining <= 0) {
                     countdown.setAttribute('data-countdown-state', 'complete');

@@ -1,56 +1,40 @@
-<!--
-    الشريط العلوي + الختم الرقمي
-    ----------------------------------------------------------------------------
-    الختم الرقمي إلزامي على المواقع الحكومية السعودية. إذا لم يكن المشروع لجهة
-    حكومية، احذف كتلة <button class="nds-digitalStamp-tab"> وكتلة
-    <div id="nds-digitalStamp"> بالكامل.
-
-    استبدل رقم التسجيل 00000000000 ورابطه برقم الجهة الفعلي.
--->
 <div class="nds-topbar nds-content-wrapper" role="region" aria-label="شريط الأدوات العلوي">
-    <button class="nds-btn nds-menu-btn nds-digitalStamp-tab" aria-expanded="false"
+    <button class="nds-btn nds-menu-btn nds-digitalStamp-tab" role="button" aria-expanded="false"
         aria-controls="nds-digitalStamp">
         <img class="nds-flag" src="assets/icon/SAflag.min.svg" width="20" height="14"
             loading="lazy" alt="علم المملكة العربية السعودية">
-        <span class="nds-digitalStamp-lg-text nds-truncate">موقع حكومي مسجل لدى هيئة الحكومة الرقمية.</span>
-        <span class="nds-digitalStamp-sm-text nds-truncate">موقع حكومي مسجل لدى هيئة الحكومة الرقمية</span>
-        <span class="nds-link nds-primary">كيف تتحقق؟</span>
+        <span class="nds-digitalStamp-lg-text nds-truncate" id="big-screen-text">موقع حكومي مسجل لدى هيئة الحكومة الرقمية.</span>
+        <span class="nds-digitalStamp-sm-text nds-truncate" id="small-screen-text">موقع حكومي مسجل لدى هيئة الحكومة الرقمية</span>
+        <span id="nds-digitalStamp-verify-text" class="nds-link nds-primary">كيف تتحقق؟</span>
     </button>
-    <div class="nds-topbar-info">
-        <span id="nds-date" class="nds-text-icon" data-calendar="hijri"><i class="nds-icon nds-hgi-calendar-03" aria-hidden="true"></i><span class="text"></span></span>
-        <span id="nds-realTimeClock" class="nds-text-icon"><i class="nds-icon nds-hgi-clock-01" aria-hidden="true"></i><span class="text"></span></span>
-        <button class="nds-btn nds-subtle nds-icon-only nds-theme-toggle-wrap" data-theme-toggle=""
-            aria-label="تبديل الوضع الليلي" aria-pressed="false">
-            <i class="nds-icon nds-hgi-moon-02" aria-hidden="true"></i>
-        </button>
-    </div>
 </div>
-
 <div id="nds-digitalStamp" role="region" aria-label="الختم الرقمي الحكومي" style="display:none">
     <div class="nds-content-wrapper">
         <div class="nds-digitalStamp-notices">
+            <!-- تنبيه روابط الجهات الحكومية -->
             <div class="nds-digitalStamp-card">
                 <div class="nds-digitalStamp-icon">
                     <i class="nds-icon nds-hgi-link-04" aria-hidden="true"></i>
                 </div>
                 <div class="nds-digitalStamp-content">
-                    <div class="nds-digitalStamp-heading">
+                    <div class="nds-digitalStamp-heading" id="domain-title">
                         روابط المواقع الحكومية الرسمية تنتهي بـ <span class="nds-digitalStamp-highlight" dir="ltr">gov.sa</span>
                     </div>
-                    <div class="nds-digitalStamp-description">
+                    <div class="nds-digitalStamp-description" id="domain-desc">
                         جميع المواقع التابعة لجهات حكومية في المملكة العربية السعودية تنتهي روابطها بـ gov.sa
                     </div>
                 </div>
             </div>
+            <!-- تنبيه أمان HTTPS -->
             <div class="nds-digitalStamp-card">
                 <div class="nds-digitalStamp-icon">
                     <i class="nds-icon nds-hgi-square-lock-01" aria-hidden="true"></i>
                 </div>
                 <div class="nds-digitalStamp-content">
-                    <div class="nds-digitalStamp-heading">
+                    <div class="nds-digitalStamp-heading" id="https-title">
                         المواقع الحكومية الآمنة تستخدم <span class="nds-digitalStamp-highlight" dir="ltr">HTTPS</span>
                     </div>
-                    <div class="nds-digitalStamp-description">
+                    <div class="nds-digitalStamp-description" id="https-desc">
                         المواقع الحكومية الآمنة في المملكة العربية السعودية تستخدم بروتوكول التشفير HTTPS
                     </div>
                 </div>
@@ -60,9 +44,12 @@
             <img src="assets/img/dga-logo-icon.svg" width="21" height="31"
                 alt="هيئة الحكومة الرقمية" loading="lazy">
             <div>
-                <span>مسجل لدى هيئة الحكومة الرقمية:</span>
+                <span id="register-text">
+                    مسجل لدى هيئة الحكومة الرقمية:
+                </span>
                 <a class="nds-digitalStamp-registration nds-primary nds-underline nds-link"
-                   href="#" target="_blank" rel="noopener" dir="ltr">00000000000</a>
+                    href="#"
+                    target="_blank" dir="ltr">00000000000</a>
             </div>
         </div>
     </div>
