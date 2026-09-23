@@ -320,4 +320,9 @@
    --wwf-dialogue-card-bg: #1A2E7FE6;
    --wwf-dialogue-card-height: 555px;
    --wwf-dialogue-texture-opacity: 0.12;
+
+   /* Home announcement modal */
+   --wwf-announcement-close-color: #323232;
+   --wwf-announcement-link: #155dfc;
+   --wwf-announcement-shadow: 0 32px 64px -12px #10182824;
 }

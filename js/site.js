@@ -77,6 +77,10 @@
         }
     });
 
+    // The announcement exists only on the homepage, so this returns immediately
+    // everywhere else without adding page checks to the shared shell loader.
+    domReady.then(initHomeAnnouncementModal);
+
     Promise.all([Promise.all(loads), domReady]).then(function () {
         markActiveNav();
         applyPageMeta();
@@ -232,6 +236,21 @@
             update();
             if (targetTime > Date.now()) intervalId = window.setInterval(update, 1000);
         });
+    }
+
+    /* --- homepage announcement modal ------------------------------------ */
+    function initHomeAnnouncementModal() {
+        var modal = document.getElementById('home-announcement-modal');
+        if (!modal || modal.hasAttribute('data-auto-opened')) return;
+        if (typeof NDS === 'undefined' || !NDS.Modal) return;
+
+        modal.setAttribute('data-auto-opened', '');
+        modal.addEventListener('nds-modal-opened', function () {
+            modal.focus();
+        }, { once: true });
+
+        if (NDS.Modal.init) NDS.Modal.init();
+        NDS.Modal.open(modal);
     }
 
     /* --- NDS ships chrome hidden, reveal once it is wired ------------------ */

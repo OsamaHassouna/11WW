@@ -125,6 +125,192 @@
     }
 
     /* ======= HOME ======= */
+
+    /* ---- ANNOUNCEMENT MODAL ---- */
+
+    .wwf-home-announcement-modal {
+        --card-width-max: 600px;
+        --card-padding: 0;
+        --card-gap: 0;
+        --card-radius: var(--radius-xl, 24px);
+        --card-border: transparent;
+        box-sizing: border-box;
+        inset: 0;
+        inline-size: min(600px, calc(100% - var(--spacing-4xl, 32px)));
+        max-inline-size: 600px;
+        min-block-size: 0;
+        max-block-size: calc(100svh - var(--spacing-7xl, 64px));
+        margin: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border-radius: var(--radius-xl, 24px);
+        background-color: var(--wwf-dialogue-card-bg);
+        box-shadow: var(--wwf-announcement-shadow);
+        isolation: isolate;
+    }
+
+    .wwf-home-announcement-modal::before {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: url("media/global-dialogue-waves.webp") center top / cover no-repeat;
+        content: "";
+        filter: grayscale(1);
+        opacity: var(--wwf-dialogue-texture-opacity);
+        pointer-events: none;
+    }
+
+    .wwf-home-announcement-modal > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .wwf-home-announcement-modal__header {
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--spacing-5xl, 40px) var(--spacing-5xl, 40px) 0;
+    }
+
+    .wwf-home-announcement-modal__icon {
+        --icon-bg-color: var(--colors-blue-50);
+        --icon-color: var(--colors-blue-700);
+        inline-size: 56px;
+        block-size: 56px;
+        min-inline-size: 56px;
+        min-block-size: 56px;
+        background: var(--colors-blue-50);
+        color: var(--colors-blue-700);
+    }
+
+    .wwf-home-announcement-modal__icon .nds-icon {
+        font-size: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-home-announcement-modal__close {
+        --btn-size: var(--spacing-5xl, 40px);
+        --btn-height: var(--spacing-5xl, 40px);
+        --btn-height-min: var(--spacing-5xl, 40px);
+        --btn-bg: var(--background-neutral-100);
+        --btn-bg-hover: var(--background-neutral-200);
+        --btn-bg-active: var(--colors-neutral-300);
+        --btn-border: transparent;
+        --btn-border-hover: transparent;
+        --btn-border-active: transparent;
+        --btn-color: var(--wwf-announcement-close-color);
+        --btn-color-hover: var(--wwf-announcement-close-color);
+        --btn-color-active: var(--wwf-announcement-close-color);
+        --btn-radius: var(--radius-md, 8px);
+        flex: 0 0 var(--spacing-5xl, 40px);
+        inline-size: var(--spacing-5xl, 40px);
+        block-size: var(--spacing-5xl, 40px);
+        min-inline-size: var(--spacing-5xl, 40px);
+        min-block-size: var(--spacing-5xl, 40px);
+    }
+
+    .wwf-home-announcement-modal__close .nds-icon {
+        font-size: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-home-announcement-modal__heading {
+        padding: var(--spacing-4xl, 32px) var(--spacing-5xl, 40px) var(--spacing-5xl, 40px);
+        color: var(--text-oncolor-primary);
+    }
+
+    .wwf-home-announcement-modal__heading .nds-card-title {
+        margin: 0;
+        color: inherit;
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-home-announcement-modal__tag {
+        --tag-bg: var(--colors-blue-50);
+        --tag-border: var(--colors-blue-200);
+        --tag-text: var(--colors-blue-800);
+        margin-block-start: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-home-announcement-modal__content {
+        display: block;
+        padding: var(--spacing-5xl, 40px) var(--spacing-5xl, 40px) var(--spacing-4xl, 32px);
+        background: var(--background-default);
+    }
+
+    .wwf-home-announcement-modal__copy {
+        display: block;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-home-announcement-modal__copy p {
+        margin: 0 0 var(--spacing-3xl, 24px);
+    }
+
+    .wwf-home-announcement-modal__link {
+        --link-color: var(--wwf-announcement-link);
+        --link-hover: var(--colors-blue-700);
+        --link-pressed: var(--colors-blue-800);
+        display: inline-flex;
+        margin-block-end: var(--spacing-3xl, 24px);
+        color: var(--wwf-announcement-link);
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    .wwf-home-announcement-modal__copy .wwf-home-announcement-modal__closing-copy {
+        margin-block-end: 0;
+        color: var(--text-primary-paragraph);
+    }
+
+    .wwf-home-announcement-modal__actions {
+        display: block;
+        padding: 0 var(--spacing-5xl, 40px) var(--spacing-5xl, 40px);
+        background: var(--background-default);
+    }
+
+    .wwf-home-announcement-modal__cancel {
+        --btn-bg: var(--background-neutral-100);
+        --btn-bg-hover: var(--background-neutral-200);
+        --btn-bg-active: var(--colors-neutral-300);
+        --btn-border: transparent;
+        --btn-border-hover: transparent;
+        --btn-border-active: transparent;
+        --btn-color: var(--text-default);
+        --btn-color-hover: var(--text-default);
+        --btn-color-active: var(--text-default);
+        inline-size: 100%;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-home-announcement-modal {
+            inset: 0;
+            inline-size: calc(100% - var(--spacing-4xl, 32px));
+            max-inline-size: none;
+            max-block-size: calc(100svh - var(--spacing-4xl, 32px));
+            margin: auto;
+            border-radius: var(--radius-xl, 24px);
+        }
+
+        .wwf-home-announcement-modal__header {
+            padding: var(--spacing-3xl, 24px) var(--spacing-3xl, 24px) 0;
+        }
+
+        .wwf-home-announcement-modal__heading {
+            padding: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-home-announcement-modal__content {
+            padding: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-home-announcement-modal__actions {
+            padding: 0 var(--spacing-3xl, 24px) var(--spacing-3xl, 24px);
+        }
+    }
+
     /* ---- HERO ---- */
     /* Main event hero. Markup keeps DGA/NDS structure; this file only skins it. */
 
