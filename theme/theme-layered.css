@@ -110,6 +110,20 @@
         --shadow-inset: none;
     }
 
+    /* Keep breadcrumbs neutral when they are composed inside a content section. */
+    .nds-content-section .nds-breadcrumb :where(.nds-link, a) {
+        --link-color: var(--link-neutral);
+        --link-hover: var(--link-neutral-hovered);
+        --link-pressed: var(--link-neutral-pressed);
+        --link-focused: var(--link-neutral-focused);
+        --link-visited: var(--link-neutral-visited);
+        --link-decoration: none;
+    }
+
+    .nds-content-section .nds-breadcrumb :where(.nds-link, a):is(:hover, :active) {
+        --link-decoration: underline;
+    }
+
     /* ======= HOME ======= */
     /* ---- HERO ---- */
     /* Main event hero. Markup keeps DGA/NDS structure; this file only skins it. */
@@ -1713,6 +1727,304 @@
     @media (max-width: 600px) {
         .wwf-toolkit-list {
             --section-padding-block: var(--spacing-5xl, 40px);
+        }
+    }
+
+    /* ======= REGISTRATION PAGE ======= */
+
+    .wwf-registration-section {
+        --section-padding-block: var(--spacing-5xl, 40px) var(--spacing-7xl, 64px);
+        padding-block: var(--spacing-5xl, 40px) var(--spacing-7xl, 64px);
+    }
+
+    .wwf-registration-section .nds-section-body {
+        align-items: flex-start;
+    }
+
+    .wwf-registration-section .nds-info-content {
+        gap: 0;
+    }
+
+    .wwf-registration-section .nds-breadcrumb-nav {
+        margin-block-end: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-registration-intro {
+        margin-block-end: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-registration-intro .nds-section-title {
+        margin-block-end: var(--spacing-lg, 12px);
+    }
+
+    .wwf-registration-intro .nds-section-description {
+        max-inline-size: 680px;
+        margin: 0;
+    }
+
+    .wwf-registration-alert {
+        --card-width-max: none;
+        --card-bg: var(--background-neutral-25);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-md, 8px);
+        --alert-stripe: var(--border-neutral-secondary);
+        --alert-icon-bg: var(--background-neutral-50);
+        --icon-color: var(--text-default);
+        gap: var(--spacing-xl, 16px);
+        margin-block-end: var(--spacing-4xl, 32px);
+        padding: var(--spacing-xl, 16px);
+    }
+
+    .wwf-registration-alert::after {
+        opacity: 1;
+    }
+
+    .wwf-registration-alert .nds-feedback-icon {
+        box-sizing: border-box;
+        inline-size: var(--spacing-10, 40px);
+        block-size: var(--spacing-10, 40px);
+        min-inline-size: var(--spacing-10, 40px);
+        min-block-size: var(--spacing-10, 40px);
+        flex: 0 0 var(--spacing-10, 40px);
+        display: grid;
+        padding: var(--spacing-2, 8px);
+        place-items: center;
+        background-color: var(--background-neutral-50);
+    }
+
+    .wwf-registration-alert .nds-feedback-icon :is(.hgi, .nds-icon) {
+        color: var(--icon-color);
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .wwf-registration-clock-icon {
+        position: relative;
+        box-sizing: border-box;
+        display: block;
+        inline-size: var(--spacing-5, 20px);
+        block-size: var(--spacing-5, 20px);
+        min-inline-size: var(--spacing-5, 20px);
+        min-block-size: var(--spacing-5, 20px);
+        flex: 0 0 var(--spacing-5, 20px);
+        aspect-ratio: 1;
+        border: 1.5px solid currentColor;
+        border-radius: var(--radius-full, 9999px);
+        color: var(--icon-color);
+    }
+
+    .wwf-registration-clock-icon::before,
+    .wwf-registration-clock-icon::after {
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        inline-size: 1.5px;
+        border-radius: var(--radius-full, 9999px);
+        background: currentColor;
+        content: "";
+        transform-origin: center top;
+    }
+
+    .wwf-registration-clock-icon::before {
+        block-size: 5px;
+        transform: translate(-50%, -100%);
+    }
+
+    .wwf-registration-clock-icon::after {
+        block-size: 4px;
+        transform: translate(-50%, 0) rotate(-45deg);
+    }
+
+    .wwf-registration-required {
+        margin-block: 0 var(--spacing-4xl, 32px);
+        color: var(--text-error);
+    }
+
+    .wwf-registration-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-registration-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-gap: var(--spacing-2xl, 20px);
+        --card-radius: var(--radius-md, 8px);
+        --card-border: var(--border-neutral-primary);
+        inline-size: 100%;
+    }
+
+    .wwf-registration-card__heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-xl, 16px);
+    }
+
+    .wwf-registration-card__title {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-md, 8px);
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-registration-card__title .hgi {
+        flex: 0 0 auto;
+        inline-size: var(--spacing-3xl, 24px);
+        block-size: var(--spacing-3xl, 24px);
+        font-size: var(--spacing-3xl, 24px);
+        line-height: 1;
+    }
+
+    .wwf-registration-primary-tag {
+        --tag-bg: var(--background-primary-50);
+        --tag-border: transparent;
+        --tag-text: var(--colors-primary-sa-flag-800);
+        flex: 0 0 auto;
+    }
+
+    .wwf-registration-fields {
+        gap: var(--spacing-2xl, 20px) var(--spacing-xl, 16px);
+    }
+
+    .wwf-registration-fields .nds-form-container {
+        margin: 0;
+    }
+
+    .wwf-registration-field--full {
+        grid-column: 1 / -1;
+    }
+
+    .wwf-registration-choice-group {
+        min-inline-size: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    .wwf-registration-choice-group legend {
+        margin-block-end: var(--spacing-lg, 12px);
+        color: var(--text-default);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 600;
+    }
+
+    .wwf-registration-choice-group legend > span {
+        color: var(--text-error);
+    }
+
+    .wwf-registration-choice-group > .nds-form-footer:not([hidden]) {
+        margin-block-start: var(--spacing-lg, 12px);
+    }
+
+    .wwf-registration-checks,
+    .wwf-registration-radios {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-lg, 12px);
+    }
+
+    .wwf-registration-checks .nds-form-container {
+        margin: 0;
+    }
+
+    .wwf-registration-radio-option.nds-form-container {
+        box-sizing: border-box;
+        inline-size: 100%;
+        margin: 0;
+        padding: var(--spacing-xl, 16px);
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-md, 8px);
+    }
+
+    .wwf-registration-radio-option .nds-form-header {
+        flex: 1;
+    }
+
+    .wwf-registration-actions {
+        margin-block-start: 0;
+    }
+
+    .wwf-registration-submit {
+        --btn-bg: var(--wwf-action-bg);
+        --btn-bg-hover: var(--wwf-action-bg-hover);
+        --btn-bg-active: var(--wwf-action-bg-active);
+        --btn-bg-selected: var(--wwf-action-bg-active);
+    }
+
+    .wwf-registration-stepper-panel {
+        --card-width-max: none;
+        --card-padding: var(--spacing-4xl, 32px);
+        --card-bg: var(--background-neutral-50);
+        --card-radius: var(--radius-xl, 16px);
+        --card-border: transparent;
+        --stepper-button-current: var(--background-primary);
+        --stepper-button-upcomming: var(--colors-neutral-300);
+        --stepper-line-upcomming: var(--colors-neutral-300);
+        --stepper-text-primary: var(--colors-neutral-800);
+        --stepper-text-secondary: var(--colors-neutral-700);
+        --stepper-text-tertiary: var(--colors-neutral-700);
+        --nds-sideinfo-top-offset: var(--spacing-6xl, 48px);
+        flex: 0 0 var(--nds-sideinfo-width, 400px);
+        inline-size: var(--nds-sideinfo-width, 400px);
+        min-block-size: 240px;
+        position: sticky;
+        top: calc(var(--nds-nav-height, 72px) + var(--spacing-md, 8px) + var(--nds-sideinfo-top-offset));
+        block-size: fit-content;
+    }
+
+    .wwf-registration-stepper-panel .nds-stepper {
+        block-size: 100%;
+    }
+
+    @media (max-width: 960px) {
+        .wwf-registration-stepper-panel {
+            order: -1;
+            flex-basis: auto;
+            inline-size: 100%;
+            min-block-size: auto;
+            position: static;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-registration-section {
+            --section-padding-block: var(--spacing-4xl, 32px) var(--spacing-6xl, 48px);
+            padding-block: var(--spacing-4xl, 32px) var(--spacing-6xl, 48px);
+        }
+
+        .wwf-registration-required,
+        .wwf-registration-form {
+            margin-block-end: 0;
+        }
+
+        .wwf-registration-alert .nds-alert-description br {
+            display: none;
+        }
+
+        .wwf-registration-card {
+            --card-padding: var(--spacing-xl, 16px);
+        }
+
+        .wwf-registration-card__heading {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .wwf-registration-field--full {
+            grid-column: auto;
+        }
+
+        .wwf-registration-actions .nds-btn {
+            inline-size: 100%;
         }
     }
 
