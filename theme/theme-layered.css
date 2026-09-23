@@ -1968,14 +1968,17 @@
         --card-border: transparent;
         --stepper-button-current: var(--background-primary);
         --stepper-button-upcomming: var(--colors-neutral-300);
+        --stepper-line-completed: var(--colors-neutral-300);
         --stepper-line-upcomming: var(--colors-neutral-300);
         --stepper-text-primary: var(--colors-neutral-800);
         --stepper-text-secondary: var(--colors-neutral-700);
         --stepper-text-tertiary: var(--colors-neutral-700);
+        --wwf-registration-stepper-connector-height: var(--spacing-24, 96px);
+        --wwf-registration-breadcrumb-offset: calc(var(--typo-text-md-LH, 24px) + var(--spacing-4xl, 32px));
         --nds-sideinfo-top-offset: var(--spacing-6xl, 48px);
         flex: 0 0 var(--nds-sideinfo-width, 400px);
         inline-size: var(--nds-sideinfo-width, 400px);
-        min-block-size: 240px;
+        min-block-size: auto;
         position: sticky;
         top: calc(var(--nds-nav-height, 72px) + var(--spacing-md, 8px) + var(--nds-sideinfo-top-offset));
         block-size: fit-content;
@@ -1983,6 +1986,35 @@
 
     .wwf-registration-stepper-panel .nds-stepper {
         block-size: 100%;
+    }
+
+    .wwf-registration-stepper-panel .nds-stepper-title {
+        color: var(--stepper-text-primary);
+    }
+
+    .wwf-registration-stepper-panel .nds-stepper-step:last-child .nds-stepper-title {
+        font-weight: 400;
+    }
+
+    @media (min-width: 961px) {
+        .wwf-registration-stepper-panel {
+            margin-block-start: var(--wwf-registration-breadcrumb-offset);
+        }
+
+        .wwf-registration-stepper-panel .nds-stepper {
+            --stepper-gap: var(--wwf-registration-stepper-connector-height);
+            block-size: auto;
+        }
+
+        .wwf-registration-stepper-panel .nds-stepper-step:not(:last-child) {
+            flex: none;
+            block-size: var(--stepper-size);
+        }
+
+        .wwf-registration-stepper-panel .nds-stepper-step:not(:last-child) .nds-stepper-base::after {
+            inset-block-end: auto;
+            block-size: var(--wwf-registration-stepper-connector-height);
+        }
     }
 
     @media (max-width: 960px) {
@@ -2025,6 +2057,254 @@
 
         .wwf-registration-actions .nds-btn {
             inline-size: 100%;
+        }
+    }
+
+    /* ---- REGISTRATION SUCCESS ---- */
+
+    .wwf-registration-success-content {
+        inline-size: 100%;
+        min-inline-size: 0;
+    }
+
+    .wwf-registration-success-summary {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: var(--spacing-5xl, 40px);
+        border-radius: var(--radius-xl, 16px);
+        background: var(--background-neutral-50);
+        text-align: center;
+    }
+
+    .wwf-registration-success-icon {
+        display: grid;
+        inline-size: var(--spacing-8xl, 80px);
+        block-size: var(--spacing-8xl, 80px);
+        margin-block-end: var(--spacing-4xl, 32px);
+        border-radius: var(--radius-full, 9999px);
+        place-items: center;
+        background: var(--colors-primary-sa-flag-100);
+        color: var(--colors-primary-sa-flag-600-primary);
+    }
+
+    .wwf-registration-success-icon .hgi {
+        font-size: var(--spacing-5xl, 40px);
+        line-height: 1;
+    }
+
+    .wwf-registration-success-summary > .nds-section-title {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+        letter-spacing: 0;
+    }
+
+    .wwf-registration-success-lead {
+        margin: var(--spacing-lg, 12px) 0 var(--spacing-3xl, 24px);
+        color: var(--text-success);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-registration-success-actions {
+        box-sizing: border-box;
+        inline-size: 100%;
+        padding: var(--spacing-3xl, 24px);
+        border-radius: var(--radius-md, 8px);
+        background: var(--background-neutral-100);
+    }
+
+    .wwf-registration-success-actions > p {
+        margin: 0 0 var(--spacing-3xl, 24px);
+        color: var(--text-secondary-paragraph);
+    }
+
+    .wwf-registration-success-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-lg, 12px);
+    }
+
+    .wwf-registration-success-buttons .nds-btn {
+        min-inline-size: 176px;
+    }
+
+    .wwf-registration-learn {
+        --btn-bg: var(--background-default);
+        --btn-bg-hover: var(--background-neutral-50);
+        --btn-bg-active: var(--background-neutral-200);
+        --btn-bg-selected: var(--background-neutral-200);
+        --btn-border: transparent;
+        --btn-border-hover: var(--border-neutral-primary);
+        --btn-color: var(--text-default);
+    }
+
+    .wwf-registration-event {
+        padding: var(--spacing-4xl, 32px) 0 var(--spacing-5xl, 40px);
+    }
+
+    .wwf-registration-event__head {
+        margin-block-end: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-registration-event__head .nds-section-title {
+        margin: 0 0 var(--spacing-md, 8px);
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        letter-spacing: 0;
+    }
+
+    .wwf-registration-event__head p {
+        margin: 0;
+        color: var(--text-secondary-paragraph);
+    }
+
+    .wwf-registration-event-facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin: 0;
+        overflow: hidden;
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-md, 8px);
+        background: var(--background-default);
+    }
+
+    .wwf-registration-event-fact {
+        min-inline-size: 0;
+        padding: var(--spacing-2xl, 20px);
+    }
+
+    .wwf-registration-event-fact + .wwf-registration-event-fact {
+        border-inline-start: 1px solid var(--border-neutral-primary);
+    }
+
+    .wwf-registration-event-fact dt {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md, 8px);
+        margin-block-end: var(--spacing-md, 8px);
+        color: var(--text-default);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-registration-event-fact dt .nds-icon {
+        flex: 0 0 auto;
+        color: var(--text-success);
+        font-size: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-registration-event-fact dd {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs, 4px);
+        margin: 0;
+    }
+
+    .wwf-registration-event-fact strong {
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-registration-event-fact dd span {
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-registration-map {
+        margin: var(--spacing-3xl, 24px) 0 0;
+    }
+
+    .wwf-registration-map > img {
+        display: block;
+        box-sizing: border-box;
+        inline-size: 100%;
+        aspect-ratio: 1680 / 566;
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-md, 8px);
+        object-fit: cover;
+        box-shadow: 0 1px 2px -1px #0000001a, 0 1px 3px 0 #0000001a;
+    }
+
+    .wwf-registration-map figcaption {
+        margin-block-start: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-registration-map h3 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        letter-spacing: 0;
+    }
+
+    .wwf-registration-map figcaption p {
+        margin: 0;
+        color: var(--text-primary-paragraph);
+    }
+
+    .wwf-registration-directions {
+        --btn-height: fit-content;
+        --btn-padding: 0;
+        --btn-gap: var(--spacing-lg, 12px);
+        --btn-color: var(--colors-primary-sa-flag-600-primary);
+        --btn-color-hover: var(--colors-primary-sa-flag-700);
+        margin-block-start: var(--spacing-md, 8px);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
+        font-weight: 600;
+    }
+
+    .wwf-registration-directions .hgi {
+        inline-size: var(--spacing-3xl, 24px);
+        block-size: var(--spacing-3xl, 24px);
+        font-size: var(--spacing-3xl, 24px);
+        line-height: 1;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-registration-success-summary {
+            padding: var(--spacing-4xl, 32px) var(--spacing-xl, 16px);
+        }
+
+        .wwf-registration-success-summary > .nds-section-title {
+            font-size: var(--typo-display-xs-FS);
+            line-height: var(--typo-display-xs-LH);
+        }
+
+        .wwf-registration-success-actions {
+            padding: var(--spacing-xl, 16px);
+        }
+
+        .wwf-registration-success-buttons {
+            align-items: stretch;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+
+        .wwf-registration-success-buttons .nds-btn {
+            inline-size: 100%;
+            min-inline-size: 0;
+        }
+
+        .wwf-registration-event-facts {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-registration-event-fact + .wwf-registration-event-fact {
+            border-inline-start: 0;
+            border-block-start: 1px solid var(--border-neutral-primary);
+        }
+
+        .wwf-registration-map > img {
+            aspect-ratio: 4 / 3;
         }
     }
 

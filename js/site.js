@@ -97,7 +97,21 @@
         bindMobileNav();
         bindDigitalStamp();
         bindMinimalNavResize();
+        bindFormSuccessNavigation();
     });
+
+    /* --- valid form destinations ----------------------------------------- */
+    function bindFormSuccessNavigation() {
+        document.querySelectorAll('form[data-success-url]').forEach(function (form) {
+            if (form.hasAttribute('data-success-bound')) return;
+            form.setAttribute('data-success-bound', '');
+
+            form.addEventListener('nds:formValid', function () {
+                var target = form.getAttribute('data-success-url');
+                if (target) window.location.assign(new URL(target, document.baseURI).href);
+            });
+        });
+    }
 
     /* --- active nav state ------------------------------------------------- */
     function markActiveNav() {
