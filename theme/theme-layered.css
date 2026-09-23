@@ -2308,6 +2308,95 @@
         }
     }
 
+    /* ---- INQUIRY FORM AND CONFIRMATION ---- */
+
+    .wwf-inquiry-interest-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-lg, 12px) var(--spacing-4xl, 32px);
+    }
+
+    .wwf-inquiry-page .nds-textarea > .nds-form-control > textarea {
+        min-block-size: var(--spacing-24, 96px);
+        resize: vertical;
+    }
+
+    .wwf-inquiry-success-summary {
+        inline-size: 100%;
+    }
+
+    .wwf-inquiry-success-details {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        inline-size: 100%;
+        margin-block-end: var(--spacing-3xl, 24px);
+        gap: var(--spacing-xl, 16px);
+        text-align: start;
+    }
+
+    .wwf-inquiry-success-card {
+        box-sizing: border-box;
+        min-inline-size: 0;
+        padding: var(--spacing-3xl, 24px);
+        border-radius: var(--radius-md, 8px);
+        background: var(--background-default);
+    }
+
+    .wwf-inquiry-success-card__icon {
+        display: grid;
+        inline-size: var(--spacing-6xl, 48px);
+        block-size: var(--spacing-6xl, 48px);
+        margin-block-end: var(--spacing-xl, 16px);
+        border-radius: var(--radius-full, 9999px);
+        place-items: center;
+        background: var(--background-neutral-50);
+        color: var(--text-default);
+    }
+
+    .wwf-inquiry-success-card__icon .hgi {
+        inline-size: var(--spacing-3xl, 24px);
+        block-size: var(--spacing-3xl, 24px);
+        font-size: var(--spacing-3xl, 24px);
+        line-height: 1;
+    }
+
+    .wwf-inquiry-success-card h2 {
+        margin: 0 0 var(--spacing-md, 8px);
+        color: var(--text-default);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-inquiry-success-card p {
+        margin: 0;
+        color: var(--text-secondary-paragraph);
+    }
+
+    .wwf-inquiry-success-buttons {
+        inline-size: min(100%, 576px);
+    }
+
+    .wwf-inquiry-success-buttons .nds-btn {
+        flex: 1 1 0;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-inquiry-interest-options,
+        .wwf-inquiry-success-details {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-inquiry-success-card {
+            padding: var(--spacing-xl, 16px);
+        }
+
+        .wwf-inquiry-success-buttons {
+            inline-size: 100%;
+        }
+    }
+
     /* ======= LEGAL CONTENT PAGES ======= */
 
     .wwf-legal-page :is(h1, h2, h3, h4) {
