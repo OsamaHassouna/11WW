@@ -325,4 +325,7 @@
    --wwf-announcement-close-color: #323232;
    --wwf-announcement-link: #155dfc;
    --wwf-announcement-shadow: 0 32px 64px -12px #10182824;
+
+   /* Visa Information */
+   --wwf-visa-timeline-text: #101828;
 }

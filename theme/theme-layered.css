@@ -1930,6 +1930,254 @@
         }
     }
 
+    /* ======= VISA INFORMATION PAGE ======= */
+
+    .wwf-visa-section {
+        --section-row-gap: 0;
+        --section-padding-block: var(--spacing-5xl, 40px) var(--spacing-7xl, 64px);
+        padding-block: var(--spacing-5xl, 40px) var(--spacing-7xl, 64px);
+    }
+
+    .wwf-visa-breadcrumb {
+        margin-block-end: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-visa-section .nds-section-body {
+        display: block;
+    }
+
+    .wwf-visa-panel {
+        box-sizing: border-box;
+        inline-size: 100%;
+        padding: var(--spacing-6xl, 48px) var(--spacing-5xl, 40px);
+        border-radius: var(--radius-md, 8px);
+        background: var(--background-neutral-25);
+    }
+
+    .wwf-visa-intro {
+        margin-block-end: var(--spacing-3xl, 24px);
+        text-align: center;
+    }
+
+    .wwf-visa-intro .nds-section-title {
+        margin-block-end: var(--spacing-lg, 12px);
+        color: var(--text-default);
+        font-size: var(--typo-display-lg-FS);
+        line-height: var(--typo-display-lg-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .wwf-visa-intro .nds-section-description {
+        max-inline-size: none;
+        margin: 0;
+        color: var(--text-primary);
+        font-size: var(--typo-display-xs-FS);
+        line-height: var(--typo-display-xs-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visa-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-gap: 0;
+        --card-bg: var(--background-neutral-25);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-md, 8px);
+        inline-size: 100%;
+    }
+
+    .wwf-visa-card .nds-card-content {
+        gap: var(--spacing-xl, 16px);
+    }
+
+    .wwf-visa-card .nds-card-title {
+        margin-block-end: var(--spacing-lg, 12px);
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visa-card .nds-card-description {
+        margin: 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-visa-card .nds-card-actions {
+        margin: 0;
+    }
+
+    .wwf-visa-card__action {
+        min-inline-size: auto;
+    }
+
+    .wwf-visa-card__action::after {
+        display: none;
+        content: none;
+    }
+
+    .wwf-visa-card--general {
+        margin-block-end: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-visa-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-visa-grid .wwf-visa-card {
+        --card-border: var(--border-neutral-primary);
+        min-block-size: 100%;
+    }
+
+    .wwf-visa-documents,
+    .wwf-visa-timeline {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .wwf-visa-documents {
+        gap: var(--spacing-lg, 12px);
+    }
+
+    .wwf-visa-documents li {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xl, 16px);
+        min-inline-size: 0;
+        padding-block-end: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visa-documents__number {
+        display: inline-grid;
+        inline-size: calc(var(--spacing-4xl, 32px) + var(--spacing-xs, 4px));
+        block-size: calc(var(--spacing-4xl, 32px) + var(--spacing-xs, 4px));
+        min-inline-size: calc(var(--spacing-4xl, 32px) + var(--spacing-xs, 4px));
+        flex: 0 0 calc(var(--spacing-4xl, 32px) + var(--spacing-xs, 4px));
+        place-items: center;
+        border-radius: var(--radius-full, 9999px);
+        background: var(--text-default);
+        color: var(--background-default);
+        font-size: var(--typo-text-sm-FS);
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    .wwf-visa-timeline {
+        --wwf-visa-timeline-marker-size: var(--spacing-xl, 16px);
+        --wwf-visa-timeline-line-width: var(--spacing-xxs, 2px);
+        --wwf-visa-timeline-connector-height: calc(var(--spacing-5xl, 40px) + var(--spacing-xs, 4px));
+        --wwf-visa-timeline-marker-offset: calc((var(--typo-text-md-LH) - var(--wwf-visa-timeline-marker-size)) / 2);
+        gap: 0;
+        padding-block-start: var(--spacing-xs, 4px);
+    }
+
+    .wwf-visa-timeline li {
+        position: relative;
+        display: grid;
+        grid-template-columns: var(--wwf-visa-timeline-marker-size) minmax(0, 1fr);
+        align-items: start;
+        gap: calc(var(--spacing-md, 8px) + var(--spacing-xxs, 2px));
+        min-inline-size: 0;
+        padding-block: 0;
+        color: var(--wwf-visa-timeline-text);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        letter-spacing: 0;
+    }
+
+    .wwf-visa-timeline li[data-connector="true"] {
+        min-block-size: calc(var(--wwf-visa-timeline-marker-size) + var(--wwf-visa-timeline-connector-height));
+    }
+
+    .wwf-visa-timeline li[data-connector="true"]::after {
+        position: absolute;
+        inset-inline-start: calc((var(--wwf-visa-timeline-marker-size) - var(--wwf-visa-timeline-line-width)) / 2);
+        inset-block-start: calc(var(--wwf-visa-timeline-marker-offset) + var(--wwf-visa-timeline-marker-size));
+        inline-size: var(--wwf-visa-timeline-line-width);
+        block-size: calc(100% - var(--wwf-visa-timeline-marker-size));
+        background: var(--text-primary);
+        content: "";
+    }
+
+    .wwf-visa-timeline__marker {
+        position: relative;
+        z-index: 1;
+        box-sizing: border-box;
+        inline-size: var(--wwf-visa-timeline-marker-size);
+        block-size: var(--wwf-visa-timeline-marker-size);
+        margin-block-start: var(--wwf-visa-timeline-marker-offset);
+        border: var(--spacing-xs, 4px) solid var(--text-primary);
+        border-radius: var(--radius-full, 9999px);
+        background: var(--background-default);
+    }
+
+    .wwf-visa-timeline strong {
+        color: inherit;
+        font-weight: 700;
+    }
+
+    @media (max-width: 960px) {
+        .wwf-visa-panel {
+            padding: var(--spacing-5xl, 40px) var(--spacing-3xl, 24px);
+        }
+
+        .wwf-visa-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-visa-section {
+            --section-padding-block: var(--spacing-4xl, 32px) var(--spacing-6xl, 48px);
+            padding-block: var(--spacing-4xl, 32px) var(--spacing-6xl, 48px);
+        }
+
+        .wwf-visa-breadcrumb {
+            margin-block-end: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-visa-panel {
+            padding: var(--spacing-3xl, 24px) var(--spacing-xl, 16px);
+        }
+
+        .wwf-visa-intro {
+            margin-block-end: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-visa-card {
+            --card-padding: var(--spacing-xl, 16px);
+        }
+
+        .wwf-visa-grid {
+            gap: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-visa-documents li {
+            align-items: flex-start;
+        }
+
+        .wwf-visa-card__action {
+            inline-size: 100%;
+        }
+    }
+
     /* ======= REGISTRATION PAGE ======= */
 
     .wwf-registration-section {
@@ -2803,10 +3051,17 @@
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-md, 8px);
+        min-inline-size: 0;
+        max-inline-size: 100%;
         color: var(--text-default);
         font-size: var(--typo-text-sm-FS);
         line-height: var(--typo-text-sm-LH);
         text-decoration: none;
+    }
+
+    .wwf-footer__contact-item>span:not(.wwf-footer__contact-icon) {
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
     }
 
     .wwf-footer__contact-item strong {
@@ -2894,6 +3149,10 @@
             flex-direction: column;
             gap: var(--spacing-xl, 16px);
             padding-block: var(--spacing-2xl, 20px);
+        }
+
+        .wwf-footer__contact-item {
+            inline-size: 100%;
         }
 
         .wwf-footer__navigation {
