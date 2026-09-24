@@ -1651,6 +1651,71 @@
         }
     }
 
+    /* ======= FIRST STAKEHOLDER GALLERY PAGE ======= */
+
+    .wwf-gallery-detail-hero {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
+    .wwf-gallery-detail-hero .nds-section-description {
+        max-inline-size: none;
+    }
+
+    .wwf-gallery-detail {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-gallery-detail__grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: start;
+    }
+
+    .wwf-gallery-photo-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-xl, 16px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        max-inline-size: none;
+    }
+
+    .wwf-gallery-photo-card__media {
+        position: relative;
+        flex: 0 0 auto;
+        inline-size: 100%;
+        block-size: auto;
+        aspect-ratio: 3 / 2;
+        overflow: hidden;
+        border-radius: var(--radius-md, 8px);
+    }
+
+    .wwf-gallery-photo-card__media img {
+        position: absolute;
+        inset: 0;
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+    }
+
+    .wwf-gallery-photo-card .nds-card-actions {
+        justify-content: flex-start;
+    }
+
+    .wwf-gallery-photo-card__action {
+        --btn-radius: var(--radius-sm, 4px);
+    }
+
+    .wwf-gallery-detail-page .nds-ipv-popup-image {
+        block-size: 100%;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-gallery-detail {
+            --section-padding-block: var(--spacing-5xl, 40px);
+        }
+    }
+
     /* ======= DISCOVER RIYADH PAGE ======= */
 
     .wwf-riyadh-hero {

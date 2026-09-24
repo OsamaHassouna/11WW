@@ -98,6 +98,8 @@
             }
         }
 
+        initGalleryImageViewer();
+
         revealChrome();
         syncMinimalNav();
         bindNavDropdowns();
@@ -378,6 +380,61 @@
 
         if (NDS.Modal.init) NDS.Modal.init();
         NDS.Modal.open(modal);
+    }
+
+    /* --- gallery image popup viewer ------------------------------------- */
+    function initGalleryImageViewer() {
+        var gallery = document.querySelector('.wwf-gallery-detail__grid.nds-ipv-gallery');
+        if (!gallery || gallery.hasAttribute('data-gallery-viewer-bound')) return;
+        if (typeof NDS === 'undefined' || !NDS.Ipv) return;
+
+        var viewer = NDS.Ipv.create();
+        var overlay = document.getElementById('ndsIpvPopupOverlay');
+        if (!viewer || !overlay) return;
+
+        gallery.setAttribute('data-gallery-viewer-bound', '');
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Image viewer');
+
+        var activeTrigger = null;
+        var closeButton = overlay.querySelector('.nds-ipv-close-btn');
+
+        overlay.querySelectorAll('.nds-ipv-control-btn[title]').forEach(function (control) {
+            control.setAttribute('aria-label', control.getAttribute('title'));
+        });
+
+        function restoreFocus() {
+            if (activeTrigger) activeTrigger.focus();
+        }
+
+        gallery.querySelectorAll('[data-gallery-view]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var image = button.closest('.wwf-gallery-photo-card')
+                    .querySelector('.nds-ipv-thumbnail');
+                if (!image) return;
+
+                activeTrigger = button;
+                overlay.setAttribute('aria-label', 'Image viewer: ' + image.alt);
+                viewer.open(image);
+
+                var popupImage = document.getElementById('ndsIpvPopupImage');
+                if (popupImage) popupImage.alt = image.alt;
+                if (closeButton) closeButton.focus();
+            });
+        });
+
+        if (closeButton) {
+            closeButton.addEventListener('click', function () {
+                window.setTimeout(restoreFocus, 0);
+            });
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && overlay.classList.contains('nds-ipv-active')) {
+                window.setTimeout(restoreFocus, 0);
+            }
+        }, true);
     }
 
     /* --- NDS ships chrome hidden, reveal once it is wired ------------------ */
