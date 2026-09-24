@@ -110,6 +110,10 @@
         --shadow-inset: none;
     }
 
+    .nds-hero-section.nds-sub {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
     /* Keep breadcrumbs neutral when they are composed inside a content section. */
     .nds-content-section .nds-breadcrumb :where(.nds-link, a) {
         --link-color: var(--link-neutral);
@@ -122,6 +126,64 @@
 
     .nds-content-section .nds-breadcrumb :where(.nds-link, a):is(:hover, :active) {
         --link-decoration: underline;
+    }
+
+    .wwf-sub-hero--illustrated {
+        --wwf-sub-hero-image-size: min(52vw, var(--spacing-480, 1920px));
+        --wwf-sub-hero-mask: linear-gradient(to left, black 0%, black 50%, transparent 100%);
+    }
+
+    .wwf-sub-hero--illustrated::after {
+        inset-block: 0;
+        inset-inline-start: auto;
+        inset-inline-end: 0;
+        inline-size: var(--wwf-sub-hero-image-size);
+        background-image: var(--wwf-sub-hero-image);
+        background-position: right 40%;
+        background-size: cover;
+        -webkit-mask-image: var(--wwf-sub-hero-mask);
+        mask-image: var(--wwf-sub-hero-mask);
+        opacity: .8;
+
+    }
+
+    @media (min-width: 961px) {
+        .wwf-sub-hero--illustrated .nds-section-head {
+            max-inline-size: calc(65% - var(--spacing-xl, 16px));
+        }
+    }
+
+    :is(html[dir="rtl"], .rtl) .wwf-sub-hero--illustrated {
+        --wwf-sub-hero-mask: linear-gradient(to right, black 0%, black 50%, transparent 100%);
+    }
+
+    :is(html[dir="rtl"], .rtl) .wwf-sub-hero--illustrated::after {
+        background-position: left center;
+        scale: -1 1;
+    }
+
+    :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-sub-hero--illustrated::after {
+        opacity: .24;
+    }
+
+    @media (max-width: 960px) {
+        .wwf-sub-hero--illustrated::after {
+            opacity: .24;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-sub-hero--illustrated {
+            --wwf-sub-hero-image-size: 100%;
+        }
+
+        .wwf-sub-hero--illustrated::after {
+            opacity: .18;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-sub-hero--illustrated::after {
+            opacity: .18;
+        }
     }
 
     /* ======= HOME ======= */
@@ -1175,11 +1237,12 @@
     }
 
     .wwf-organizers-hero {
-        --background-sub-hero: var(--background-primary-25);
+        --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/banner-organizers.webp");
     }
 
     .wwf-organizers-hero .nds-section-description {
-        max-inline-size: 720px;
+        max-inline-size: 100%;
     }
 
     .wwf-organizers-page__institutions {
@@ -1434,7 +1497,7 @@
     /* ======= RESOURCES PAGE ======= */
 
     .wwf-resources-hero {
-        --background-sub-hero: var(--background-primary-25);
+        --background-sub-hero: var(--background-neutral-25);
     }
 
     .wwf-resources-hero .nds-section-description {
