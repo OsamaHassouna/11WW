@@ -1,6 +1,8 @@
 # Large local hero media is deployed outside Git.
 theme/media/hero-video-original.mp4
 
+/AGENTS.md
+
 theme/media/png
 theme/media/png/*
 

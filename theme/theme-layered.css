@@ -2691,6 +2691,77 @@
         }
     }
 
+    /* ======= SEARCH PAGE ======= */
+
+    .wwf-search-results {
+        padding-block: var(--spacing-4xl, 32px) var(--spacing-7xl, 64px);
+    }
+
+    .wwf-search-results>.nds-section-wrapper {
+        display: block;
+    }
+
+    .wwf-search-form {
+        margin-block-end: var(--spacing-5xl, 40px);
+    }
+
+    .wwf-search-results__heading {
+        margin-block-end: var(--spacing-4xl, 32px);
+        text-align: start;
+    }
+
+    .wwf-search-list {
+        --gap: var(--spacing-2xl, 20px);
+    }
+
+    .wwf-search-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-2xl, 20px);
+        text-align: start;
+    }
+
+    .wwf-search-card .nds-card-content {
+        inline-size: 100%;
+    }
+
+    .wwf-search-card__tag {
+        --tag-bg: var(--background-neutral-50);
+        --tag-border: var(--border-neutral-secondary);
+        --tag-text: var(--text-primary-paragraph);
+    }
+
+    .wwf-search-card__action {
+        --btn-radius: var(--radius-sm, 4px);
+    }
+
+    .wwf-search-empty {
+        padding: var(--spacing-7xl, 64px) var(--spacing-xl, 16px);
+        color: var(--text-secondary-paragraph);
+        text-align: center;
+    }
+
+    .wwf-search-empty .nds-icon {
+        margin-block-end: var(--spacing-lg, 12px);
+        color: var(--icon-default);
+        font-size: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-search-empty p {
+        margin: 0;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-search-results {
+            padding-block: var(--spacing-3xl, 24px) var(--spacing-5xl, 40px);
+        }
+
+        .wwf-search-form,
+        .wwf-search-results__heading {
+            margin-block-end: var(--spacing-4xl, 32px);
+        }
+    }
+
     /* ---- FOOTER ---- */
 
     .wwf-footer {

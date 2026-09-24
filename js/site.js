@@ -85,6 +85,7 @@
         markActiveNav();
         applyPageMeta();
         syncLanguageSwitches();
+        initSiteSearch();
         initHeroVideo();
         initCountdowns();
         document.dispatchEvent(new CustomEvent('shell:ready'));
@@ -114,6 +115,113 @@
         document.querySelectorAll('[data-language-switch]').forEach(function (link) {
             link.setAttribute('href', targetPage);
             link.setAttribute('hreflang', targetLanguage);
+        });
+    }
+
+    /* --- site search ----------------------------------------------------- */
+    function initSiteSearch() {
+        var form = document.querySelector('[data-site-search]');
+        var results = document.getElementById('search-results-content');
+        if (!form || !results || form.hasAttribute('data-search-bound')) return;
+        form.setAttribute('data-search-bound', '');
+
+        var input = form.querySelector('input[name="q"]');
+        var clear = form.querySelector('[data-search-clear]');
+        var heading = document.getElementById('search-results-title');
+        var output = document.querySelector('[data-search-output]');
+        var queryOutput = document.querySelector('[data-search-query]');
+        var countOutput = document.querySelector('[data-search-count]');
+        var empty = document.querySelector('[data-search-empty]');
+        var pagination = document.querySelector('.wwf-search-results .nds-pagination');
+        var items = Array.prototype.slice.call(results.querySelectorAll('.nds-page-item'));
+        var searchIndex = items.map(function (item) {
+            var title = item.querySelector('.nds-card-title');
+
+            return {
+                item: item,
+                title: title ? title.textContent.toLocaleLowerCase() : '',
+                content: ((item.getAttribute('data-search-text') || '') + ' ' + item.textContent)
+                    .toLocaleLowerCase()
+            };
+        });
+        var pageSize = parseInt(results.getAttribute('data-search-per-page'), 10) || 6;
+        if (!input || !heading || !output || !queryOutput || !countOutput) return;
+
+        function refreshPagination() {
+            if (!window.NDS || !NDS.Pagination) return;
+            if (typeof NDS.Pagination.initAuto === 'function') NDS.Pagination.initAuto();
+            if (typeof NDS.Pagination.refresh === 'function') NDS.Pagination.refresh(results);
+        }
+
+        function updateUrl(query) {
+            var url = new URL(window.location.href);
+            if (query) url.searchParams.set('q', query);
+            else url.searchParams.delete('q');
+            window.history.pushState({ query: query }, '', url.pathname + url.search + url.hash);
+        }
+
+        function applySearch(shouldUpdateUrl) {
+            var query = input.value.trim();
+            var terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+            var count = 0;
+            var hasTitleMatches = terms.length && searchIndex.some(function (entry) {
+                return terms.every(function (term) { return entry.title.indexOf(term) !== -1; });
+            });
+
+            searchIndex.forEach(function (entry) {
+                var item = entry.item;
+                var searchable = hasTitleMatches ? entry.title : entry.content;
+                var matches = terms.every(function (term) { return searchable.indexOf(term) !== -1; });
+
+                if (matches) {
+                    item.removeAttribute('data-filtered');
+                    item.hidden = false;
+                    count += 1;
+                } else {
+                    item.setAttribute('data-filtered', '');
+                    item.hidden = true;
+                }
+            });
+
+            queryOutput.textContent = query ? ' “' + query + '”' : '';
+            countOutput.textContent = query ? String(count) : '0';
+            output.hidden = !query;
+            document.title = query
+                ? 'Search results for ' + query + ' | 11th World Water Forum'
+                : 'Search | 11th World Water Forum';
+            if (clear) clear.hidden = !query;
+            if (empty) empty.hidden = !query || count !== 0;
+            if (pagination) pagination.hidden = !query || count <= pageSize;
+            if (shouldUpdateUrl) updateUrl(query);
+
+            window.setTimeout(refreshPagination, 0);
+        }
+
+        var initialQuery = new URL(window.location.href).searchParams.get('q') || '';
+        input.value = initialQuery;
+        applySearch(false);
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            applySearch(true);
+            heading.focus();
+        });
+
+        input.addEventListener('input', function () {
+            if (clear) clear.hidden = !input.value;
+        });
+
+        if (clear) {
+            clear.addEventListener('click', function () {
+                input.value = '';
+                applySearch(true);
+                input.focus();
+            });
+        }
+
+        window.addEventListener('popstate', function () {
+            input.value = new URL(window.location.href).searchParams.get('q') || '';
+            applySearch(false);
         });
     }
 
