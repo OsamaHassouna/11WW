@@ -203,12 +203,17 @@
         min-block-size: 0;
         max-block-size: calc(100svh - var(--spacing-7xl, 64px));
         margin: auto;
-        overflow-x: hidden;
-        overflow-y: auto;
+        /* Keep modal chrome fixed; long copy scrolls inside the content panel. */
+        overflow: hidden;
         border-radius: var(--radius-xl, 24px);
         background-color: var(--wwf-dialogue-card-bg);
         box-shadow: var(--wwf-announcement-shadow);
         isolation: isolate;
+    }
+
+    .wwf-home-announcement-modal:not([hidden]) {
+        display: flex;
+        flex-direction: column;
     }
 
     .wwf-home-announcement-modal::before {
@@ -228,6 +233,7 @@
     }
 
     .wwf-home-announcement-modal__header {
+        flex: 0 0 auto;
         align-items: center;
         justify-content: space-between;
         padding: var(--spacing-5xl, 40px) var(--spacing-5xl, 40px) 0;
@@ -274,6 +280,7 @@
     }
 
     .wwf-home-announcement-modal__heading {
+        flex: 0 0 auto;
         padding: var(--spacing-4xl, 32px) var(--spacing-5xl, 40px) var(--spacing-5xl, 40px);
         color: var(--text-oncolor-primary);
     }
@@ -296,7 +303,11 @@
 
     .wwf-home-announcement-modal__content {
         display: block;
+        flex: 1 1 auto;
+        min-block-size: 0;
         padding: var(--spacing-5xl, 40px) var(--spacing-5xl, 40px) var(--spacing-4xl, 32px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
         background: var(--background-default);
     }
 
@@ -329,6 +340,7 @@
 
     .wwf-home-announcement-modal__actions {
         display: block;
+        flex: 0 0 auto;
         padding: 0 var(--spacing-5xl, 40px) var(--spacing-5xl, 40px);
         background: var(--background-default);
     }
@@ -2266,6 +2278,139 @@
 
     .wwf-knowledge-research-row__action {
         white-space: normal;
+    }
+
+    .wwf-knowledge-case-modal {
+        --card-width-max: var(--wwf-knowledge-case-modal-max-width);
+        inline-size: min(var(--wwf-knowledge-case-modal-max-width), calc(100% - var(--spacing-4xl, 32px)));
+        max-inline-size: var(--wwf-knowledge-case-modal-max-width);
+        max-block-size: calc(100svh - var(--spacing-4xl, 32px));
+        /* Keep the header and actions fixed while the white content panel scrolls. */
+        overflow: hidden;
+    }
+
+    .wwf-knowledge-case-modal__hero {
+        position: relative;
+        flex: 0 0 var(--wwf-knowledge-case-modal-header-height);
+        block-size: var(--wwf-knowledge-case-modal-header-height);
+        padding: var(--spacing-4xl, 32px) var(--spacing-5xl, 40px);
+        color: var(--text-oncolor-primary);
+    }
+
+    :root:is([data-a11y~="font-step-1"], [data-a11y~="font-step-2"], [data-a11y~="font-step-3"])
+        .wwf-knowledge-case-modal__hero {
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .wwf-knowledge-case-modal__close {
+        --btn-size: var(--spacing-5xl, 40px);
+        --btn-height: var(--spacing-5xl, 40px);
+        --btn-height-min: var(--spacing-5xl, 40px);
+        position: absolute;
+        inset-block-start: var(--spacing-4xl, 32px);
+        inset-inline-end: var(--spacing-5xl, 40px);
+        flex-basis: var(--spacing-5xl, 40px);
+        inline-size: var(--spacing-5xl, 40px);
+        block-size: var(--spacing-5xl, 40px);
+        min-inline-size: var(--spacing-5xl, 40px);
+        min-block-size: var(--spacing-5xl, 40px);
+    }
+
+    .wwf-knowledge-case-modal__hero .wwf-knowledge-case-modal__title {
+        max-inline-size: calc(100% - var(--spacing-7xl, 64px));
+        color: inherit;
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+    }
+
+    .wwf-knowledge-case-modal__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-lg, 12px);
+        margin-block-start: var(--spacing-xl, 16px);
+    }
+
+    .wwf-knowledge-case-modal .wwf-knowledge-case-modal__tag {
+        --tag-bg: var(--background-neutral-25);
+        --tag-border: var(--border-neutral-primary);
+        --tag-text: var(--text-default);
+        --tag-height: var(--spacing-4xl, 32px);
+        --tag-fs: var(--typo-text-sm-FS);
+        --tag-padding-inline: var(--spacing-xl, 16px);
+        margin-block-start: 0;
+    }
+
+    .wwf-knowledge-case-modal__copy {
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-knowledge-case-modal .wwf-home-announcement-modal__content {
+        flex: 1 1 auto;
+        min-block-size: 0;
+        padding: var(--spacing-5xl, 40px) var(--spacing-5xl, 40px) var(--spacing-3xl, 24px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .wwf-knowledge-case-modal .wwf-home-announcement-modal__actions {
+        flex: 0 0 auto;
+        padding: 0 var(--spacing-5xl, 40px) var(--spacing-5xl, 40px);
+    }
+
+    .wwf-knowledge-case-modal .wwf-home-announcement-modal__cancel {
+        --btn-height: var(--spacing-5xl, 40px);
+        --btn-height-min: var(--spacing-5xl, 40px);
+    }
+
+    .wwf-knowledge-case-modal__copy .wwf-knowledge-case-modal__description-text {
+        margin: 0;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-knowledge-case-modal__hero {
+            padding: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-knowledge-case-modal__close {
+            --btn-size: var(--spacing-5xl, 40px);
+            --btn-height: var(--spacing-5xl, 40px);
+            --btn-height-min: var(--spacing-5xl, 40px);
+            inset-block-start: var(--spacing-3xl, 24px);
+            inset-inline-end: var(--spacing-3xl, 24px);
+            flex-basis: var(--spacing-5xl, 40px);
+            inline-size: var(--spacing-5xl, 40px);
+            block-size: var(--spacing-5xl, 40px);
+            min-inline-size: var(--spacing-5xl, 40px);
+            min-block-size: var(--spacing-5xl, 40px);
+        }
+
+        .wwf-knowledge-case-modal__hero .wwf-knowledge-case-modal__title {
+            max-inline-size: calc(100% - var(--spacing-16, 64px));
+            font-size: var(--typo-display-xs-FS);
+            line-height: var(--typo-display-xs-LH);
+        }
+
+        .wwf-knowledge-case-modal__copy {
+            font-size: var(--typo-text-md-FS);
+            line-height: var(--typo-text-md-LH);
+        }
+
+        .wwf-knowledge-case-modal .wwf-knowledge-case-modal__tag {
+            --tag-height: var(--spacing-4xl, 32px);
+            --tag-fs: var(--typo-text-sm-FS);
+            --tag-padding-inline: var(--spacing-xl, 16px);
+        }
+
+        .wwf-knowledge-case-modal .wwf-home-announcement-modal__content {
+            padding: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-knowledge-case-modal .wwf-home-announcement-modal__actions {
+            padding: 0 var(--spacing-3xl, 24px) var(--spacing-3xl, 24px);
+        }
+
     }
 
     /* ======= DRAFT CONCEPT NOTES PAGES ======= */

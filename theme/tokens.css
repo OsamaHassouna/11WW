@@ -326,6 +326,10 @@
    --wwf-announcement-link: #155dfc;
    --wwf-announcement-shadow: 0 32px 64px -12px #10182824;
 
+   /* Knowledge Hub case study modal */
+   --wwf-knowledge-case-modal-max-width: 595px;
+   --wwf-knowledge-case-modal-header-height: 210px;
+
    /* Visa Information */
    --wwf-visa-timeline-text: #101828;
 

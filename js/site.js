@@ -80,6 +80,7 @@
     // The announcement exists only on the homepage, so this returns immediately
     // everywhere else without adding page checks to the shared shell loader.
     domReady.then(initHomeAnnouncementModal);
+    domReady.then(initKnowledgeCaseModal);
 
     Promise.all([Promise.all(loads), domReady]).then(function () {
         markActiveNav();
@@ -380,6 +381,59 @@
 
         if (NDS.Modal.init) NDS.Modal.init();
         NDS.Modal.open(modal);
+    }
+
+    /* --- knowledge hub case study modal -------------------------------- */
+    function initKnowledgeCaseModal() {
+        var section = document.querySelector('.wwf-knowledge-research');
+        var modal = document.getElementById('knowledge-case-modal');
+        if (!section || !modal || section.hasAttribute('data-case-modal-bound')) return;
+
+        var modalTitle = modal.querySelector('[data-knowledge-case-modal-title]');
+        var modalType = modal.querySelector('[data-knowledge-case-modal-type]');
+        var modalTopic = modal.querySelector('[data-knowledge-case-modal-topic]');
+        var modalDescription = modal.querySelector('[data-knowledge-case-modal-description]');
+        var closeButton = modal.querySelector('.nds-modal-close');
+        if (!modalTitle || !modalType || !modalTopic || !modalDescription || !closeButton) return;
+
+        var activeTrigger = null;
+
+        function readText(element) {
+            return element.textContent.replace(/\s+/g, ' ').trim();
+        }
+
+        modal.addEventListener('nds-modal-opened', function () {
+            closeButton.focus();
+        });
+
+        modal.addEventListener('nds-modal-closed', function () {
+            if (activeTrigger && document.contains(activeTrigger)) activeTrigger.focus();
+        });
+
+        section.setAttribute('data-case-modal-bound', '');
+        section.addEventListener('click', function (event) {
+            var trigger = event.target.closest('[data-knowledge-case-open]');
+            if (!trigger || !section.contains(trigger)) return;
+
+            var source = trigger.closest('[data-knowledge-case]');
+            if (!source) return;
+
+            var sourceTitle = source.querySelector('[data-knowledge-case-title]');
+            var sourceType = source.querySelector('[data-knowledge-case-type]');
+            var sourceTopic = source.querySelector('[data-knowledge-case-topic]');
+            var sourceDescription = source.querySelector('[data-knowledge-case-description]');
+            if (!sourceTitle || !sourceType || !sourceTopic || !sourceDescription) return;
+
+            modalTitle.textContent = readText(sourceTitle);
+            modalType.textContent = readText(sourceType);
+            modalTopic.textContent = readText(sourceTopic);
+            modalDescription.replaceChildren(sourceDescription.content.cloneNode(true));
+            activeTrigger = trigger;
+
+            window.setTimeout(function () {
+                if (!modal.hidden) closeButton.focus();
+            }, 0);
+        }, true);
     }
 
     /* --- gallery image popup viewer ------------------------------------- */
