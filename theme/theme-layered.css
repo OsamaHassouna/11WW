@@ -139,12 +139,12 @@
         inset-inline-end: 0;
         inline-size: var(--wwf-sub-hero-image-size);
         background-image: var(--wwf-sub-hero-image);
-        background-position: right 40%;
+        background-position: right center;
         background-size: cover;
         -webkit-mask-image: var(--wwf-sub-hero-mask);
         mask-image: var(--wwf-sub-hero-mask);
         opacity: .8;
-
+        
     }
 
     @media (min-width: 961px) {
