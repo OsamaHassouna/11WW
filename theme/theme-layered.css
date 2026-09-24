@@ -1498,6 +1498,16 @@
 
     .wwf-resources-hero {
         --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-resources.webp");
+    }
+
+    .wwf-resources-hero::after {
+        background-position: right 70%;
+        background-size: 75%;
+    }
+
+    :is(html[dir="rtl"], .rtl) .wwf-resources-hero::after {
+        background-position: left 70%;
     }
 
     .wwf-resources-hero .nds-section-description {
@@ -1575,6 +1585,7 @@
 
     .wwf-media-hero {
         --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-media.webp");
     }
 
     .wwf-media-hero .nds-section-description {
@@ -1771,6 +1782,7 @@
 
     .wwf-riyadh-hero {
         --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-aboutriyad.webp");
     }
 
     .wwf-riyadh-hero .nds-section-description {
@@ -2065,12 +2077,15 @@
         --background-sub-hero: var(--background-neutral-25);
     }
 
+    .wwf-knowledge-hero {
+        --wwf-sub-hero-image: url("media/hero-knowledga.webp");
+    }
+
     .wwf-knowledge-hero .nds-section-description,
     .wwf-concept-hero .nds-section-description {
         max-inline-size: none;
     }
 
-    .wwf-knowledge-hero .nds-section-title,
     .wwf-concept-hero .nds-section-title {
         font-size: var(--typo-display-sm-FS);
         line-height: var(--typo-display-sm-LH);
