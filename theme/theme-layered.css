@@ -1537,6 +1537,201 @@
         }
     }
 
+    /* ======= POLITICAL PROCESS PAGE ======= */
+
+    .wwf-political-hero {
+        --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-political.webp");
+    }
+
+    .wwf-political-hero .nds-section-description {
+        max-inline-size: 720px;
+    }
+
+    .wwf-political-groups {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-political-groups__grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: stretch;
+    }
+
+    .wwf-political-group-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-3xl, 24px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        block-size: 100%;
+    }
+
+    .wwf-political-group-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-political-group-card .nds-card-text {
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-political-group-card__icon {
+        --icon-bg-color: var(--background-success-50);
+        --icon-color: var(--featuredicons-icon-success);
+    }
+
+    .wwf-political-group-card__output {
+        border-block-start: 1px solid var(--border-neutral-primary);
+        margin-block: auto 0;
+        padding-block-start: var(--spacing-xl, 16px);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-political-group-card .nds-card-tags {
+        margin-block-start: auto;
+    }
+
+    .wwf-political-group-card__tag--success {
+        --tag-bg: var(--background-success-50);
+        --tag-border: var(--border-success-light);
+        --tag-text: var(--colors-green-800);
+    }
+
+    .wwf-political-group-card__tag--warning {
+        --tag-bg: var(--background-warning-50);
+        --tag-border: var(--border-warning-light);
+        --tag-text: var(--text-warning);
+    }
+
+    .wwf-political-commission {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-political-commission__card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+    }
+
+    .wwf-political-commission__person {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-2xl, 20px);
+        padding-block: var(--spacing-2xl, 20px);
+    }
+
+    .wwf-political-commission__person + .wwf-political-commission__person {
+        border-block-start: 1px solid var(--border-neutral-primary);
+    }
+
+    .wwf-political-commission__logo {
+        flex: none;
+        inline-size: var(--spacing-7xl, 64px);
+        block-size: var(--spacing-7xl, 64px);
+        display: grid;
+        place-items: center;
+    }
+
+    .wwf-political-commission__logo--wwc {
+        /* The supplied WWC logo is horizontal; crop to its emblem as in the reference. */
+        overflow: hidden;
+    }
+
+    .wwf-political-commission__logo--wwc img {
+        block-size: var(--spacing-7xl, 64px);
+        inline-size: var(--spacing-7xl, 64px);
+        object-fit: cover;
+        object-position: left center;
+        -webkit-mask-image: linear-gradient(to right, black calc(var(--spacing-7xl, 64px) - var(--spacing-lg, 12px)), transparent calc(var(--spacing-7xl, 64px) - var(--spacing-md, 8px)));
+        mask-image: linear-gradient(to right, black calc(var(--spacing-7xl, 64px) - var(--spacing-lg, 12px)), transparent calc(var(--spacing-7xl, 64px) - var(--spacing-md, 8px)));
+    }
+
+    .wwf-political-commission__logo--mewa {
+        border: 2px solid var(--colors-secondary-gold-500);
+        border-radius: var(--radius-full);
+        background: var(--colors-green-800);
+    }
+
+    .wwf-political-commission__logo--mewa img {
+        inline-size: 75%;
+        block-size: 75%;
+        filter: brightness(0) saturate(100%) invert(78%) sepia(43%) saturate(566%) hue-rotate(356deg) brightness(101%) contrast(93%);
+    }
+
+    .wwf-political-commission__person h3 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 600;
+    }
+
+    .wwf-political-commission__person p {
+        margin-block: var(--spacing-xs, 4px) 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-political-documents {
+        --section-padding-block: 0;
+        padding-block-end: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-political-documents__card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-political-documents__heading {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-political-documents__heading h2 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-political-documents__icon {
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--text-default);
+        flex: none;
+    }
+
+    .wwf-political-documents__button {
+        --btn-radius: var(--radius-sm, 4px);
+        block-size: auto;
+        min-block-size: var(--spacing-5xl, 40px);
+        white-space: normal;
+        text-align: start;
+    }
+
+    .wwf-political-documents__button .nds-label {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 600px) {
+        .wwf-political-documents__card {
+            align-items: stretch;
+            flex-direction: column;
+        }
+    }
+
     /* ======= RESOURCES PAGE ======= */
 
     .wwf-resources-hero {
