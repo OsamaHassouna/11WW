@@ -341,6 +341,14 @@
    /* Visitor Guide */
    --wwf-visitor-note-color: #666666;
 
+   /* Official Agenda */
+   --wwf-agenda-day-active-bg: #081B53;
+   --wwf-agenda-day-size: 120px;
+   --wwf-agenda-table-icon-size: 28px;
+   --wwf-agenda-table-cell-padding-block: 7.5px;
+   --wwf-agenda-fact-padding-block: 18.5px;
+   --wwf-agenda-map-aspect-ratio: 1280 / 277;
+
    /* About the Forum */
    --wwf-about-warning-text: #93370D;
    --wwf-about-warning-border: #FEDF89;
