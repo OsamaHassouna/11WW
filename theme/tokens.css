@@ -337,4 +337,13 @@
    --wwf-forum-counter-gradient: linear-gradient(90deg, #2C90B9 0%, #8AD2F3 44.18%);
    --wwf-forum-venue-image-overlay: linear-gradient(90deg, rgba(13, 18, 28, 0) 0%, rgba(13, 18, 28, 0.6) 100%);
    --wwf-forum-rating-shadow: 0px 4px 16px 0px #0000000A;
+
+   /* About the Forum */
+   --wwf-about-warning-text: #93370D;
+   --wwf-about-warning-border: #FEDF89;
+   --wwf-about-warning-bg: #FFFAEB;
+   --wwf-about-inquiry-bg: #FFFFFF33;
+   --wwf-about-hero-image-opacity: .8;
+   --wwf-about-hero-overlay: linear-gradient(90deg, #223D8B 0.06%, rgba(34, 61, 139, 0.4) 100%);
+   --wwf-about-hero-overlay-rtl: linear-gradient(270deg, #223D8B 0.06%, rgba(34, 61, 139, 0.4) 100%);
 }
