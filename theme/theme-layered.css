@@ -1537,7 +1537,7 @@
         }
     }
 
-    /* ======= POLITICAL PROCESS PAGE ======= */
+    /* ======= POLITICAL PROCESS PAGE AND SHARED PROCESS COMPONENTS ======= */
 
     .wwf-political-hero {
         --background-sub-hero: var(--background-neutral-25);
@@ -1545,7 +1545,7 @@
     }
 
     .wwf-political-hero .nds-section-description {
-        max-inline-size: 720px;
+        max-inline-size: var(--spacing-180);
     }
 
     .wwf-political-groups {
@@ -1604,29 +1604,29 @@
         --tag-text: var(--text-warning);
     }
 
-    .wwf-political-commission {
+    .wwf-process-commission {
         --section-padding-block: var(--spacing-7xl, 64px);
     }
 
-    .wwf-political-commission__card {
+    .wwf-process-commission__card {
         --card-width-max: none;
         --card-padding: var(--spacing-2xl, 20px);
         --card-border: var(--border-neutral-primary);
         --card-radius: var(--radius-lg, 16px);
     }
 
-    .wwf-political-commission__person {
+    .wwf-process-commission__person {
         display: flex;
         align-items: center;
         gap: var(--spacing-2xl, 20px);
         padding-block: var(--spacing-2xl, 20px);
     }
 
-    .wwf-political-commission__person + .wwf-political-commission__person {
+    .wwf-process-commission__person + .wwf-process-commission__person {
         border-block-start: 1px solid var(--border-neutral-primary);
     }
 
-    .wwf-political-commission__logo {
+    .wwf-process-commission__logo {
         flex: none;
         inline-size: var(--spacing-7xl, 64px);
         block-size: var(--spacing-7xl, 64px);
@@ -1634,12 +1634,12 @@
         place-items: center;
     }
 
-    .wwf-political-commission__logo--wwc {
+    .wwf-process-commission__logo--wwc {
         /* The supplied WWC logo is horizontal; crop to its emblem as in the reference. */
         overflow: hidden;
     }
 
-    .wwf-political-commission__logo--wwc img {
+    .wwf-process-commission__logo--wwc img {
         block-size: var(--spacing-7xl, 64px);
         inline-size: var(--spacing-7xl, 64px);
         object-fit: cover;
@@ -1648,19 +1648,19 @@
         mask-image: linear-gradient(to right, black calc(var(--spacing-7xl, 64px) - var(--spacing-lg, 12px)), transparent calc(var(--spacing-7xl, 64px) - var(--spacing-md, 8px)));
     }
 
-    .wwf-political-commission__logo--mewa {
+    .wwf-process-commission__logo--mewa {
         border: 2px solid var(--colors-secondary-gold-500);
         border-radius: var(--radius-full);
         background: var(--colors-green-800);
     }
 
-    .wwf-political-commission__logo--mewa img {
+    .wwf-process-commission__logo--mewa img {
         inline-size: 75%;
         block-size: 75%;
         filter: brightness(0) saturate(100%) invert(78%) sepia(43%) saturate(566%) hue-rotate(356deg) brightness(101%) contrast(93%);
     }
 
-    .wwf-political-commission__person h3 {
+    .wwf-process-commission__person h3 {
         margin: 0;
         color: var(--text-default);
         font-size: var(--typo-text-sm-FS);
@@ -1668,19 +1668,19 @@
         font-weight: 600;
     }
 
-    .wwf-political-commission__person p {
+    .wwf-process-commission__person p {
         margin-block: var(--spacing-xs, 4px) 0;
         color: var(--text-primary-paragraph);
         font-size: var(--typo-text-sm-FS);
         line-height: var(--typo-text-sm-LH);
     }
 
-    .wwf-political-documents {
+    .wwf-process-documents {
         --section-padding-block: 0;
         padding-block-end: var(--spacing-7xl, 64px);
     }
 
-    .wwf-political-documents__card {
+    .wwf-process-documents__card {
         --card-width-max: none;
         --card-padding: var(--spacing-2xl, 20px);
         --card-border: var(--border-neutral-primary);
@@ -1692,13 +1692,13 @@
         gap: var(--spacing-3xl, 24px);
     }
 
-    .wwf-political-documents__heading {
+    .wwf-process-documents__heading {
         display: flex;
         align-items: center;
         gap: var(--spacing-3xl, 24px);
     }
 
-    .wwf-political-documents__heading h2 {
+    .wwf-process-documents__heading h2 {
         margin: 0;
         color: var(--text-default);
         font-size: var(--typo-text-xl-FS);
@@ -1706,13 +1706,13 @@
         font-weight: 700;
     }
 
-    .wwf-political-documents__icon {
+    .wwf-process-documents__icon {
         --icon-bg-color: var(--background-neutral-100);
         --icon-color: var(--text-default);
         flex: none;
     }
 
-    .wwf-political-documents__button {
+    .wwf-process-documents__button {
         --btn-radius: var(--radius-sm, 4px);
         block-size: auto;
         min-block-size: var(--spacing-5xl, 40px);
@@ -1720,13 +1720,124 @@
         text-align: start;
     }
 
-    .wwf-political-documents__button .nds-label {
+    .wwf-process-documents__button .nds-label {
         white-space: normal;
         overflow-wrap: anywhere;
     }
 
     @media (max-width: 600px) {
-        .wwf-political-documents__card {
+        .wwf-process-documents__card {
+            align-items: stretch;
+            flex-direction: column;
+        }
+    }
+
+    /* ======= REGIONAL PROCESS PAGE ======= */
+
+    .wwf-regional-hero {
+        --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-regional.webp");
+    }
+
+    .wwf-regional-hero .nds-section-description {
+        max-inline-size: var(--spacing-180);
+    }
+
+    .wwf-regional-groups {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-regional-groups__grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: stretch;
+    }
+
+    .wwf-regional-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-2xl, 20px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        block-size: 100%;
+    }
+
+    .wwf-regional-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-regional-card .nds-card-text {
+        flex: 0 1 auto;
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-regional-card .nds-card-description {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-regional-card__icon {
+        --icon-bg-color: var(--background-success-50);
+        --icon-color: var(--featuredicons-icon-success);
+    }
+
+    .wwf-regional-card__coordinators {
+        /* The reference uses the DGA card's 1px divider width. */
+        border-block-start: 1px solid var(--border-neutral-primary);
+        margin: 0;
+        padding-block-start: var(--spacing-xl, 16px);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-regional-card__tags {
+        margin-block-start: auto;
+        flex-wrap: wrap;
+    }
+
+    .wwf-regional-tag {
+        --tag-fs: var(--typo-text-xs-FS);
+    }
+
+    .wwf-regional-tag--report {
+        --tag-bg: var(--colors-secondary-gold-50);
+        --tag-border: var(--colors-secondary-gold-300);
+        --tag-text: var(--colors-secondary-gold-700);
+    }
+
+    .wwf-regional-tag--roadmap {
+        --tag-bg: var(--background-success-50);
+        --tag-border: var(--border-success-light);
+        --tag-text: var(--colors-green-800);
+    }
+
+    .wwf-regional-tag--commitments {
+        --tag-bg: var(--background-warning-50);
+        --tag-border: var(--border-warning-light);
+        --tag-text: var(--text-warning);
+    }
+
+    .wwf-regional-documents__actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    @media (max-width: 960px) {
+        .wwf-regional-page .wwf-process-documents__card {
+            align-items: stretch;
+            flex-direction: column;
+        }
+
+        .wwf-regional-documents__actions {
+            justify-content: flex-start;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-regional-documents__actions {
             align-items: stretch;
             flex-direction: column;
         }
