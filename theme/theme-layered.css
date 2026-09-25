@@ -680,8 +680,8 @@
     /* ---- MILESTONES ---- */
 
     .wwf-milestones__grid {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.62fr) minmax(0, 1fr);
+        display: flex;
+        align-items: stretch;
         gap: var(--spacing-3xl, 24px);
     }
 
@@ -736,9 +736,19 @@
         --card-width-max: none;
         position: relative;
         box-sizing: border-box;
+        flex: 1 1 0;
+        min-inline-size: 0;
         block-size: var(--spacing-120, 480px);
         overflow: hidden;
         isolation: isolate;
+    }
+
+    .wwf-milestone-card--active {
+        flex-grow: var(--wwf-milestone-active-grow);
+    }
+
+    .wwf-milestone-card--active .wwf-milestone-card__title {
+        max-inline-size: var(--spacing-56, 224px);
     }
 
     .wwf-milestone-card::after {
@@ -790,6 +800,7 @@
 
     .wwf-milestone-card__date {
         align-self: flex-start;
+        border-radius: var(--radius-md, 8px);
     }
 
     .wwf-milestone-card__title {
@@ -803,7 +814,7 @@
         flex-direction: row;
         align-items: center;
         gap: var(--spacing-md, 8px);
-        color: var(--text-oncolor-secondary);
+        color: var(--wwf-milestone-complete-color);
         font-size: var(--typo-text-md-FS);
         line-height: var(--typo-text-md-LH);
     }
@@ -826,10 +837,10 @@
         --btn-padding: var(--spacing-lg, 12px);
         --btn-gap: var(--spacing-sm, 6px);
         --btn-icon-size: var(--spacing-2xl, 20px);
-        --btn-bg: var(--wwf-action-bg);
-        --btn-bg-hover: var(--wwf-action-bg-hover);
-        --btn-bg-active: var(--wwf-action-bg-active);
-        --btn-bg-selected: var(--wwf-action-bg-active);
+        --btn-bg: var(--colors-neutral-800);
+        --btn-bg-hover: var(--colors-neutral-700);
+        --btn-bg-active: var(--colors-neutral-900);
+        --btn-bg-selected: var(--colors-neutral-900);
         --btn-border: transparent;
         --btn-border-hover: transparent;
         --btn-border-active: transparent;
@@ -837,12 +848,32 @@
         --btn-color: var(--text-oncolor-primary);
     }
 
+    .wwf-milestone-card__active-only {
+        display: none;
+    }
+
+    .wwf-milestone-card--active .wwf-milestone-card__inactive-only {
+        display: none;
+    }
+
+    .wwf-milestone-card--active .wwf-milestone-card__active-only {
+        display: inline-flex;
+    }
+
+    .wwf-milestone-card__actions .wwf-milestone-card__register-action {
+        --btn-bg: var(--wwf-action-bg);
+        --btn-bg-hover: var(--wwf-action-bg-hover);
+        --btn-bg-active: var(--wwf-action-bg-active);
+        --btn-bg-selected: var(--wwf-action-bg-active);
+    }
+
     @media (max-width: 960px) {
         .wwf-milestones__grid {
+            display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        .wwf-milestone-card:last-child {
+        .wwf-milestone-card--active {
             grid-column: 1 / -1;
         }
     }
@@ -856,7 +887,7 @@
             block-size: var(--wwf-milestone-card-height-mobile);
         }
 
-        .wwf-milestone-card:last-child {
+        .wwf-milestone-card--active {
             grid-column: auto;
         }
 
@@ -4902,14 +4933,20 @@
         padding: var(--spacing-2xl, 20px) var(--spacing-3xl, 24px);
     }
 
-    .wwf-forum-registration {
+    .wwf-forum-sidebar {
+        position: sticky;
+        inset-block-start: calc(var(--nds-nav-height, 72px) + var(--spacing-xl, 16px));
+        display: grid;
+        gap: var(--spacing-xl, 16px);
+        min-inline-size: 0;
+    }
+
+    .wwf-forum-sidebar-card {
         --card-width-max: none;
         --card-padding: 0;
         --card-gap: 0;
         --card-radius: var(--radius-lg, 16px);
         --card-border: var(--border-neutral-primary);
-        position: sticky;
-        inset-block-start: calc(var(--nds-nav-height, 72px) + var(--spacing-xl, 16px));
         min-inline-size: 0;
         overflow: clip;
         box-shadow: var(--shadow-xl);
@@ -4975,6 +5012,14 @@
         grid-column: 1 / -1;
     }
 
+    html[data-a11y~="font-step-3"] .wwf-forum-registration__actions {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    html[data-a11y~="font-step-3"] .wwf-forum-registration__visa {
+        grid-column: auto;
+    }
+
     @media (max-width: 960px) {
         .wwf-forum-layout {
             grid-template-columns: minmax(0, 1fr);
@@ -4992,7 +5037,7 @@
             order: 0;
         }
 
-        .wwf-forum-registration {
+        .wwf-forum-sidebar {
             order: 1;
             position: static;
         }
@@ -5069,6 +5114,10 @@
 
         .wwf-forum-registration__actions {
             grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-forum-quick-links .wwf-forum-registration__actions {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .wwf-forum-registration__visa {

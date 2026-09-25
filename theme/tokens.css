@@ -308,6 +308,8 @@
 
    /* Milestones */
    --wwf-milestone-card-height-mobile: 440px;
+   --wwf-milestone-active-grow: 1.62;
+   --wwf-milestone-complete-color: #BFE6DB;
    --wwf-milestone-card-overlay: linear-gradient(
       0deg,
       rgba(3, 2, 19, 0.9) 0%,
