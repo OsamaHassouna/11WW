@@ -359,4 +359,29 @@
    --wwf-about-hero-image-opacity: .8;
    --wwf-about-hero-overlay: linear-gradient(90deg, #223D8B 0.06%, rgba(34, 61, 139, 0.4) 100%);
    --wwf-about-hero-overlay-rtl: linear-gradient(270deg, #223D8B 0.06%, rgba(34, 61, 139, 0.4) 100%);
+
+   /* Forum Processes: diagram colors and the supplied hover states. */
+   --wwf-forum-process-card-hover-border: #CBAB7B;
+   --wwf-forum-process-shape-hover-border: #00000033;
+   --wwf-forum-process-overview-political-fill: #FED69A;
+   --wwf-forum-process-overview-program-fill: #8D96B0;
+   --wwf-forum-process-overview-ring: #A1B9D4;
+   --wwf-forum-process-overview-label: #000000;
+   --wwf-forum-process-overview-badge-text: #081B53;
+   --wwf-forum-process-launching-soon: #9CA3AF;
+   --wwf-forum-process-political-fill: var(--wwf-forum-process-overview-political-fill);
+   --wwf-forum-process-thematic-fill: #3266A2;
+   --wwf-forum-process-regional-fill: #64C5D7;
+   --wwf-forum-process-framework-thematic-fill: #A1B9D4;
+   --wwf-forum-process-framework-regional-fill: #B8E4ED;
+   --wwf-forum-process-framework-political-halo: #FDA523;
+   --wwf-forum-process-framework-outcome-halo: var(--wwf-forum-process-overview-badge-text);
+   --wwf-forum-process-framework-outcome-link: #6674A9;
+   --wwf-forum-process-framework-gradient-blue: #3B82F6;
+   --wwf-forum-process-framework-gradient-green: #22C55E;
+   --wwf-forum-process-framework-gradient-orange: #F97316;
+   --wwf-forum-process-framework-label: #333333;
+   --wwf-forum-process-program-fill: var(--wwf-forum-process-overview-program-fill);
+   --wwf-forum-process-outcome-fill: #5A668C;
+   --wwf-forum-process-ring: #9BB5D2;
 }

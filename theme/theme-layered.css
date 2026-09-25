@@ -1983,6 +1983,528 @@
         }
     }
 
+    /* ======= FORUM PROCESSES PAGE ======= */
+
+    .wwf-forum-process-hero {
+        --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-process.webp");
+    }
+
+    .wwf-forum-process-hero .nds-section-description {
+        max-inline-size: var(--spacing-256, 1024px);
+    }
+
+    .wwf-forum-process-overview,
+    .wwf-forum-process-framework,
+    .wwf-forum-process-governance,
+    .wwf-forum-program-governance,
+    .wwf-forum-process-hub {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-forum-process-kicker {
+        --tag-bg: var(--background-neutral-100);
+        --tag-border: transparent;
+        block-size: auto;
+        min-inline-size: 0;
+        padding-block: var(--spacing-xs, 4px);
+        border-radius: var(--radius-full);
+        line-height: var(--typo-text-md-LH);
+        white-space: normal;
+        margin-block-end: var(--spacing-xl, 16px);
+    }
+
+    .wwf-forum-process-kicker .nds-label {
+        white-space: normal;
+    }
+
+    .wwf-forum-process-framework .nds-section-description,
+    .wwf-forum-process-governance .nds-section-description,
+    .wwf-forum-program-governance .nds-section-description {
+        max-inline-size: none;
+    }
+
+    .wwf-forum-process-overview__layout,
+    .wwf-forum-process-framework__layout {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        align-items: stretch;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-forum-process-overview__cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-forum-process-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-gap: var(--spacing-3xl, 24px);
+        --card-border: var(--colors-neutral-300);
+        --card-radius: var(--radius-lg, 16px);
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--featuredicons-icon-default);
+        min-inline-size: 0;
+    }
+
+    .wwf-forum-process-card--featured {
+        grid-column: 1 / -1;
+    }
+
+    .wwf-forum-process-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-forum-process-card .nds-card-title {
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+    }
+
+    .wwf-forum-process-card .nds-card-description {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-forum-process-card__action {
+        --btn-size: var(--spacing-4xl, 32px);
+        --btn-padding: var(--spacing-none, 0);
+        --btn-gap: var(--spacing-sm, 6px);
+    }
+
+    .wwf-forum-process-card__action .hgi {
+        transform: none;
+    }
+
+    .wwf-forum-process-diagram-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-border: var(--colors-neutral-300);
+        --card-radius: var(--radius-lg, 16px);
+        display: grid;
+        place-items: center;
+        min-inline-size: 0;
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram-card {
+        --card-padding: var(--spacing-md, 8px);
+    }
+
+    .wwf-forum-process-diagram {
+        display: block;
+        inline-size: min(100%, var(--spacing-120, 480px));
+        block-size: auto;
+        direction: ltr;
+    }
+
+    .wwf-forum-process-diagram__ring {
+        fill: none;
+        stroke: var(--wwf-forum-process-ring);
+        stroke-width: 2px;
+        stroke-dasharray: 7 8;
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__ring {
+        stroke: var(--wwf-forum-process-overview-ring);
+    }
+
+    .wwf-forum-process-diagram__dots {
+        fill: var(--wwf-forum-process-ring);
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__dots {
+        fill: var(--wwf-forum-process-overview-ring);
+    }
+
+    .wwf-forum-process-diagram__badge {
+        fill: var(--background-default);
+        stroke: var(--wwf-forum-process-ring);
+        stroke-width: 1px;
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__badge {
+        stroke: var(--wwf-forum-process-overview-ring);
+    }
+
+    html[data-a11y*="font-step"] .wwf-forum-process-overview .wwf-forum-process-diagram__badge {
+        x: 116px;
+        width: 248px;
+    }
+
+    .wwf-forum-process-diagram text {
+        fill: var(--text-default);
+        font-family: inherit;
+        font-size: var(--typo-text-sm-FS);
+        font-weight: 700;
+        text-anchor: middle;
+        dominant-baseline: middle;
+        pointer-events: none;
+    }
+
+    .wwf-forum-process-diagram .wwf-forum-process-diagram__badge-text {
+        fill: var(--colors-blue-900);
+        font-size: var(--typo-text-xs-FS);
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__badge-text {
+        fill: var(--wwf-forum-process-overview-badge-text);
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__node:not(.wwf-forum-process-diagram__node--program) text {
+        fill: var(--wwf-forum-process-overview-label);
+        font-size: var(--typo-text-xs-FS);
+    }
+
+    .wwf-forum-process-diagram__node {
+        cursor: pointer;
+        outline: none;
+    }
+
+    .wwf-forum-process-diagram__shape {
+        stroke: transparent;
+        stroke-width: 4px;
+        vector-effect: non-scaling-stroke;
+    }
+
+    .wwf-forum-process-diagram__node:is(:hover, :focus-visible) .wwf-forum-process-diagram__shape {
+        stroke: var(--wwf-forum-process-shape-hover-border);
+    }
+
+    .wwf-forum-process-diagram__shape--framework-political {
+        fill: var(--wwf-forum-process-political-fill);
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__shape--political {
+        fill: var(--wwf-forum-process-overview-political-fill);
+    }
+
+    .wwf-forum-process-diagram__shape--thematic {
+        fill: var(--wwf-forum-process-thematic-fill);
+        fill-opacity: .3;
+    }
+
+    .wwf-forum-process-diagram__shape--regional {
+        fill: var(--wwf-forum-process-regional-fill);
+        fill-opacity: .3;
+    }
+
+    .wwf-forum-process-diagram__shape--program {
+        fill: var(--wwf-forum-process-program-fill);
+    }
+
+    .wwf-forum-process-overview .wwf-forum-process-diagram__shape--program {
+        fill: var(--wwf-forum-process-overview-program-fill);
+    }
+
+    .wwf-forum-process-diagram__shape--framework-thematic {
+        fill: var(--wwf-forum-process-framework-thematic-fill);
+    }
+
+    .wwf-forum-process-diagram__shape--framework-regional {
+        fill: var(--wwf-forum-process-framework-regional-fill);
+    }
+
+    .wwf-forum-process-diagram__shape--outcome {
+        fill: var(--wwf-forum-process-outcome-fill);
+    }
+
+    .wwf-forum-process-diagram__node--program text {
+        fill: var(--colors-blue-900);
+        font-size: var(--typo-text-xs-FS);
+    }
+
+    html:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-forum-process-overview .wwf-forum-process-diagram__node[data-process="youth"] text {
+        transform: translateX(var(--spacing-lg, 12px));
+    }
+
+    html:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-forum-process-overview .wwf-forum-process-diagram__node[data-process="intersectoral"] text {
+        transform: translateX(calc(-1 * var(--spacing-lg, 12px)));
+    }
+
+    .wwf-forum-process-diagram__program-icon {
+        fill: none;
+        stroke: var(--background-default);
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    .wwf-forum-process-diagram__program-icon--people {
+        stroke-width: 2px;
+    }
+
+    .wwf-forum-process-interactive:has(.wwf-forum-process-diagram__node[data-process="political"]:is(:hover, :focus-visible)) [data-process-card="political"],
+    .wwf-forum-process-interactive:has(.wwf-forum-process-diagram__node[data-process="thematic"]:is(:hover, :focus-visible)) [data-process-card="thematic"],
+    .wwf-forum-process-interactive:has(.wwf-forum-process-diagram__node[data-process="regional"]:is(:hover, :focus-visible)) [data-process-card="regional"],
+    .wwf-forum-process-interactive:has(.wwf-forum-process-diagram__node[data-process="youth"]:is(:hover, :focus-visible)) [data-process-card="youth"],
+    .wwf-forum-process-interactive:has(.wwf-forum-process-diagram__node[data-process="intersectoral"]:is(:hover, :focus-visible)) [data-process-card="intersectoral"] {
+        --card-border: var(--wwf-forum-process-card-hover-border);
+        /* The DGA card's 1px border and 3px inset shadow make a stable 4px highlight. */
+        box-shadow: inset 0 0 0 calc(var(--spacing-xs, 4px) - 1px) var(--wwf-forum-process-card-hover-border);
+    }
+
+    .wwf-forum-process-framework__cards {
+        display: grid;
+        gap: var(--spacing-xl, 16px);
+    }
+
+    .wwf-forum-process-framework-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-border: var(--colors-neutral-300);
+        --card-radius: var(--radius-lg, 16px);
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--featuredicons-icon-default);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-3xl, 24px);
+        min-inline-size: 0;
+    }
+
+    .wwf-forum-process-framework-card .nds-featured-icon {
+        flex: none;
+    }
+
+    .wwf-forum-process-framework-card h3 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+    }
+
+    .wwf-forum-process-framework-card p {
+        margin-block: var(--spacing-xs, 4px) 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-forum-process-diagram__connections {
+        fill: none;
+        stroke-width: 2px;
+        stroke-dasharray: 7 6;
+    }
+
+    .wwf-forum-process-diagram__connections--outcome {
+        stroke: var(--wwf-forum-process-framework-outcome-link);
+    }
+
+    .wwf-forum-process-gradient-stop--thematic {
+        stop-color: var(--wwf-forum-process-thematic-fill);
+    }
+
+    .wwf-forum-process-gradient-stop--regional {
+        stop-color: var(--wwf-forum-process-regional-fill);
+    }
+
+    .wwf-forum-process-gradient-stop--political {
+        stop-color: var(--wwf-forum-process-framework-political-halo);
+    }
+
+    .wwf-forum-process-gradient-stop--blue {
+        stop-color: var(--wwf-forum-process-framework-gradient-blue);
+    }
+
+    .wwf-forum-process-gradient-stop--green {
+        stop-color: var(--wwf-forum-process-framework-gradient-green);
+    }
+
+    .wwf-forum-process-gradient-stop--orange {
+        stop-color: var(--wwf-forum-process-framework-gradient-orange);
+    }
+
+    .wwf-forum-process-diagram--framework .wwf-forum-process-diagram__halo {
+        fill-opacity: .2;
+    }
+
+    .wwf-forum-process-diagram__halo--thematic {
+        fill: var(--wwf-forum-process-thematic-fill);
+    }
+
+    .wwf-forum-process-diagram__halo--regional {
+        fill: var(--wwf-forum-process-regional-fill);
+    }
+
+    .wwf-forum-process-diagram__halo--political {
+        fill: var(--wwf-forum-process-framework-political-halo);
+    }
+
+    .wwf-forum-process-diagram--framework .wwf-forum-process-diagram__halo--outcome {
+        fill: var(--wwf-forum-process-framework-outcome-halo);
+        fill-opacity: .3;
+    }
+
+    .wwf-forum-process-diagram--framework text {
+        fill: var(--wwf-forum-process-framework-label);
+        font-size: var(--typo-text-sm-FS);
+    }
+
+    .wwf-forum-process-diagram--framework .wwf-forum-process-diagram__node:is([data-process="thematic"], [data-process="regional"], [data-process="political"]) text {
+        font-size: var(--typo-text-xs-FS);
+    }
+
+    .wwf-forum-process-diagram--framework .wwf-forum-process-diagram__badge {
+        stroke: var(--wwf-forum-process-overview-ring);
+    }
+
+    .wwf-forum-process-diagram--framework .wwf-forum-process-diagram__badge-text {
+        fill: var(--wwf-forum-process-overview-badge-text);
+        font-size: var(--typo-text-xs-FS);
+    }
+
+    html[data-a11y*="font-step"] .wwf-forum-process-diagram--framework .wwf-forum-process-diagram__badge {
+        x: 116px;
+        width: 248px;
+    }
+
+    .wwf-forum-process-governance {
+        --section-bg: var(--background-neutral-25);
+    }
+
+    .wwf-forum-process-governance__grid,
+    .wwf-forum-program-governance__grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: stretch;
+    }
+
+    .wwf-forum-process-governance-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-border: var(--colors-neutral-300);
+        --card-radius: var(--radius-lg, 16px);
+        min-inline-size: 0;
+        block-size: 100%;
+    }
+
+    .wwf-forum-process-governance-card h3 {
+        margin: 0;
+        padding-block-end: var(--spacing-xl, 16px);
+        border-block-end: 1px solid var(--border-neutral-primary);
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+    }
+
+    .wwf-forum-process-governance-card__logos {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xl, 16px);
+        min-inline-size: 0;
+        padding-block: var(--spacing-xl, 16px);
+        border-block-end: 1px solid var(--border-neutral-primary);
+    }
+
+    .wwf-forum-process-governance-card__logos img {
+        display: block;
+        min-inline-size: 0;
+        block-size: auto;
+        object-fit: contain;
+    }
+
+    .wwf-forum-process-governance-card__logo--mewa {
+        inline-size: 62%;
+        max-inline-size: var(--spacing-56, 224px);
+    }
+
+    .wwf-forum-process-governance-card__logo--wwc {
+        inline-size: 28%;
+        max-inline-size: var(--spacing-24, 96px);
+    }
+
+    .wwf-forum-process-governance-card p {
+        margin: 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-forum-process-governance-card p strong {
+        margin-inline-end: var(--spacing-md, 8px);
+        color: var(--text-default);
+    }
+
+    .wwf-forum-process-governance-card--soon p {
+        display: grid;
+        flex: 1;
+        place-items: center;
+        color: var(--wwf-forum-process-launching-soon);
+    }
+
+    .wwf-forum-process-hub {
+        --section-bg: var(--background-neutral-25);
+    }
+
+    .wwf-forum-process-hub__card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-border: var(--colors-neutral-300);
+        --card-radius: var(--radius-lg, 16px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-forum-process-hub__card .nds-featured-icon {
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--text-default);
+        flex: none;
+    }
+
+    .wwf-forum-process-hub__copy {
+        flex: 1;
+        min-inline-size: 0;
+    }
+
+    .wwf-forum-process-hub__copy h2 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+    }
+
+    .wwf-forum-process-hub__copy p {
+        margin-block: var(--spacing-md, 8px) 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-forum-process-hub__button {
+        --btn-radius: var(--radius-sm, 4px);
+        flex: none;
+        white-space: normal;
+    }
+
+    @media (max-width: 1024px) {
+        .wwf-forum-process-overview__layout,
+        .wwf-forum-process-framework__layout {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-forum-process-overview__cards {
+            grid-template-columns: minmax(0, 1fr);
+            grid-auto-rows: auto;
+        }
+
+        .wwf-forum-process-card--featured {
+            grid-column: auto;
+        }
+
+        .wwf-forum-process-hub__card {
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .wwf-forum-process-hub__button {
+            margin-inline-start: auto;
+        }
+    }
+
     /* ======= RESOURCES PAGE ======= */
 
     .wwf-resources-hero {
