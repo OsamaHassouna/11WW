@@ -1843,6 +1843,146 @@
         }
     }
 
+    /* ======= THEMATIC PROCESS PAGE ======= */
+
+    .wwf-thematic-process-hero {
+        --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/hero-thematic.webp");
+    }
+
+    .wwf-thematic-process-hero .nds-section-description {
+        max-inline-size: var(--spacing-180);
+    }
+
+    .wwf-thematic-process-groups {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-thematic-process-groups__grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: stretch;
+    }
+
+    .wwf-thematic-process-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-2xl, 20px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        block-size: 100%;
+    }
+
+    .wwf-thematic-process-card .nds-card-text {
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-thematic-process-card .nds-card-description {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-thematic-process-card__icon {
+        --icon-bg-color: var(--background-success-50);
+        --icon-color: var(--featuredicons-icon-success);
+    }
+
+    .wwf-thematic-coordinators {
+        --section-bg: var(--background-neutral-50);
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-thematic-coordinators__scroll {
+        max-inline-size: 100%;
+    }
+
+    .wwf-thematic-coordinators__table {
+        inline-size: 100%;
+        table-layout: fixed;
+        border: 0;
+        border-radius: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        overflow: visible;
+        background: transparent;
+    }
+
+    .wwf-thematic-coordinators__table col {
+        inline-size: 25%;
+    }
+
+    .wwf-thematic-coordinators__table thead th {
+        padding-block: var(--spacing-lg, 12px);
+        padding-inline: var(--spacing-xl, 16px);
+        border: 1px solid var(--border-neutral-primary);
+        background: var(--background-neutral-100);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 500;
+        text-align: start;
+        white-space: normal;
+    }
+
+    .wwf-thematic-coordinators__table tbody :is(th, td) {
+        padding-block: var(--spacing-lg, 12px);
+        padding-inline: var(--spacing-xl, 16px);
+        border: 0;
+        border-block-end: 1px solid var(--border-neutral-primary);
+        background: transparent;
+        color: var(--text-default);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 400;
+        text-align: start;
+        vertical-align: middle;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .wwf-thematic-coordinators__table .wwf-thematic-coordinators__theme :is(th, td) {
+        background: var(--background-neutral-100);
+        color: var(--text-primary-paragraph);
+        font-weight: 600;
+    }
+
+    .wwf-thematic-coordinators__theme :is(th, td) span {
+        display: block;
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-thematic-process-documents__actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: var(--spacing-3xl, 24px);
+    }
+
+    @media (max-width: 1100px) {
+        .wwf-thematic-process-page .wwf-process-documents__card {
+            align-items: stretch;
+            flex-direction: column;
+        }
+
+        .wwf-thematic-process-documents__actions {
+            justify-content: flex-start;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .wwf-thematic-coordinators__table {
+            min-inline-size: var(--spacing-192, 768px);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-thematic-process-documents__actions {
+            align-items: stretch;
+            flex-direction: column;
+        }
+    }
+
     /* ======= RESOURCES PAGE ======= */
 
     .wwf-resources-hero {
