@@ -338,6 +338,9 @@
    --wwf-forum-venue-image-overlay: linear-gradient(90deg, rgba(13, 18, 28, 0) 0%, rgba(13, 18, 28, 0.6) 100%);
    --wwf-forum-rating-shadow: 0px 4px 16px 0px #0000000A;
 
+   /* Visitor Guide */
+   --wwf-visitor-note-color: #666666;
+
    /* About the Forum */
    --wwf-about-warning-text: #93370D;
    --wwf-about-warning-border: #FEDF89;

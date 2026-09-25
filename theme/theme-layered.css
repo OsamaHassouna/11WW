@@ -2853,6 +2853,612 @@
         }
     }
 
+    /* ======= VISITOR GUIDE PAGE ======= */
+
+    .wwf-visitor-hero {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
+    .wwf-visitor-hero .nds-section-description {
+        max-inline-size: none;
+    }
+
+    .wwf-visitor-section {
+        --section-padding-block: var(--spacing-2xl, 20px);
+    }
+
+    .wwf-visitor-section .nds-section-body {
+        display: block;
+    }
+
+    .wwf-visitor-block__heading {
+        display: flex;
+        align-items: baseline;
+        gap: var(--spacing-sm, 6px);
+        margin-block-end: var(--spacing-lg, 12px);
+    }
+
+    .wwf-visitor-block__number,
+    .wwf-visitor-block__heading h2 {
+        color: var(--text-default);
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visitor-block__heading h2 {
+        margin: 0;
+    }
+
+    .wwf-visitor-facts {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        /* DGA neutral borders are 1px; the gap becomes each internal divider. */
+        gap: 1px;
+        margin: 0;
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-md, 8px);
+        background: var(--border-neutral-primary);
+        /* Keep child backgrounds inside the shared rounded group border. */
+        overflow: hidden;
+    }
+
+    .wwf-visitor-facts--arrival {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .wwf-visitor-fact {
+        min-inline-size: 0;
+        padding: var(--spacing-xl, 16px);
+        background: var(--background-default);
+    }
+
+    .wwf-visitor-fact dt {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm, 6px);
+        margin-block-end: var(--spacing-md, 8px);
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 500;
+    }
+
+    .wwf-visitor-fact dt .hgi {
+        flex: 0 0 auto;
+        color: var(--text-success);
+        font-size: var(--spacing-2xl, 20px);
+        line-height: 1;
+    }
+
+    .wwf-visitor-fact dd {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xxs, 2px);
+        margin: 0;
+    }
+
+    .wwf-visitor-fact strong {
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-visitor-fact dd,
+    .wwf-visitor-fact dd span {
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-visitor-numbered-list,
+    .wwf-visitor-plain-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md, 8px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .wwf-visitor-numbered-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-md, 8px);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-visitor-numbered-list li>span {
+        flex: 0 0 auto;
+        color: var(--text-success);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 700;
+    }
+
+    .wwf-visitor-objectives-list li {
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-display-xs-LH);
+    }
+
+    .wwf-visitor-objectives-list li>span {
+        font-size: var(--typo-display-xs-FS);
+        line-height: var(--typo-display-xs-LH);
+    }
+
+    .wwf-visitor-numbered-list--compact {
+        gap: var(--spacing-xl, 16px);
+        margin-block-start: var(--spacing-xl, 16px);
+    }
+
+    .wwf-visitor-numbered-list--compact li {
+        padding-block: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-display-xs-LH);
+    }
+
+    .wwf-visitor-numbered-list--compact li>span {
+        font-size: var(--typo-display-xs-FS);
+        line-height: var(--typo-display-xs-LH);
+    }
+
+    .wwf-visitor-discount {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-block-start: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-visitor-discount h3 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visitor-discount strong {
+        display: block;
+        max-inline-size: 100%;
+        color: var(--text-default);
+        font-size: var(--typo-display-lg-FS);
+        line-height: var(--typo-display-lg-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .wwf-visitor-content-groups {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl, 16px);
+        padding-block-start: var(--spacing-xs, 4px);
+        padding-inline-start: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-visitor-content-group {
+        min-inline-size: 0;
+    }
+
+    .wwf-visitor-content-group h3 {
+        margin: 0 0 var(--spacing-md, 8px);
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visitor-hotel-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--colors-neutral-300);
+        border-radius: var(--radius-md, 8px);
+        /* Keep the first and last card backgrounds inside the grouped outline. */
+        overflow: hidden;
+    }
+
+    .wwf-visitor-hotel-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-3xl, 24px);
+        --card-gap: 0;
+        --card-border: transparent;
+        --card-radius: 0;
+        display: grid;
+        grid-template-columns: var(--spacing-4xl, 32px) minmax(0, 1fr);
+        align-items: start;
+        column-gap: var(--spacing-3xl, 24px);
+        row-gap: 0;
+        inline-size: 100%;
+        border: 0;
+        border-radius: 0;
+        background: var(--background-default);
+    }
+
+    .wwf-visitor-hotel-card + .wwf-visitor-hotel-card {
+        border-block-start: 1px solid var(--colors-neutral-300);
+    }
+
+    .wwf-visitor-hotel-card__index {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-inline-size: var(--spacing-4xl, 32px);
+        color: var(--text-success);
+        font-size: var(--typo-display-xs-FS);
+        line-height: var(--typo-display-xs-LH);
+        font-weight: 700;
+    }
+
+    .wwf-visitor-hotel-card__content {
+        display: contents;
+    }
+
+    .wwf-visitor-hotel-card__head {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: var(--spacing-xl, 16px);
+        min-inline-size: 0;
+        margin: 0;
+    }
+
+    .wwf-visitor-hotel-card h3 {
+        min-inline-size: 0;
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    .wwf-visitor-tag {
+        --tag-height: var(--spacing-3xl, 24px);
+        --tag-fs: var(--typo-text-sm-FS);
+        --tag-padding-inline: var(--spacing-md, 8px);
+        flex: 0 0 auto;
+    }
+
+    .wwf-visitor-tag--success {
+        --tag-bg: var(--colors-primary-sa-flag-50);
+        --tag-border: var(--colors-primary-sa-flag-200);
+        --tag-text: var(--colors-primary-sa-flag-800);
+    }
+
+    .wwf-visitor-tag--info {
+        --tag-bg: var(--colors-blue-50);
+        --tag-border: var(--colors-blue-200);
+        --tag-text: var(--colors-blue-800);
+    }
+
+    .wwf-visitor-hotel-card__distance {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 0;
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-visitor-hotel-details {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl, 16px);
+        margin: var(--spacing-xl, 16px) 0;
+    }
+
+    .wwf-visitor-hotel-details div {
+        min-inline-size: 0;
+    }
+
+    .wwf-visitor-hotel-details dt {
+        margin: 0;
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 400;
+    }
+
+    .wwf-visitor-hotel-details dd {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        overflow-wrap: anywhere;
+    }
+
+    .wwf-visitor-hotel-contact {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: var(--spacing-md, 8px) var(--spacing-xl, 16px);
+    }
+
+    .wwf-visitor-hotel-contact a {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-md, 8px);
+        min-inline-size: 0;
+        max-inline-size: 100%;
+    }
+
+    .wwf-visitor-hotel-contact a span {
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .wwf-visitor-hotel-contact .hgi {
+        flex: 0 0 auto;
+        font-size: var(--spacing-2xl, 20px);
+        line-height: 1;
+    }
+
+    .wwf-visitor-hotel-details a,
+    .wwf-visitor-contact-link {
+        color: var(--text-success);
+        text-decoration: none;
+    }
+
+    .wwf-visitor-hotel-details a:hover,
+    .wwf-visitor-plain-list a:hover {
+        text-decoration: underline;
+    }
+
+    .nds-btn.wwf-visitor-map-link {
+        --btn-height: var(--spacing-6xl, 48px);
+        --btn-height-min: var(--spacing-6xl, 48px);
+        --btn-padding: var(--spacing-xl, 16px);
+        --btn-FS: var(--typo-text-sm-FS);
+        --btn-LH: var(--typo-text-sm-LH);
+        --btn-icon-size: var(--spacing-xl, 16px);
+        --btn-radius: var(--radius-md, 8px);
+        --btn-color: var(--text-success);
+        --btn-border: var(--colors-primary-sa-flag-600-primary);
+        grid-column: 1 / -1;
+        grid-row: 4;
+        justify-self: start;
+        min-inline-size: auto;
+        /* Exact design stroke; DGA does not expose a button border-width variable. */
+        border-width: 1.5px;
+    }
+
+    .wwf-visitor-map-link .nds-label {
+        font-weight: 600;
+    }
+
+    .wwf-visitor-map-link .hgi {
+        inline-size: var(--spacing-xl, 16px);
+        block-size: var(--spacing-xl, 16px);
+        font-size: var(--spacing-xl, 16px);
+        line-height: 1;
+    }
+
+    .wwf-visitor-plain-list {
+        gap: var(--spacing-md, 8px);
+        padding-inline-start: var(--spacing-4xl, 32px);
+        list-style: decimal;
+    }
+
+    .wwf-visitor-plain-list li {
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        padding-block: 0;
+        padding-inline-start: var(--spacing-lg, 12px);
+    }
+
+    .wwf-visitor-plain-list li::marker {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-visitor-plain-list a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .wwf-visitor-table {
+        inline-size: 100%;
+        margin-block-start: 0;
+        table-layout: fixed;
+        border: 0;
+        border-radius: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+        overflow: visible;
+        background: transparent;
+    }
+
+    .wwf-visitor-table-section .wwf-visitor-block__heading {
+        margin-block-end: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-visitor-table :is(th, thead td) {
+        block-size: var(--spacing-6xl, 48px);
+        padding-block: var(--spacing-md, 8px);
+        padding-inline: var(--spacing-xl, 16px);
+        border: 1px solid var(--colors-neutral-300);
+        background-color: var(--colors-neutral-100);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 500;
+    }
+
+    .wwf-visitor-table tbody td {
+        block-size: var(--spacing-7xl, 64px);
+        padding-block: var(--spacing-md, 8px);
+        padding-inline: var(--spacing-xl, 16px);
+        border: 0;
+        border-block-end: 1px solid var(--colors-neutral-300);
+        background-color: var(--background-default);
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-visitor-table tbody tr:nth-child(even) td {
+        background-color: var(--background-default);
+    }
+
+    .wwf-visitor-weather {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-lg, 12px);
+    }
+
+    .wwf-visitor-weather .hgi {
+        color: var(--text-default);
+        flex: 0 0 auto;
+        inline-size: var(--spacing-3xl, 24px);
+        block-size: var(--spacing-3xl, 24px);
+        font-size: var(--spacing-3xl, 24px);
+        line-height: 1;
+    }
+
+    .wwf-visitor-note {
+        margin: var(--spacing-xl, 16px) 0 0;
+        color: var(--wwf-visitor-note-color);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-visitor-contact-list {
+        max-inline-size: 760px;
+        padding-block-start: var(--spacing-xs, 4px);
+    }
+
+    .wwf-visitor-contact-list .wwf-visitor-contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-md, 8px);
+        min-inline-size: 0;
+        color: var(--text-success);
+        line-height: var(--typo-text-md-LH);
+        text-decoration: none;
+        vertical-align: top;
+    }
+
+    .wwf-visitor-contact-link .hgi {
+        flex: 0 0 auto;
+        /* Fixed icon size from the Visitor Guide reference; no DGA 18px size token exists. */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        inline-size: 18px;
+        block-size: 18px;
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .wwf-visitor-contact-link span {
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
+    }
+
+    :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-facts {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    @media (max-width: 960px) {
+        .wwf-visitor-facts,
+        .wwf-visitor-facts--arrival {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+    }
+
+    @media (max-width: 600px) {
+        .wwf-visitor-section {
+            --section-padding-block: var(--spacing-2xl, 20px);
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-block__heading {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: var(--spacing-xxs, 2px);
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-block__heading h2 {
+            max-inline-size: 100%;
+            overflow-wrap: anywhere;
+        }
+
+        .wwf-visitor-facts,
+        .wwf-visitor-facts--arrival {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-visitor-content-groups {
+            padding-inline-start: var(--spacing-xl, 16px);
+        }
+
+        .wwf-visitor-hotel-card {
+            --card-padding: var(--spacing-xl, 16px);
+            grid-template-columns: var(--spacing-4xl, 32px) minmax(0, 1fr);
+            column-gap: var(--spacing-lg, 12px);
+        }
+
+        .wwf-visitor-hotel-card__head {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: var(--spacing-md, 8px);
+        }
+
+        .wwf-visitor-map-link {
+            inline-size: 100%;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card__index,
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card__head,
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card__distance,
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-details,
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-map-link {
+            grid-column: 1;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card__index {
+            grid-row: 1;
+            justify-content: flex-start;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card__head {
+            grid-row: 2;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-card__distance {
+            grid-row: 3;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-hotel-details {
+            grid-row: 4;
+        }
+
+        :root:is([data-a11y~="font-step-2"], [data-a11y~="font-step-3"]) .wwf-visitor-map-link {
+            grid-row: 5;
+        }
+    }
+
     /* ======= REGISTRATION PAGE ======= */
 
     .wwf-registration-section {
