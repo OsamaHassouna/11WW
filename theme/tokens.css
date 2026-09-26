@@ -353,9 +353,31 @@
    --wwf-intersectoral-brand-bg-deep: #0E2A68;
    --wwf-intersectoral-brand-surface: #FFFFFF1A;
    --wwf-intersectoral-brand-border: #FFFFFF2E;
-   --wwf-intersectoral-metric-bg: #08265D;
-   --wwf-intersectoral-logo-purple: #7556D8;
+   --wwf-intersectoral-content-color: #D8E6F4;
+   --wwf-intersectoral-note-color: #A9C5DA;
+   --wwf-intersectoral-metric-bg: #05193DC2;
+   --wwf-intersectoral-metric-border: #FFFFFF2E;
+   --wwf-intersectoral-metric-label: #AADBE1;
+   --wwf-intersectoral-metric-shadow: 0px 14px 30px 0px #00000038;
+   --wwf-intersectoral-logo-border: #FFFFFFEB;
+   --wwf-intersectoral-logo-shadow: 0px 1px 0px 0px #FFFFFF inset, 0px 0px 0px 10px #FFFFFF1A, 0px 28px 70px 0px #00081E61;
+   --wwf-intersectoral-logo-ring: #77E0E547;
+   --wwf-intersectoral-logo-orbit: #FFFFFF38;
+   --wwf-intersectoral-reason-bg: linear-gradient(110deg, rgba(255, 255, 255, 0.13) 8.49%, rgba(255, 255, 255, 0.055) 91.51%);
+   --wwf-intersectoral-reason-border: #FFFFFF08;
    --wwf-intersectoral-cluster-partners-bg: #F3F4F6;
+   --wwf-intersectoral-cluster-icon-radius: 12px;
+   --wwf-intersectoral-cluster-partners-radius: 10px;
+   --wwf-intersectoral-cluster-bullet-size: 9px;
+   --wwf-intersectoral-cluster-list-line-height: 22px;
+   --wwf-intersectoral-governance-label: #C5DBFF;
+   --wwf-intersectoral-governance-card-bg: linear-gradient(145deg, rgba(255, 255, 255, 0.18) 6.17%, rgba(255, 255, 255, 0.09) 93.83%);
+   --wwf-intersectoral-governance-card-border: #C7D0FF5C;
+   --wwf-intersectoral-governance-grid-offset: 34px;
+   --wwf-intersectoral-governance-card-blur: blur(20px);
+   --wwf-intersectoral-governance-shape-border: #FFFFFF33;
+   --wwf-intersectoral-governance-shape-shadow: 0px 0px 0px 140px #FFFFFF06, 0px 0px 0px 70px #FFFFFF09;
+   --wwf-intersectoral-governance-title-line-height: 23px;
 
 
    /* Visitor Guide */

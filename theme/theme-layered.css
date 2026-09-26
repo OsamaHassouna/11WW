@@ -2873,6 +2873,7 @@
     .wwf-intersectoral-intro {
         --section-padding-block-start: 0;
         --section-padding-block-end: var(--spacing-7xl, 64px);
+        --section-row-gap: 0;
     }
 
     .wwf-intersectoral-intro__image {
@@ -2907,10 +2908,8 @@
         --section-padding-block: var(--spacing-7xl, 64px);
         position: relative;
         color: var(--text-oncolor-primary);
-        background:
-            radial-gradient(circle at 80% 45%, transparent 0 17%, rgba(255, 255, 255, .06) 17.2% 17.5%, transparent 17.7% 24%, rgba(255, 255, 255, .045) 24.2% 24.5%, transparent 24.7%),
-            linear-gradient(135deg, var(--wwf-intersectoral-brand-bg) 0%, var(--wwf-intersectoral-brand-bg-deep) 100%);
-        /* The supplied design contains decorative wave/ring artwork that is intentionally clipped to this band. */
+        background-color: var(--wwf-dialogue-card-bg);
+        /* The supplied design contains decorative waves that are intentionally clipped to this band. */
         overflow: clip;
     }
 
@@ -2919,9 +2918,10 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
-        opacity: .28;
-        background: repeating-radial-gradient(ellipse at 18% 28%, transparent 0 28px, rgba(255, 255, 255, .08) 30px, transparent 32px 48px);
-        transform: scale(1.5);
+        opacity: var(--wwf-dialogue-texture-opacity);
+        background-image: url("media/global-dialogue-waves.webp");
+        background-position: center;
+        background-size: cover;
     }
 
     .wwf-intersectoral-acwa .nds-section-wrapper {
@@ -2938,24 +2938,24 @@
 
     .wwf-intersectoral-kicker {
         margin: 0;
-        font-size: var(--typo-text-xs-FS);
-        line-height: var(--typo-text-xs-LH);
-        font-weight: 500;
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 700;
     }
 
     .wwf-intersectoral-acwa__copy h2 {
         margin: var(--spacing-md, 8px) 0 var(--spacing-3xl, 24px);
         color: inherit;
-        font-size: var(--typo-display-sm-FS);
-        line-height: var(--typo-display-sm-LH);
+        font-size: var(--typo-display-md-FS);
+        line-height: var(--typo-display-md-LH);
         font-weight: 700;
     }
 
     .wwf-intersectoral-acwa__copy>p:not(.wwf-intersectoral-kicker) {
         margin: 0;
         color: var(--colors-alpha-alpha-white-80);
-        font-size: var(--typo-text-sm-FS);
-        line-height: var(--typo-text-md-LH);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
     }
 
     .wwf-intersectoral-acwa__action {
@@ -2978,125 +2978,156 @@
     }
 
     .wwf-intersectoral-acwa__action small {
-        color: var(--colors-alpha-alpha-white-60);
-        font-size: var(--typo-text-2xs-FS);
-        line-height: var(--typo-text-2xs-LH);
+        color: var(--wwf-intersectoral-note-color);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-xs-LH);
     }
 
     .wwf-intersectoral-metrics {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-template-areas:
-            "renew renew capacity capacity"
-            "water brand brand assets"
-            "countries brand brand .";
-        align-items: center;
-        gap: var(--spacing-xl, 16px);
-        padding: var(--spacing-3xl, 24px);
+        position: relative;
+        justify-self: center;
+        inline-size: min(100%, 570px);
+        aspect-ratio: 57 / 46;
+        isolation: isolate;
     }
 
     .wwf-intersectoral-metric {
+        position: absolute;
+        z-index: 2;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         min-inline-size: 0;
-        padding: var(--spacing-lg, 12px) var(--spacing-xl, 16px);
+        block-size: 71px;
+        padding: var(--spacing-lg, 12px) 18px;
+        border-block-start: 1px solid var(--wwf-intersectoral-metric-border);
         border-radius: var(--radius-lg, 16px);
         background: var(--wwf-intersectoral-metric-bg);
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--wwf-intersectoral-metric-shadow);
+        backdrop-filter: blur(24px);
     }
 
     .wwf-intersectoral-metric strong {
-        font-size: var(--typo-text-xl-FS);
-        line-height: var(--typo-text-xl-LH);
+        font-size: calc(22px * var(--user-font-scale, 1));
+        line-height: calc(24px * var(--user-font-scale, 1));
         font-weight: 700;
     }
 
     .wwf-intersectoral-metric span {
-        color: var(--colors-alpha-alpha-white-70);
-        font-size: var(--typo-text-2xs-FS);
-        line-height: var(--typo-text-2xs-LH);
+        color: var(--wwf-intersectoral-metric-label);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-xs-LH);
         font-weight: 700;
         letter-spacing: .04em;
         text-transform: uppercase;
     }
 
-    .wwf-intersectoral-metric--renewables { grid-area: renew; justify-self: end; }
-    .wwf-intersectoral-metric--capacity { grid-area: capacity; justify-self: start; }
-    .wwf-intersectoral-metric--water { grid-area: water; }
-    .wwf-intersectoral-metric--assets { grid-area: assets; }
-    .wwf-intersectoral-metric--countries { grid-area: countries; justify-self: end; }
+    /* Diagram placement is taken from the supplied reference; cards remain in document order for assistive technology. */
+    .wwf-intersectoral-metric--renewables {
+        inset-block-start: var(--spacing-2xl, 20px);
+        inset-inline-start: 65px;
+        inline-size: 148px;
+    }
+
+    .wwf-intersectoral-metric--capacity {
+        inset-block-start: var(--spacing-2xl, 20px);
+        inset-inline-end: 10px;
+        inline-size: 204px;
+    }
+
+    .wwf-intersectoral-metric--water {
+        inset-block-start: 126px;
+        inset-inline-start: 48px;
+        inline-size: 232px;
+    }
+
+    .wwf-intersectoral-metric--assets {
+        inset-block-start: 280px;
+        inset-inline-end: 4px;
+        inline-size: 148px;
+    }
+
+    .wwf-intersectoral-metric--countries {
+        inset-block-start: 350px;
+        inset-inline-start: 95px;
+        inline-size: 148px;
+    }
 
     .wwf-intersectoral-metrics__brand {
-        grid-area: brand;
+        position: absolute;
+        z-index: 1;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
         display: grid;
         place-items: center;
-        justify-self: center;
-        inline-size: min(100%, var(--spacing-48, 192px));
+        inline-size: 232px;
         aspect-ratio: 1;
-        border: var(--spacing-md, 8px) solid var(--colors-alpha-alpha-white-20);
+        border-block-start: 1px solid var(--wwf-intersectoral-logo-border);
         border-radius: var(--radius-full);
         background: var(--background-default);
-        box-shadow: 0 0 0 var(--spacing-md, 8px) rgba(255, 255, 255, .08);
-        color: var(--wwf-intersectoral-logo-purple);
-        font-size: var(--typo-display-sm-FS);
-        line-height: 1;
-        font-weight: 600;
+        box-shadow: var(--wwf-intersectoral-logo-shadow);
+        transform: translate(-50%, -50%);
     }
 
-    .wwf-intersectoral-metrics__brand span {
-        grid-area: 1 / 1;
+    :is(html[dir="rtl"], .rtl) .wwf-intersectoral-metrics__brand {
+        transform: translate(50%, -50%);
     }
 
-    .wwf-intersectoral-metrics__brand .wwf-intersectoral-metrics__mark {
-        position: relative;
-        align-self: start;
-        margin-block-start: var(--spacing-4xl, 32px);
-        inline-size: var(--spacing-14, 56px);
-        block-size: var(--spacing-12, 48px);
-        opacity: .8;
-    }
-
-    .wwf-intersectoral-metrics__mark::before,
-    .wwf-intersectoral-metrics__mark::after {
+    .wwf-intersectoral-metrics__brand::before,
+    .wwf-intersectoral-metrics__brand::after {
         content: "";
         position: absolute;
-        inset: 0;
-        border-radius: 65% 35% 60% 40%;
-        background: var(--wwf-intersectoral-logo-purple);
-        clip-path: polygon(50% 0, 92% 86%, 65% 72%, 50% 42%, 35% 72%, 8% 86%);
-        transform: rotate(-10deg);
+        z-index: -1;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        aspect-ratio: 1;
+        border-radius: var(--radius-full);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
     }
 
-    .wwf-intersectoral-metrics__mark::after {
-        opacity: .45;
-        transform: translateX(var(--spacing-md, 8px)) rotate(12deg) scale(.78);
+    :is(html[dir="rtl"], .rtl) .wwf-intersectoral-metrics__brand::before,
+    :is(html[dir="rtl"], .rtl) .wwf-intersectoral-metrics__brand::after {
+        transform: translate(50%, -50%);
     }
 
-    .wwf-intersectoral-metrics__brand span:last-child {
-        align-self: end;
-        margin-block-end: var(--spacing-5xl, 40px);
+    .wwf-intersectoral-metrics__brand::before {
+        inline-size: 274px;
+        border-block-start: 1px solid var(--wwf-intersectoral-logo-ring);
+    }
+
+    .wwf-intersectoral-metrics__brand::after {
+        inline-size: 430px;
+        border-block-start: 1px solid var(--wwf-intersectoral-logo-orbit);
+    }
+
+    .wwf-intersectoral-metrics__brand img {
+        display: block;
+        inline-size: min(50%, var(--spacing-24, 96px));
+        block-size: auto;
     }
 
     .wwf-intersectoral-acwa__reason {
         margin-block-start: var(--spacing-7xl, 64px);
         padding: var(--spacing-3xl, 24px) var(--spacing-4xl, 32px);
-        border: 1px solid var(--wwf-intersectoral-brand-border);
+        border-block-start: 1px solid var(--wwf-intersectoral-reason-border);
         border-radius: var(--radius-lg, 16px);
-        background: var(--wwf-intersectoral-brand-surface);
+        background: var(--wwf-intersectoral-reason-bg);
+        backdrop-filter: blur(24px);
     }
 
     .wwf-intersectoral-acwa__reason h3 {
         margin: 0 0 var(--spacing-md, 8px);
         color: inherit;
-        font-size: var(--typo-text-md-FS);
-        line-height: var(--typo-text-md-LH);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
         font-weight: 700;
     }
 
     .wwf-intersectoral-acwa__reason p {
         margin: 0;
-        color: var(--colors-alpha-alpha-white-80);
-        font-size: var(--typo-text-xs-FS);
+        color: var(--wwf-intersectoral-content-color);
+        font-size: var(--typo-text-sm-FS);
         line-height: var(--typo-text-sm-LH);
     }
 
@@ -3126,6 +3157,11 @@
     .wwf-intersectoral-cluster .nds-featured-icon {
         --icon-bg-color: var(--background-neutral-100);
         --icon-color: var(--featuredicons-icon-default);
+    }
+
+    .wwf-intersectoral-cluster .nds-featured-icon {
+        --nds-icon-size: var(--spacing-5xl, 40px);
+        border-radius: var(--wwf-intersectoral-cluster-icon-radius);
     }
 
     .wwf-intersectoral-objective .nds-card-title {
@@ -3188,24 +3224,29 @@
     .wwf-intersectoral-cluster h3 {
         margin: 0;
         color: var(--text-default);
-        font-size: var(--typo-text-md-FS);
-        line-height: var(--typo-text-md-LH);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
         font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .wwf-intersectoral-cluster__partners {
         padding: var(--spacing-xl, 16px);
-        border: 1px solid var(--border-neutral-primary);
-        border-radius: var(--radius-md, 8px);
+        border-block-start: 1px solid var(--border-neutral-primary);
+        border-radius: var(--wwf-intersectoral-cluster-partners-radius);
         background: var(--wwf-intersectoral-cluster-partners-bg);
     }
 
     .wwf-intersectoral-cluster__partners p {
         margin: 0;
         color: var(--text-primary-paragraph);
-        font-size: var(--typo-text-xs-FS);
+        font-size: var(--typo-text-sm-FS);
         line-height: var(--typo-text-sm-LH);
-        overflow-wrap: anywhere;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .wwf-intersectoral-cluster__partners p+p {
@@ -3214,39 +3255,54 @@
 
     .wwf-intersectoral-cluster__partners strong {
         color: var(--text-default);
+        font-size: var(--typo-text-xs-FS);
     }
 
     .wwf-intersectoral-cluster ul {
         display: grid;
         gap: var(--spacing-md, 8px);
         margin: 0;
-        padding-inline-start: var(--spacing-2xl, 20px);
+        padding: 0;
         color: var(--text-primary-paragraph);
-        font-size: var(--typo-text-xs-FS);
-        line-height: var(--typo-text-sm-LH);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--wwf-intersectoral-cluster-list-line-height);
+        list-style: none;
     }
 
-    .wwf-intersectoral-cluster li::marker {
-        color: var(--border-neutral-primary);
+    .wwf-intersectoral-cluster li {
+        display: grid;
+        grid-template-columns: var(--wwf-intersectoral-cluster-bullet-size) minmax(0, 1fr);
+        align-items: start;
+        gap: var(--spacing-lg, 12px);
+        padding-block: 0;
+    }
+
+    .wwf-intersectoral-cluster li::before {
+        content: "";
+        inline-size: var(--wwf-intersectoral-cluster-bullet-size);
+        block-size: var(--wwf-intersectoral-cluster-bullet-size);
+        margin-block-start: calc((var(--wwf-intersectoral-cluster-list-line-height) - var(--wwf-intersectoral-cluster-bullet-size)) / 2);
+        border-radius: var(--radius-full);
+        background: var(--background-neutral-100);
     }
 
     .wwf-intersectoral-governance {
         position: relative;
         color: var(--text-oncolor-primary);
-        background: linear-gradient(135deg, var(--wwf-intersectoral-brand-bg) 0%, var(--wwf-intersectoral-brand-bg-deep) 100%);
+        background-color: var(--wwf-dialogue-card-bg);
         overflow: clip;
     }
 
     .wwf-intersectoral-governance::after {
         content: "";
         position: absolute;
-        inset-inline-end: calc(-1 * var(--spacing-32, 128px));
-        inset-block-end: calc(-1 * var(--spacing-32, 128px));
+        inset-inline-end: calc(-1 * var(--spacing-80, 320px));
+        inset-block-end: calc(-1 * var(--spacing-80, 320px));
         inline-size: var(--spacing-96, 384px);
         aspect-ratio: 1;
-        border: 1px solid var(--colors-alpha-alpha-white-10);
+        border-block-start: 1px solid var(--wwf-intersectoral-governance-shape-border);
         border-radius: var(--radius-full);
-        box-shadow: 0 0 0 var(--spacing-12, 48px) rgba(255, 255, 255, .025);
+        box-shadow: var(--wwf-intersectoral-governance-shape-shadow);
         pointer-events: none;
     }
 
@@ -3258,26 +3314,27 @@
     .wwf-intersectoral-governance__head h2 {
         margin-block-start: var(--spacing-md, 8px);
         color: inherit;
-        font-size: var(--typo-display-sm-FS);
-        line-height: var(--typo-display-sm-LH);
+        font-size: var(--typo-display-md-FS);
+        line-height: var(--typo-display-md-LH);
     }
 
     .wwf-intersectoral-governance__grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: var(--spacing-4xl, 32px);
-        margin-block-start: var(--spacing-4xl, 32px);
+        margin-block-start: var(--wwf-intersectoral-governance-grid-offset);
     }
 
     .wwf-intersectoral-governance__grid article {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-md, 8px);
+        gap: 0;
         min-inline-size: 0;
         padding: var(--spacing-4xl, 32px);
-        border: 1px solid var(--wwf-intersectoral-brand-border);
+        border: 1px solid var(--wwf-intersectoral-governance-card-border);
         border-radius: var(--radius-lg, 16px);
-        background: var(--wwf-intersectoral-brand-surface);
+        background: var(--wwf-intersectoral-governance-card-bg);
+        backdrop-filter: var(--wwf-intersectoral-governance-card-blur);
     }
 
     .wwf-intersectoral-governance__grid p,
@@ -3287,22 +3344,23 @@
     }
 
     .wwf-intersectoral-governance__grid p {
-        color: var(--colors-alpha-alpha-white-60);
-        font-size: var(--typo-text-xs-FS);
-        line-height: var(--typo-text-xs-LH);
+        color: var(--wwf-intersectoral-governance-label);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
     }
 
     .wwf-intersectoral-governance__grid h3 {
+        margin-block-start: var(--spacing-md, 8px);
         color: inherit;
         font-size: var(--typo-text-lg-FS);
-        line-height: var(--typo-text-lg-LH);
+        line-height: var(--wwf-intersectoral-governance-title-line-height);
         font-weight: 700;
     }
 
     .wwf-intersectoral-governance__grid span {
         margin-block-start: var(--spacing-xl, 16px);
         color: var(--colors-alpha-alpha-white-80);
-        font-size: var(--typo-text-xs-FS);
+        font-size: var(--typo-text-sm-FS);
         line-height: var(--typo-text-sm-LH);
     }
 
@@ -3313,7 +3371,7 @@
         }
 
         .wwf-intersectoral-metrics {
-            inline-size: min(100%, 720px);
+            inline-size: min(100%, 570px);
             margin-inline: auto;
         }
 
@@ -3343,18 +3401,44 @@
         }
 
         .wwf-intersectoral-metrics {
+            display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             grid-template-areas:
                 "brand brand"
                 "renew capacity"
                 "water water"
                 "countries assets";
-            padding-inline: 0;
+            aspect-ratio: auto;
+            gap: var(--spacing-xl, 16px);
         }
 
         .wwf-intersectoral-metric {
+            position: relative;
+            inset: auto;
             inline-size: 100%;
+            block-size: auto;
+            min-block-size: 71px;
             justify-self: stretch;
+        }
+
+        .wwf-intersectoral-metric--renewables { grid-area: renew; }
+        .wwf-intersectoral-metric--capacity { grid-area: capacity; }
+        .wwf-intersectoral-metric--water { grid-area: water; }
+        .wwf-intersectoral-metric--assets { grid-area: assets; }
+        .wwf-intersectoral-metric--countries { grid-area: countries; }
+
+        .wwf-intersectoral-metrics__brand,
+        :is(html[dir="rtl"], .rtl) .wwf-intersectoral-metrics__brand {
+            position: relative;
+            inset: auto;
+            grid-area: brand;
+            justify-self: center;
+            margin-block: 49px;
+            transform: none;
+        }
+
+        .wwf-intersectoral-metrics__brand::after {
+            inline-size: 330px;
         }
 
         .wwf-intersectoral-objectives__grid {
@@ -3376,12 +3460,57 @@
         grid-template-columns: minmax(0, 1fr);
     }
 
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-areas:
+            "brand brand"
+            "renew capacity"
+            "water water"
+            "countries assets";
+        aspect-ratio: auto;
+        gap: var(--spacing-xl, 16px);
+    }
+
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metric {
+        position: relative;
+        inset: auto;
+        inline-size: 100%;
+        block-size: auto;
+        min-block-size: 71px;
+    }
+
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metric--renewables { grid-area: renew; }
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metric--capacity { grid-area: capacity; }
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metric--water { grid-area: water; }
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metric--assets { grid-area: assets; }
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metric--countries { grid-area: countries; }
+
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-metrics__brand,
+    :is(html[dir="rtl"], .rtl)[data-a11y~="font-step-3"] .wwf-intersectoral-metrics__brand {
+        position: relative;
+        inset: auto;
+        grid-area: brand;
+        justify-self: center;
+        margin-block: 99px;
+        transform: none;
+    }
+
     html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster,
     html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster--wide {
         grid-column: span 6;
     }
 
     @media (max-width: 600px) {
+        html[data-a11y~="font-step-3"] .wwf-intersectoral-metrics__brand,
+        :is(html[dir="rtl"], .rtl)[data-a11y~="font-step-3"] .wwf-intersectoral-metrics__brand {
+            margin-block: 49px;
+        }
+
+        html[data-a11y~="font-step-3"] .wwf-intersectoral-metrics__brand::after {
+            inline-size: 330px;
+        }
+
         html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster,
         html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster--wide {
             grid-column: 1 / -1;
