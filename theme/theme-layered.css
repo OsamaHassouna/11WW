@@ -107,6 +107,17 @@
             transform: none;
         }
 
+        .nds-main-nav .nds-dropdown[data-state~="open"] .nds-dropdown-menu {
+            /* Preserve the NDS slide while clipping the moving panel at the
+               nav boundary for the full transition duration. */
+            overflow: clip;
+        }
+
+        .nds-main-nav .nds-dropdown[data-state~="closing"] .nds-dropdown-menu {
+            /* Prevent stale link clicks during the DGA close timer. */
+            pointer-events: none;
+        }
+
         .nds-content-layout:not(.nds-wSideMenu, .nds-wSideInfo) {
             --section-padding-block: var(--spacing-5xl);
         }
