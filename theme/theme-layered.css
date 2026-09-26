@@ -2908,7 +2908,9 @@
         --section-padding-block: var(--spacing-7xl, 64px);
         position: relative;
         color: var(--text-oncolor-primary);
-        background-color: var(--wwf-dialogue-card-bg);
+        background:
+            linear-gradient(var(--wwf-dialogue-card-bg), var(--wwf-dialogue-card-bg)),
+            var(--wwf-intersectoral-acwa-base-bg);
         /* The supplied design contains decorative waves that are intentionally clipped to this band. */
         overflow: clip;
     }
