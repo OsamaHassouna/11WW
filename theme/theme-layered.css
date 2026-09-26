@@ -88,9 +88,21 @@
         display: block;
     } */
 
+    .wwf-sticky-nav-host {
+        position: sticky;
+        inset-block-start: 0;
+        /* Match the DGA main navigation's internal base stacking level. */
+        z-index: 1000;
+    }
+
     .nds-main-nav {
         border-block-end: 1px solid var(--border-neutral-primary);
         box-shadow: none;
+        transition: box-shadow var(--nds-transition, .2s ease);
+    }
+
+    .nds-main-nav[data-state~="stuck"] {
+        box-shadow: var(--shadow-md);
     }
 
     .nds-main-nav .nds-dropdown[data-state~="open"] .nds-dropdown-menu {
@@ -131,11 +143,25 @@
         }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+        .nds-main-nav {
+            transition: none;
+        }
+    }
+
+    html[data-a11y~="reduce-motion"] .nds-main-nav {
+        transition: none;
+    }
+
     @media (min-width: 961px) {
         .nds-main-nav {
             /* Desktop dropdowns extend below the sticky bar; clip only inline
                overflow so NDS overflow-menu items cannot scroll the page. */
             overflow-inline: clip;
+        }
+
+        .nds-main-nav[data-state~="stuck"] .nds-dropdown-menu {
+            inset-block-start: var(--nds-nav-height);
         }
 
         .nds-main-nav:has(.nds-dropdown[data-state~="open"]) {

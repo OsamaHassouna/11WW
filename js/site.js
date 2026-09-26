@@ -102,6 +102,7 @@
         initGalleryImageViewer();
 
         revealChrome();
+        initStickyMainNav();
         syncMinimalNav();
         bindNavDropdowns();
         bindMobileNav();
@@ -530,6 +531,31 @@
         document.querySelectorAll(sel).forEach(function (el) {
             el.removeAttribute('hidden');
         });
+    }
+
+    /* --- sticky main navigation ----------------------------------------- */
+    function initStickyMainNav() {
+        var host = document.getElementById('shell-mainnav');
+        var nav = host && host.querySelector('.nds-main-nav');
+        if (!host || !nav || host.hasAttribute('data-sticky-nav-bound')) return;
+
+        var frame = null;
+        host.setAttribute('data-sticky-nav-bound', '');
+        host.classList.add('wwf-sticky-nav-host');
+
+        function syncStickyState() {
+            if (frame !== null) return;
+            frame = window.requestAnimationFrame(function () {
+                frame = null;
+                var isStuck = window.scrollY > 0 && host.getBoundingClientRect().top <= 0;
+                if (isStuck) addStateToken(nav, 'stuck');
+                else removeStateToken(nav, 'stuck');
+            });
+        }
+
+        window.addEventListener('scroll', syncStickyState, { passive: true });
+        window.addEventListener('resize', syncStickyState);
+        syncStickyState();
     }
 
     /* --- minimal (mobile) nav breakpoint -----------------------------------
