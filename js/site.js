@@ -189,9 +189,13 @@
             queryOutput.textContent = query ? ' “' + query + '”' : '';
             countOutput.textContent = query ? String(count) : '0';
             output.hidden = !query;
+            var searchPageTitle = form.getAttribute('data-search-page-title')
+                || 'Search | 11th World Water Forum';
+            var searchResultsTitleTemplate = form.getAttribute('data-search-results-title-template')
+                || 'Search results for {query} | 11th World Water Forum';
             document.title = query
-                ? 'Search results for ' + query + ' | 11th World Water Forum'
-                : 'Search | 11th World Water Forum';
+                ? searchResultsTitleTemplate.replace('{query}', query)
+                : searchPageTitle;
             if (clear) clear.hidden = !query;
             if (empty) empty.hidden = !query || count !== 0;
             if (pagination) pagination.hidden = !query || count <= pageSize;
