@@ -3519,6 +3519,93 @@
         }
     }
 
+    /* ======= PARTICIPATION OPPORTUNITIES PAGE ======= */
+
+    .wwf-participation-hero {
+        --background-sub-hero: var(--background-neutral-25);
+        --wwf-sub-hero-image: url("media/participation.webp");
+    }
+
+    .wwf-participation-hero::after {
+        background-position: right center;
+        background-size: 70%;
+    }
+
+    :is(html[dir="rtl"], .rtl) .wwf-participation-hero::after {
+        background-position: left center;
+    }
+
+    .wwf-participation-opportunities {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-participation-page main {
+        background: var(--background-default);
+    }
+
+    .wwf-participation-grid {
+        --gap: var(--spacing-3xl, 24px);
+        align-items: start;
+    }
+
+    .wwf-participation-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-gap: var(--spacing-3xl, 24px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        inline-size: 100%;
+        block-size: auto;
+    }
+
+    .wwf-participation-card__icon {
+        --icon-bg-color: var(--featuredicons-background-success-light);
+        --icon-color: var(--featuredicons-icon-success);
+    }
+
+    .wwf-participation-card .nds-card-text {
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-participation-card .nds-card-description {
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-participation-card__notice {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-lg, 12px);
+        padding-block-start: var(--spacing-3xl, 24px);
+        border-block-start: 1px solid var(--divider-color);
+        color: var(--text-primary-paragraph);
+    }
+
+    .wwf-participation-card__notice i {
+        font-size: var(--spacing-3xl, 24px);
+        line-height: 1;
+        color: var(--icon-default);
+    }
+
+    .wwf-participation-card__notice p {
+        margin: 0;
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-participation-card__action {
+        --btn-radius: var(--radius-sm, 4px);
+    }
+
+    .wwf-participation-card__action .hgi-arrow-left-02 {
+        transform: rotate(180deg);
+    }
+
+    :is(html[dir="rtl"], .rtl) .wwf-participation-card__action .hgi-arrow-left-02 {
+        transform: none;
+    }
+
     /* ======= RESOURCES PAGE ======= */
 
     .wwf-resources-hero {
