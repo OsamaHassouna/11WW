@@ -113,10 +113,34 @@
     /* --- language links -------------------------------------------------- */
     function syncLanguageSwitches() {
         var targetLanguage = isArabic ? 'en' : 'ar';
-        var targetPage = isArabic ? 'index.html' : 'index-ar.html';
+        var currentUrl = new URL(window.location.href);
+        var pathParts = currentUrl.pathname.split('/');
+        var currentPage = pathParts.pop() || 'index.html';
+        var targetPage;
 
-        document.querySelectorAll('[data-language-switch]').forEach(function (link) {
-            link.setAttribute('href', targetPage);
+        if (currentPage === 'index.html' || currentPage === 'index-ar.html') {
+            targetPage = isArabic ? 'index.html' : 'index-ar.html';
+        } else if (isArabic && /-ar\.html$/i.test(currentPage)) {
+            targetPage = currentPage.replace(/-ar\.html$/i, '.html');
+        } else if (!isArabic && /\.html$/i.test(currentPage)) {
+            targetPage = currentPage.replace(/\.html$/i, '-ar.html');
+        }
+
+        var targetUrl;
+        if (targetPage) {
+            pathParts.push(targetPage);
+            currentUrl.pathname = pathParts.join('/');
+            targetUrl = currentUrl;
+        } else {
+            targetUrl = new URL(isArabic ? 'index.html' : 'index-ar.html', document.baseURI);
+            targetUrl.search = currentUrl.search;
+            targetUrl.hash = currentUrl.hash;
+        }
+
+        var targetHref = targetUrl.pathname + targetUrl.search + targetUrl.hash;
+
+        document.querySelectorAll('[data-language-switch], #shellMainNav .nds-nav-item.lang > a').forEach(function (link) {
+            link.setAttribute('href', targetHref);
             link.setAttribute('hreflang', targetLanguage);
         });
     }
