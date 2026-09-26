@@ -6214,6 +6214,7 @@
         content: " *";
     }
 
+    .wwf-registration-hint,
     .wwf-country-pavilion-hint {
         display: flex;
         align-items: flex-start;
@@ -6224,6 +6225,7 @@
         line-height: var(--typo-text-sm-LH);
     }
 
+    .wwf-registration-hint .hgi,
     .wwf-country-pavilion-hint .hgi {
         flex: 0 0 auto;
         margin-block-start: var(--spacing-xxs, 2px);
@@ -6523,6 +6525,73 @@
 
         .wwf-registration-map>img {
             aspect-ratio: 4 / 3;
+        }
+    }
+
+    /* ---- SPONSORSHIP EXPRESSION OF INTEREST ---- */
+
+    .wwf-sponsorship-page .wwf-registration-intro .nds-section-title {
+        max-inline-size: var(--spacing-180, 720px);
+    }
+
+    .wwf-sponsorship-page .wwf-registration-intro .nds-section-title>span {
+        display: block;
+    }
+
+    .wwf-sponsorship-intro__lead {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        font-weight: 700;
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-registration-intro .wwf-sponsorship-intro__description {
+        margin-block-start: var(--spacing-xl, 16px);
+    }
+
+    .wwf-sponsorship-intro__note {
+        margin: var(--spacing-xl, 16px) 0 0;
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-sponsorship-page .nds-form-container:not([hidden])[data-required]
+        .nds-form-header .nds-label::before {
+        content: none;
+    }
+
+    .wwf-sponsorship-page .nds-form-container:not([hidden])[data-required]
+        .nds-form-header .nds-label::after {
+        color: var(--controls-control-text-error);
+        content: " *";
+    }
+
+    .wwf-sponsorship-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-lg, 12px) var(--spacing-4xl, 32px);
+    }
+
+    .wwf-sponsorship-comments {
+        margin-block-start: var(--spacing-2xl, 20px);
+    }
+
+    .wwf-sponsorship-page .nds-textarea>.nds-form-control>textarea {
+        min-block-size: var(--spacing-24, 96px);
+        resize: vertical;
+    }
+
+    @media (min-width: 961px) {
+        .wwf-sponsorship-page .wwf-registration-stepper-panel {
+            margin-block-start: 0;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-sponsorship-options {
+            grid-template-columns: minmax(0, 1fr);
         }
     }
 
