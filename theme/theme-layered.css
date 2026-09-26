@@ -94,6 +94,19 @@
     }
 
     @media (min-width: 961px) {
+        .nds-main-nav {
+            /* Desktop dropdowns extend below the sticky bar; clip only inline
+               overflow so NDS overflow-menu items cannot scroll the page. */
+            overflow-inline: clip;
+        }
+
+        .nds-main-nav:has(.nds-dropdown[data-state~="open"]) {
+            /* The NDS dropdown is fixed below the nav. Removing the no-op
+               transform while it is open lets it escape the inline clip and
+               receive pointer events without reintroducing page overflow. */
+            transform: none;
+        }
+
         .nds-content-layout:not(.nds-wSideMenu, .nds-wSideInfo) {
             --section-padding-block: var(--spacing-5xl);
         }
@@ -1622,7 +1635,7 @@
         padding-block: var(--spacing-2xl, 20px);
     }
 
-    .wwf-process-commission__person + .wwf-process-commission__person {
+    .wwf-process-commission__person+.wwf-process-commission__person {
         border-block-start: 1px solid var(--border-neutral-primary);
     }
 
@@ -2479,6 +2492,7 @@
     }
 
     @media (max-width: 1024px) {
+
         .wwf-forum-process-overview__layout,
         .wwf-forum-process-framework__layout {
             grid-template-columns: minmax(0, 1fr);
@@ -2502,6 +2516,875 @@
 
         .wwf-forum-process-hub__button {
             margin-inline-start: auto;
+        }
+    }
+
+    /* ======= YOUTH PROGRAM PAGE ======= */
+
+    .wwf-youth-hero {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
+    .wwf-youth-hero .nds-section-description {
+        max-inline-size: var(--spacing-240, 960px);
+    }
+
+    .wwf-youth-intro {
+        /* --section-padding-block-start: var(--spacing-xl, 16px); */
+        --section-padding-block-start: 0;
+        --section-padding-block-end: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-youth-intro__image {
+        inline-size: 100%;
+        aspect-ratio: 160 / 49;
+        border-radius: var(--radius-lg, 16px);
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .wwf-youth-intro__about {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+        align-items: center;
+        gap: var(--spacing-7xl, 64px);
+        margin-block-start: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-youth-intro__copy h2 {
+        margin: 0 0 var(--spacing-xl, 16px);
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-youth-intro__copy p {
+        margin: 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-youth-intro__copy p+p {
+        margin-block-start: var(--spacing-md, 8px);
+    }
+
+    .wwf-youth-intro__copy strong {
+        color: var(--text-default);
+        font-weight: 700;
+    }
+
+    .wwf-youth-stat {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-block-size: var(--spacing-40, 160px);
+        padding: var(--spacing-3xl, 24px);
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-lg, 16px);
+        background: var(--background-default);
+        box-shadow: var(--wwf-youth-program-stat-shadow);
+        text-align: center;
+        /* The clipped circle is the decorative corner treatment shown in the supplied design. */
+        overflow: hidden;
+    }
+
+    .wwf-youth-stat::after {
+        content: "";
+        position: absolute;
+        inset-block-start: calc(-1 * var(--spacing-3xl, 24px));
+        inset-inline-end: calc(-1 * var(--spacing-3xl, 24px));
+        inline-size: var(--spacing-24, 96px);
+        aspect-ratio: 1;
+        border-radius: var(--radius-full);
+        background: var(--wwf-youth-program-stat-color);
+    }
+
+    .wwf-youth-stat strong,
+    .wwf-youth-stat span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .wwf-youth-stat strong {
+        color: var(--colors-blue-400);
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+        font-weight: 700;
+    }
+
+    .wwf-youth-stat span {
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 600;
+    }
+
+    .wwf-youth-objectives,
+    .wwf-youth-components,
+    .wwf-youth-governance {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-youth-objectives {
+        --section-padding-block-start: 0;
+    }
+
+    .wwf-youth-components {
+        --section-bg: var(--background-neutral-25);
+    }
+
+    .wwf-youth-objectives .nds-section-title,
+    .wwf-youth-components .nds-section-title {
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-youth-card-grid {
+        display: grid;
+        gap: var(--spacing-2xl, 20px);
+        align-items: stretch;
+    }
+
+    .wwf-youth-card-grid--objectives {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .wwf-youth-card--quarter {
+        grid-column: span 3;
+    }
+
+    .wwf-youth-card--third {
+        grid-column: span 4;
+    }
+
+    .wwf-youth-card-grid--components {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .wwf-youth-card {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-gap: var(--spacing-2xl, 20px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        min-inline-size: 0;
+        block-size: 100%;
+    }
+
+    .wwf-youth-card__icon {
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--featuredicons-icon-default);
+    }
+
+    .wwf-youth-card .nds-card-content {
+        flex: 1;
+    }
+
+    .wwf-youth-card .nds-card-text {
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-youth-card .nds-card-title {
+        color: var(--text-default);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
+        font-weight: 700;
+    }
+
+    .wwf-youth-card .nds-card-description {
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-youth-governance__head p {
+        margin: 0;
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-youth-governance__head h2 {
+        margin-block: var(--spacing-md, 8px) 0;
+        color: var(--wwf-youth-program-title-color);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-youth-coordinators {
+        --card-width-max: none;
+        --card-padding: var(--spacing-xl, 16px);
+        --card-border: var(--wwf-youth-program-coordinators-border);
+        --card-radius: var(--radius-lg, 16px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xl, 16px);
+        /* margin-block-start: var(--spacing-3xl, 24px); */
+        box-shadow: var(--wwf-youth-program-coordinators-shadow);
+    }
+
+    .wwf-youth-coordinators__tag {
+        --tag-bg: var(--background-warning-50);
+        --tag-border: var(--border-warning-light);
+        --tag-text: var(--wwf-action-bg);
+        --tag-icon: var(--wwf-action-bg);
+        flex: none;
+        block-size: auto;
+        min-inline-size: 0;
+        padding-block: var(--spacing-sm, 6px);
+        border-radius: var(--radius-full);
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .wwf-youth-coordinators__tag .nds-label {
+        white-space: normal;
+    }
+
+    .wwf-youth-coordinators p {
+        margin: 0;
+        color: var(--wwf-youth-program-coordinators-color);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 600;
+    }
+
+    .wwf-youth-organizations__title {
+        margin-block: var(--spacing-3xl, 24px) var(--spacing-xl, 16px);
+        color: var(--wwf-youth-program-title-color);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-youth-organizations {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: var(--spacing-lg, 12px);
+        align-items: stretch;
+    }
+
+    .wwf-youth-organization {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-xl, 16px);
+        min-inline-size: 0;
+        padding-block: var(--spacing-3xl, 24px);
+        padding-inline: var(--spacing-lg, 12px);
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-lg, 16px);
+        background: var(--background-default);
+        text-align: center;
+    }
+
+    .wwf-youth-organization img {
+        inline-size: 100%;
+        max-inline-size: var(--spacing-28, 112px);
+        block-size: var(--spacing-18, 72px);
+        object-fit: contain;
+    }
+
+    .wwf-youth-organization h4 {
+        margin: 0;
+        color: var(--colors-blue-900);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+        font-weight: 600;
+        overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 1200px) {
+        .wwf-youth-organizations {
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 960px) {
+        .wwf-youth-intro__about {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--spacing-3xl, 24px);
+        }
+
+        .wwf-youth-stat {
+            inline-size: min(100%, 300px);
+        }
+
+        .wwf-youth-card-grid--objectives,
+        .wwf-youth-card-grid--components {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .wwf-youth-card--quarter,
+        .wwf-youth-card--third {
+            grid-column: auto;
+        }
+
+        .wwf-youth-organizations {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-youth-intro__image {
+            aspect-ratio: 4 / 3;
+        }
+
+        .wwf-youth-card-grid--objectives,
+        .wwf-youth-card-grid--components {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-youth-coordinators {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .wwf-youth-organizations {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    html[data-a11y~="font-step-3"] .wwf-youth-organizations {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    @media (max-width: 600px) {
+        html[data-a11y~="font-step-3"] .wwf-youth-organizations {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    /* ======= INTERSECTORAL PROGRAM PAGE ======= */
+
+    .wwf-intersectoral-hero {
+        --background-sub-hero: var(--background-neutral-25);
+    }
+
+    .wwf-intersectoral-hero .nds-section-description {
+        max-inline-size: var(--spacing-240, 960px);
+    }
+
+    .wwf-intersectoral-intro {
+        --section-padding-block-start: 0;
+        --section-padding-block-end: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-intersectoral-intro__image {
+        inline-size: 100%;
+        aspect-ratio: 16 / 5;
+        border-radius: var(--radius-lg, 16px);
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .wwf-intersectoral-intro__copy {
+        margin-block-start: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-intersectoral-intro__copy h2,
+    .wwf-intersectoral-objectives .nds-section-title {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-intro__copy p {
+        margin: var(--spacing-xl, 16px) 0 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-intersectoral-acwa {
+        --section-padding-block: var(--spacing-7xl, 64px);
+        position: relative;
+        color: var(--text-oncolor-primary);
+        background:
+            radial-gradient(circle at 80% 45%, transparent 0 17%, rgba(255, 255, 255, .06) 17.2% 17.5%, transparent 17.7% 24%, rgba(255, 255, 255, .045) 24.2% 24.5%, transparent 24.7%),
+            linear-gradient(135deg, var(--wwf-intersectoral-brand-bg) 0%, var(--wwf-intersectoral-brand-bg-deep) 100%);
+        /* The supplied design contains decorative wave/ring artwork that is intentionally clipped to this band. */
+        overflow: clip;
+    }
+
+    .wwf-intersectoral-acwa::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: .28;
+        background: repeating-radial-gradient(ellipse at 18% 28%, transparent 0 28px, rgba(255, 255, 255, .08) 30px, transparent 32px 48px);
+        transform: scale(1.5);
+    }
+
+    .wwf-intersectoral-acwa .nds-section-wrapper {
+        position: relative;
+        z-index: 1;
+    }
+
+    .wwf-intersectoral-acwa__layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(420px, .95fr);
+        align-items: center;
+        gap: var(--spacing-8xl, 80px);
+    }
+
+    .wwf-intersectoral-kicker {
+        margin: 0;
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-xs-LH);
+        font-weight: 500;
+    }
+
+    .wwf-intersectoral-acwa__copy h2 {
+        margin: var(--spacing-md, 8px) 0 var(--spacing-3xl, 24px);
+        color: inherit;
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-acwa__copy>p:not(.wwf-intersectoral-kicker) {
+        margin: 0;
+        color: var(--colors-alpha-alpha-white-80);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-md-LH);
+    }
+
+    .wwf-intersectoral-acwa__action {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-xl, 16px);
+        margin-block-start: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-intersectoral-acwa__button {
+        --btn-bg: var(--wwf-action-bg);
+        --btn-bg-hover: var(--wwf-action-bg-hover);
+        --btn-bg-active: var(--wwf-action-bg-active);
+        --btn-bg-selected: var(--wwf-action-bg-active);
+        --btn-border: var(--wwf-action-bg);
+        --btn-border-hover: var(--wwf-action-bg-hover);
+        --btn-border-active: var(--wwf-action-bg-active);
+        --btn-color: var(--text-oncolor-primary);
+    }
+
+    .wwf-intersectoral-acwa__action small {
+        color: var(--colors-alpha-alpha-white-60);
+        font-size: var(--typo-text-2xs-FS);
+        line-height: var(--typo-text-2xs-LH);
+    }
+
+    .wwf-intersectoral-metrics {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-areas:
+            "renew renew capacity capacity"
+            "water brand brand assets"
+            "countries brand brand .";
+        align-items: center;
+        gap: var(--spacing-xl, 16px);
+        padding: var(--spacing-3xl, 24px);
+    }
+
+    .wwf-intersectoral-metric {
+        display: flex;
+        flex-direction: column;
+        min-inline-size: 0;
+        padding: var(--spacing-lg, 12px) var(--spacing-xl, 16px);
+        border-radius: var(--radius-lg, 16px);
+        background: var(--wwf-intersectoral-metric-bg);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .wwf-intersectoral-metric strong {
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-metric span {
+        color: var(--colors-alpha-alpha-white-70);
+        font-size: var(--typo-text-2xs-FS);
+        line-height: var(--typo-text-2xs-LH);
+        font-weight: 700;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+    }
+
+    .wwf-intersectoral-metric--renewables { grid-area: renew; justify-self: end; }
+    .wwf-intersectoral-metric--capacity { grid-area: capacity; justify-self: start; }
+    .wwf-intersectoral-metric--water { grid-area: water; }
+    .wwf-intersectoral-metric--assets { grid-area: assets; }
+    .wwf-intersectoral-metric--countries { grid-area: countries; justify-self: end; }
+
+    .wwf-intersectoral-metrics__brand {
+        grid-area: brand;
+        display: grid;
+        place-items: center;
+        justify-self: center;
+        inline-size: min(100%, var(--spacing-48, 192px));
+        aspect-ratio: 1;
+        border: var(--spacing-md, 8px) solid var(--colors-alpha-alpha-white-20);
+        border-radius: var(--radius-full);
+        background: var(--background-default);
+        box-shadow: 0 0 0 var(--spacing-md, 8px) rgba(255, 255, 255, .08);
+        color: var(--wwf-intersectoral-logo-purple);
+        font-size: var(--typo-display-sm-FS);
+        line-height: 1;
+        font-weight: 600;
+    }
+
+    .wwf-intersectoral-metrics__brand span {
+        grid-area: 1 / 1;
+    }
+
+    .wwf-intersectoral-metrics__brand .wwf-intersectoral-metrics__mark {
+        position: relative;
+        align-self: start;
+        margin-block-start: var(--spacing-4xl, 32px);
+        inline-size: var(--spacing-14, 56px);
+        block-size: var(--spacing-12, 48px);
+        opacity: .8;
+    }
+
+    .wwf-intersectoral-metrics__mark::before,
+    .wwf-intersectoral-metrics__mark::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 65% 35% 60% 40%;
+        background: var(--wwf-intersectoral-logo-purple);
+        clip-path: polygon(50% 0, 92% 86%, 65% 72%, 50% 42%, 35% 72%, 8% 86%);
+        transform: rotate(-10deg);
+    }
+
+    .wwf-intersectoral-metrics__mark::after {
+        opacity: .45;
+        transform: translateX(var(--spacing-md, 8px)) rotate(12deg) scale(.78);
+    }
+
+    .wwf-intersectoral-metrics__brand span:last-child {
+        align-self: end;
+        margin-block-end: var(--spacing-5xl, 40px);
+    }
+
+    .wwf-intersectoral-acwa__reason {
+        margin-block-start: var(--spacing-7xl, 64px);
+        padding: var(--spacing-3xl, 24px) var(--spacing-4xl, 32px);
+        border: 1px solid var(--wwf-intersectoral-brand-border);
+        border-radius: var(--radius-lg, 16px);
+        background: var(--wwf-intersectoral-brand-surface);
+    }
+
+    .wwf-intersectoral-acwa__reason h3 {
+        margin: 0 0 var(--spacing-md, 8px);
+        color: inherit;
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-acwa__reason p {
+        margin: 0;
+        color: var(--colors-alpha-alpha-white-80);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-intersectoral-objectives,
+    .wwf-intersectoral-clusters,
+    .wwf-intersectoral-governance {
+        --section-padding-block: var(--spacing-7xl, 64px);
+    }
+
+    .wwf-intersectoral-objectives__grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: var(--spacing-2xl, 20px);
+    }
+
+    .wwf-intersectoral-objective {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-gap: var(--spacing-xl, 16px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        min-inline-size: 0;
+        block-size: 100%;
+    }
+
+    .wwf-intersectoral-objective .nds-featured-icon,
+    .wwf-intersectoral-cluster .nds-featured-icon {
+        --icon-bg-color: var(--background-neutral-100);
+        --icon-color: var(--featuredicons-icon-default);
+    }
+
+    .wwf-intersectoral-objective .nds-card-title {
+        color: var(--text-default);
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-objective .nds-card-description {
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-intersectoral-clusters {
+        --section-bg: var(--background-neutral-25);
+    }
+
+    .wwf-intersectoral-clusters__head {
+        gap: var(--spacing-md, 8px);
+    }
+
+    .wwf-intersectoral-clusters__head .nds-section-title,
+    .wwf-intersectoral-governance__head h2 {
+        margin: 0;
+        font-size: var(--typo-text-xl-FS);
+        line-height: var(--typo-text-xl-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-clusters__head .nds-section-description {
+        max-inline-size: none;
+    }
+
+    .wwf-intersectoral-clusters__grid {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: var(--spacing-2xl, 20px);
+        align-items: stretch;
+    }
+
+    .wwf-intersectoral-cluster {
+        --card-width-max: none;
+        --card-padding: var(--spacing-2xl, 20px);
+        --card-gap: var(--spacing-xl, 16px);
+        --card-border: var(--border-neutral-primary);
+        --card-radius: var(--radius-lg, 16px);
+        grid-column: span 3;
+        display: flex;
+        flex-direction: column;
+        min-inline-size: 0;
+        block-size: 100%;
+    }
+
+    .wwf-intersectoral-cluster--wide {
+        grid-column: span 4;
+    }
+
+    .wwf-intersectoral-cluster h3 {
+        margin: 0;
+        color: var(--text-default);
+        font-size: var(--typo-text-md-FS);
+        line-height: var(--typo-text-md-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-cluster__partners {
+        padding: var(--spacing-xl, 16px);
+        border: 1px solid var(--border-neutral-primary);
+        border-radius: var(--radius-md, 8px);
+        background: var(--wwf-intersectoral-cluster-partners-bg);
+    }
+
+    .wwf-intersectoral-cluster__partners p {
+        margin: 0;
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+        overflow-wrap: anywhere;
+    }
+
+    .wwf-intersectoral-cluster__partners p+p {
+        margin-block-start: var(--spacing-xs, 4px);
+    }
+
+    .wwf-intersectoral-cluster__partners strong {
+        color: var(--text-default);
+    }
+
+    .wwf-intersectoral-cluster ul {
+        display: grid;
+        gap: var(--spacing-md, 8px);
+        margin: 0;
+        padding-inline-start: var(--spacing-2xl, 20px);
+        color: var(--text-primary-paragraph);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-intersectoral-cluster li::marker {
+        color: var(--border-neutral-primary);
+    }
+
+    .wwf-intersectoral-governance {
+        position: relative;
+        color: var(--text-oncolor-primary);
+        background: linear-gradient(135deg, var(--wwf-intersectoral-brand-bg) 0%, var(--wwf-intersectoral-brand-bg-deep) 100%);
+        overflow: clip;
+    }
+
+    .wwf-intersectoral-governance::after {
+        content: "";
+        position: absolute;
+        inset-inline-end: calc(-1 * var(--spacing-32, 128px));
+        inset-block-end: calc(-1 * var(--spacing-32, 128px));
+        inline-size: var(--spacing-96, 384px);
+        aspect-ratio: 1;
+        border: 1px solid var(--colors-alpha-alpha-white-10);
+        border-radius: var(--radius-full);
+        box-shadow: 0 0 0 var(--spacing-12, 48px) rgba(255, 255, 255, .025);
+        pointer-events: none;
+    }
+
+    .wwf-intersectoral-governance .nds-section-wrapper {
+        position: relative;
+        z-index: 1;
+    }
+
+    .wwf-intersectoral-governance__head h2 {
+        margin-block-start: var(--spacing-md, 8px);
+        color: inherit;
+        font-size: var(--typo-display-sm-FS);
+        line-height: var(--typo-display-sm-LH);
+    }
+
+    .wwf-intersectoral-governance__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--spacing-4xl, 32px);
+        margin-block-start: var(--spacing-4xl, 32px);
+    }
+
+    .wwf-intersectoral-governance__grid article {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md, 8px);
+        min-inline-size: 0;
+        padding: var(--spacing-4xl, 32px);
+        border: 1px solid var(--wwf-intersectoral-brand-border);
+        border-radius: var(--radius-lg, 16px);
+        background: var(--wwf-intersectoral-brand-surface);
+    }
+
+    .wwf-intersectoral-governance__grid p,
+    .wwf-intersectoral-governance__grid h3,
+    .wwf-intersectoral-governance__grid span {
+        margin: 0;
+    }
+
+    .wwf-intersectoral-governance__grid p {
+        color: var(--colors-alpha-alpha-white-60);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-xs-LH);
+    }
+
+    .wwf-intersectoral-governance__grid h3 {
+        color: inherit;
+        font-size: var(--typo-text-lg-FS);
+        line-height: var(--typo-text-lg-LH);
+        font-weight: 700;
+    }
+
+    .wwf-intersectoral-governance__grid span {
+        margin-block-start: var(--spacing-xl, 16px);
+        color: var(--colors-alpha-alpha-white-80);
+        font-size: var(--typo-text-xs-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    @media (max-width: 1100px) {
+        .wwf-intersectoral-acwa__layout {
+            grid-template-columns: minmax(0, 1fr);
+            gap: var(--spacing-5xl, 40px);
+        }
+
+        .wwf-intersectoral-metrics {
+            inline-size: min(100%, 720px);
+            margin-inline: auto;
+        }
+
+        .wwf-intersectoral-cluster,
+        .wwf-intersectoral-cluster--wide {
+            grid-column: span 6;
+        }
+    }
+
+    @media (max-width: 960px) {
+        .wwf-intersectoral-objectives__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .wwf-intersectoral-governance__grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-intersectoral-intro__image {
+            aspect-ratio: 4 / 3;
+        }
+
+        .wwf-intersectoral-acwa__copy h2 br {
+            display: none;
+        }
+
+        .wwf-intersectoral-metrics {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-areas:
+                "brand brand"
+                "renew capacity"
+                "water water"
+                "countries assets";
+            padding-inline: 0;
+        }
+
+        .wwf-intersectoral-metric {
+            inline-size: 100%;
+            justify-self: stretch;
+        }
+
+        .wwf-intersectoral-objectives__grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .wwf-intersectoral-cluster,
+        .wwf-intersectoral-cluster--wide {
+            grid-column: 1 / -1;
+        }
+
+        .wwf-intersectoral-governance__grid article {
+            padding: var(--spacing-3xl, 24px);
+        }
+    }
+
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-objectives__grid,
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-governance__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster,
+    html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster--wide {
+        grid-column: span 6;
+    }
+
+    @media (max-width: 600px) {
+        html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster,
+        html[data-a11y~="font-step-3"] .wwf-intersectoral-cluster--wide {
+            grid-column: 1 / -1;
         }
     }
 
@@ -4081,7 +4964,7 @@
         background: var(--background-default);
     }
 
-    .wwf-visitor-hotel-card + .wwf-visitor-hotel-card {
+    .wwf-visitor-hotel-card+.wwf-visitor-hotel-card {
         border-block-start: 1px solid var(--colors-neutral-300);
     }
 
@@ -4376,6 +5259,7 @@
     }
 
     @media (max-width: 960px) {
+
         .wwf-visitor-facts,
         .wwf-visitor-facts--arrival {
             grid-template-columns: repeat(2, minmax(0, 1fr));
