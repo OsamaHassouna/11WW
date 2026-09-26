@@ -6197,6 +6197,87 @@
         }
     }
 
+    /* ---- COUNTRY PAVILION EXPRESSION OF INTEREST ---- */
+
+    .wwf-country-pavilion-page .wwf-registration-intro .nds-section-title {
+        max-inline-size: var(--spacing-160, 640px);
+    }
+
+    .wwf-country-pavilion-page .nds-form-container:not([hidden])[data-required]
+        .nds-form-header .nds-label::before {
+        content: none;
+    }
+
+    .wwf-country-pavilion-page .nds-form-container:not([hidden])[data-required]
+        .nds-form-header .nds-label::after {
+        color: var(--controls-control-text-error);
+        content: " *";
+    }
+
+    .wwf-country-pavilion-hint {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--spacing-md, 8px);
+        margin: var(--spacing-md, 8px) 0 0;
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-country-pavilion-hint .hgi {
+        flex: 0 0 auto;
+        margin-block-start: var(--spacing-xxs, 2px);
+        font-size: var(--spacing-xl, 16px);
+        line-height: 1;
+    }
+
+    .wwf-country-pavilion-legend-hint {
+        margin: calc(var(--spacing-lg, 12px) * -1) 0 var(--spacing-xl, 16px);
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-country-pavilion-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-xl, 16px) var(--spacing-4xl, 32px);
+    }
+
+    .wwf-country-pavilion-options .nds-form-header label {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs, 4px);
+    }
+
+    .wwf-country-pavilion-option-description {
+        color: var(--text-secondary-paragraph);
+        font-size: var(--typo-text-sm-FS);
+        font-weight: 400;
+        line-height: var(--typo-text-sm-LH);
+    }
+
+    .wwf-country-pavilion-requirements {
+        margin-block-start: var(--spacing-6xl, 48px);
+    }
+
+    .wwf-country-pavilion-requirements textarea {
+        min-block-size: var(--spacing-24, 96px);
+        resize: vertical;
+    }
+
+    @media (min-width: 961px) {
+        .wwf-country-pavilion-page .wwf-registration-stepper-panel {
+            margin-block-start: 0;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-country-pavilion-options {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
     /* ---- REGISTRATION SUCCESS ---- */
 
     .wwf-registration-success-content {
