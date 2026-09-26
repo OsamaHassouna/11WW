@@ -6812,6 +6812,7 @@
     }
 
     .wwf-forum-intro>.nds-section-title {
+        max-inline-size: var(--spacing-140, 560px);
         font-size: var(--typo-display-sm-FS);
         line-height: var(--typo-display-sm-LH);
     }
