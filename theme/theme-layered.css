@@ -93,6 +93,44 @@
         box-shadow: none;
     }
 
+    .nds-main-nav .nds-dropdown[data-state~="open"] .nds-dropdown-menu {
+        /* Keep the moving panel clipped until its height transition catches
+           up with the NDS open state on both desktop and mobile. */
+        overflow: clip;
+    }
+
+    .nds-main-nav .nds-dropdown[data-state~="closing"] .nds-dropdown-menu {
+        /* Prevent stale link clicks during the DGA close timer. */
+        pointer-events: none;
+    }
+
+    @keyframes wwf-mobile-nav-reveal-overflow {
+        from {
+            overflow: clip;
+        }
+
+        to {
+            overflow: visible;
+        }
+    }
+
+    @media (max-width: 960px) {
+        body.nds-minimal .nds-main-nav .nds-collapse[data-state~="opened"] {
+            /* NDS starts the slide after applying its opened state. Delay the
+               overflow reveal so the drawer emerges below the header. */
+            animation-name: wwf-mobile-nav-reveal-overflow;
+            animation-duration: calc(var(--nds-transition-speed) * 1s);
+            animation-timing-function: step-end;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    @media (max-width: 960px) and (prefers-reduced-motion: reduce) {
+        body.nds-minimal .nds-main-nav .nds-collapse[data-state~="opened"] {
+            animation-duration: 0s;
+        }
+    }
+
     @media (min-width: 961px) {
         .nds-main-nav {
             /* Desktop dropdowns extend below the sticky bar; clip only inline
@@ -105,17 +143,6 @@
                transform while it is open lets it escape the inline clip and
                receive pointer events without reintroducing page overflow. */
             transform: none;
-        }
-
-        .nds-main-nav .nds-dropdown[data-state~="open"] .nds-dropdown-menu {
-            /* Preserve the NDS slide while clipping the moving panel at the
-               nav boundary for the full transition duration. */
-            overflow: clip;
-        }
-
-        .nds-main-nav .nds-dropdown[data-state~="closing"] .nds-dropdown-menu {
-            /* Prevent stale link clicks during the DGA close timer. */
-            pointer-events: none;
         }
 
         .nds-content-layout:not(.nds-wSideMenu, .nds-wSideInfo) {
