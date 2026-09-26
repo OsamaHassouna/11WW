@@ -6140,6 +6140,63 @@
         }
     }
 
+    /* ---- SIDE EVENT SUBMISSION ---- */
+
+    .wwf-side-event-page .wwf-registration-intro .nds-section-title {
+        max-inline-size: var(--spacing-180, 720px);
+    }
+
+    .wwf-side-event-page .nds-form-container:not([hidden])[data-required]
+        .nds-form-header .nds-label::before {
+        content: none;
+    }
+
+    .wwf-side-event-page .nds-form-container:not([hidden])[data-required]
+        .nds-form-header .nds-label::after {
+        color: var(--controls-control-text-error);
+        content: " *";
+    }
+
+    .wwf-side-event-checks--grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--spacing-lg, 12px) var(--spacing-xl, 16px);
+    }
+
+    .wwf-side-event-section-block {
+        padding-block: var(--spacing-2xl, 20px);
+        border-block-start: 1px solid var(--divider-color);
+    }
+
+    .wwf-side-event-section-block--first {
+        padding-block-start: 0;
+        border-block-start: 0;
+    }
+
+    .wwf-side-event-section-block--last {
+        padding-block-end: 0;
+    }
+
+    .wwf-side-event-textarea--large {
+        min-block-size: var(--spacing-10xl, 128px);
+    }
+
+    .wwf-side-event-textarea--medium {
+        min-block-size: var(--spacing-9xl, 96px);
+    }
+
+    @media (min-width: 961px) {
+        .wwf-side-event-page .wwf-registration-stepper-panel {
+            margin-block-start: 0;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .wwf-side-event-checks--grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
     /* ---- REGISTRATION SUCCESS ---- */
 
     .wwf-registration-success-content {
