@@ -230,11 +230,8 @@
         }
     }
 
-    :is(html[dir="rtl"], .rtl) .wwf-sub-hero--illustrated {
-        --wwf-sub-hero-mask: linear-gradient(to right, black 0%, black 50%, transparent 100%);
-    }
-
     :is(html[dir="rtl"], .rtl) .wwf-sub-hero--illustrated::after {
+        /* Mirroring this layer reverses both the image and its shared mask. */
         background-position: left center;
         scale: -1 1;
     }
